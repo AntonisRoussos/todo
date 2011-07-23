@@ -12,8 +12,9 @@ def language_lookup
 languages = Array.new()
 #I18n.available_locales.each do |lg|
 Todo::Application.config.application_locales.each do |lg| 
-lang = ":" + lg[15,2]
 l = LabelValue.new
+logger.debug ("==========================#{lg}")
+logger.debug ("#{lg}")
 l.value = I18n.name_for_locale(lg[15,2])
 l.label = lg[15,2]
 languages.push(l)
