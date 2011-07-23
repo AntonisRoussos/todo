@@ -10,12 +10,10 @@ private
 def language_lookup
 #create an emptycollection to hold the LabelValue Objects
 languages = Array.new()
-#I18n.available_locales.each do |lg|
-Todo::Application.config.application_locales.each do |lg| 
-lang = ":" + lg[15,2]
+I18n.available_locales.each do |lg| 
 l = LabelValue.new
-l.value = I18n.name_for_locale(lg[15,2])
-l.label = lg[15,2]
+l.value = I18n.name_for_locale(lg)
+l.label = lg[0,2]
 languages.push(l)
 end
 return languages
