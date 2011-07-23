@@ -1,4 +1,23 @@
-Todo::Application.routes.draw do
+Todo::Application.routes.draw do 
+
+  match 'users/activateuser/:id', :to => 'users#activateuser'
+  match '/users/:id/reset',  :to => 'users#updatepasswordreset'
+  match '/signup/users/check_email', :to => 'users#check_email'
+  match '/signup/users/check_name', :to => 'users#check_name'
+  resources :users 
+  resources :sessions, :only => [:new, :create, :destroy]
+  get "sessions/new"
+  match '/signup',  :to => 'users#new'
+  match '/MailPasswordRequest',  :to => 'users#MailPasswordRequest'
+  match '/MailPassword',  :to => 'users#MailPassword'
+  match 'MailPassword/ResetPasswordRequest/:encryptedhash', :to => 'users#ResetPasswordRequest'
+  match '/ResetPassword',  :to => 'users#ResetPassword'
+  match '/ChangePasswordRequest',  :to => 'users#ChangePasswordRequest'
+  match '/ChangePassword',  :to => 'users#ChangePassword'
+  match '/signin',  :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+  root :to => "home#index"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
@@ -48,7 +67,6 @@ Todo::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => "welcome#index"
 
   # See how all your routes lay out with "rake routes"
 

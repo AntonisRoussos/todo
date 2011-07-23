@@ -1,0 +1,27 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  name: MyString
+  email: MyString
+  : 
+  salt: MyString
+  status: false
+  family_view_access: false
+  Family_assign_tasks: false
+  friends_view_access: false
+  friends_assign_access: false
+  employer_view_access: false
+  employer_assign_access: false
+
+two:
+  name: MyString
+  email: MyString
+  : 
+  salt: MyString
+  status: false
+  family_view_access: false
+  Family_assign_tasks: false
+  friends_view_access: false
+  friends_assign_access: false
+  employer_view_access: false
+  employer_assign_access: false

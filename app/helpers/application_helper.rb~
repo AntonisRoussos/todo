@@ -1,0 +1,22 @@
+module ApplicationHelper
+
+def language_select(f)
+f.collection_select(:selected_language, language_lookup,:label,:value,{:prompt=>"Select language"})
+#f.collection_select(:selected_language, I18n.available_locales,:label,:value,{:prompt=>"Select language"})
+end
+
+#private
+
+def language_lookup
+#create an emptycollection to hold the LabelValue Objects
+languages = Array.new()
+I18n.available_locales.each do |lg| 
+l = LabelValue.new
+l.value = I18n.name_for_locale(lg)
+l.label = lg[0,2]
+languages.push(l)
+end
+return languages
+end
+
+end

@@ -1,0 +1,50 @@
+<h1>t(:Edit_user_settings)</h1>
+
+<%= form_for @user, :html => { :id => "edit_user" } do |f| %>
+
+  <%= render 'shared/error_messages', :object => f.object %> 
+
+  <div class="field">
+	<%= f.hidden_field(:id) %>
+  </div>
+  <div class="field">
+    <%= f.label :name %>
+    <%= f.text_field :name %>
+  </div>
+  <div class="field">
+    <%= f.label :email %>
+    <%= f.text_field :email %>
+  </div>
+  <div class="field">
+    <%= f.label :selected_language %>
+    <%= language_select(f) %>
+  </div>
+  <div class="field">
+    <%= f.check_box :family_view_access, {}, true, false %>
+    <%= f.label :family_view_access, t(:Allow_family_view) %> 
+  </div>
+ <div class="field">
+    <%= f.check_box :family_assign_tasks, {}, true, false %>
+    <%= f.label :family_assign_tasks, t(:Allow_family_assignments) %> 
+  </div>
+ <div class="field">
+    <%= f.check_box :friends_view_access, {}, true, false %>
+    <%= f.label :friends_view_access, t(:Allow_friends_view) %> 
+  </div>
+ <div class="field">
+    <%= f.check_box :friends_assign_access, {}, true, false %>
+    <%= f.label :friends_assign_tasks, t(:Allow_friends_assignments) %> 
+  </div>
+ <div class="field">
+    <%= f.check_box :employer_view_access, {}, true, false %>
+    <%= f.label :employer_view_access, t(:allow_employer_view) %> 
+  </div>
+ <div class="field">
+    <%= f.check_box :employer_assign_access, {}, true, false %>
+    <%= f.label :employer_assign_tasks, t(:Allow_employer_assignments) %> 
+  </div>
+
+  <div class="actions">
+    <%= f.submit t(:Update) %>
+  </div>
+<% end %>
