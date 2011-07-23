@@ -1,5 +1,6 @@
 Todo::Application.routes.draw do 
 
+  root :to => "home#index"
   match 'users/activateuser/:id', :to => 'users#activateuser'
   match '/users/:id/reset',  :to => 'users#updatepasswordreset'
   match '/signup/users/check_email', :to => 'users#check_email'
@@ -16,7 +17,6 @@ Todo::Application.routes.draw do
   match '/ChangePassword',  :to => 'users#ChangePassword'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
