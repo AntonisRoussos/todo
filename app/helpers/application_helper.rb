@@ -1,7 +1,7 @@
 module ApplicationHelper
 
 def language_select(f)
-f.collection_select(:selected_language, this.language_lookup,:label,:value,{:prompt=>"Select language"})
+f.collection_select(:selected_language, language_lookup,:label,:value,{:prompt=>"Select language"})
 #f.collection_select(:selected_language, I18n.available_locales,:label,:value,{:prompt=>"Select language"})
 end
 
