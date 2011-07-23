@@ -16,7 +16,7 @@ Todo::Application.routes.draw do
   match '/ChangePassword',  :to => 'users#ChangePassword'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
-  root :to => "home#initial_loading"
+  root :to => "home#index"
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
