@@ -1,4 +1,4 @@
-require 'json'
+# require 'json'
 class UsersController < ApplicationController
     
   before_filter :authenticate, :only => [:edit, :update]
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
       else
 	@title = "Sign up"
         format.html { render :action => "new" }
-	logger.debug ("-----------------------------")
+  #	logger.debug ("-----------------------------")
         format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
 	format.json { render :json => @user.errors, :status => :unprocessable_entity }
 	

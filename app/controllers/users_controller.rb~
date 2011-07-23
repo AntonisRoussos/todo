@@ -55,7 +55,7 @@ class UsersController < ApplicationController
 
   def edit
     @user = User.find(params[:id])
-    @title = "Edit user settings"
+    @title = t(:Edit_user_settings)
   end
 
   def destroy
@@ -71,11 +71,11 @@ class UsersController < ApplicationController
   def update
         @user = User.find(params[:id])
 	if @user.update_attributes(params[:user])
-	        flash[:success] = "Settings updated.  "
+	        flash[:success] = t(:Settings_updated)
       		redirect_to @user
     	else
-	        flash[:success] = "Unexpected error during user settings update."
-      		@title = "Edit user settings"
+	        flash[:success] = t(:Unexpected_error_during_user_settings_update)
+      		@title = t(:Edit_user_settings)
    		render 'edit'
     	end
   end
@@ -87,9 +87,9 @@ class UsersController < ApplicationController
   def activateuser 
     @user = User.find(params[:id])
     if @user.update_attribute(:status, true)
-      flash[:success] = "user activated."
+      flash[:success] = t(:user_activated)
     else
-      flash[:success] = "Unexpected error during user activation."
+      flash[:success] = t(:Unexpected_error_during_user_activation)
     end
     redirect_to @user
   end
@@ -135,13 +135,13 @@ class UsersController < ApplicationController
 	encrypted_hash = updatepasswordfields(@user)
 	sendpasswordmail(@user.email, @user.name, encrypted_hash)
         format.html { 
-        flash[:success] = "Please check your mail to reset your password."
+        flash[:success] = t(:Please_check_your_mail_to_reset_your_password)
         format.xml  { render :xml => @user, :status => :created, :location => @user }   
 	format.json  { render :xml => @user, :status => :created, :location => @user }
 	}
       else
         format.html { 
-        flash[:success] = "User mail does not exist or the user is not activated."
+        flash[:success] = t(:User_mail_does_not_exist_or_the_user_is_not_activated)
 	}
       end
       redirect_to root_url
@@ -163,7 +163,7 @@ class UsersController < ApplicationController
     end       
     if !@user or !acceptable_request 
       sign_out
-      flash[:success] = "Your password request has expired!"
+      flash[:success] = t(:Your_password_request_has_expired!)
       redirect_to root_url
     end
   end
@@ -174,9 +174,9 @@ class UsersController < ApplicationController
     @user.time_forgot_password = nil
     if @user.update_attributes(params[:user])
       sign_in @user
-      flash[:success] = "user password was reset."
+      flash[:success] = t(:user_password_was_reset)
     else
-      flash[:success] = "Unexpected error during password reset."
+      flash[:success] = t(:Unexpected_error_during_password_reset)
     end
     redirect_to @user
   end
@@ -189,14 +189,14 @@ class UsersController < ApplicationController
    existinguserpassword = params[:existinguserpassword] 
    @user = User.find(params[:user][:id])
     if !verified_password?(existinguserpassword)
-	flash[:success] = "Wrong existing password."
+	flash[:success] = t(:Wrong_existing_password)
         render 'ChangePasswordRequest'
     else  
       if @user.update_attributes(params[:user])
         sign_in @user
-        flash[:success] = "Your password has changed."
+        flash[:success] = t(:Your_password_has_changed)
       else
-        flash[:success] = "Unexpected error during password change."
+        flash[:success] = t(:Unexpected_error_during_password_change)
       end
       redirect_to @user
     end
