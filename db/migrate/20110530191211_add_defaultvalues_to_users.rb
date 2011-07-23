@@ -8,7 +8,6 @@ class AddDefaultvaluesToUsers < ActiveRecord::Migration
 	change_column_default(:users, :employer_view_access, false)
 	change_column_default(:users, :employer_assign_access, false)
 	add_index :users, :email, :unique => true
-  	
   end
 
   def self.down
