@@ -13,7 +13,7 @@ languages = Array.new()
 #I18n.available_locales.each do |lg|
 Todo::Application.config.application_locales.each do |lg| 
 l = LabelValue.new
-logger.debug ("=============================#{lg}")
+logger.debug ("===========================#{lg}")
 logger.debug ("#{lg}")
 puts "Hello, logs!"
 l.value = I18n.name_for_locale(lg[15,2])
