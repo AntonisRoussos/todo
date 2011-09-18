@@ -4,7 +4,7 @@ class RemoteLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
 	attributes ["data-remote"]=true
 #	oldurl = url(target)
 #	url(target) << "javascript:loadContent('#task_information',"+:oldurl+")"
-#	Rails.logger.debug("-----   ----------------------------------------url")
+#	Rails.logger.debug("  -----   ----------------------------------------url")
 #	Rails.logger.debug("#{url(target)}")
 #	super
   end
