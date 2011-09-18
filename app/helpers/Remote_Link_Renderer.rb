@@ -1,7 +1,6 @@
 class RemoteLinkRenderer < WillPaginate::ViewHelpers::LinkRenderer
 #class RemoteLinkRenderer < WillPaginate::ActionView::LinkRenderer
    def link(text,target,attributes={})
-	super
 	attributes ["data-remote"]=true
 #	oldurl = url(target)
 #	url(target) << "javascript:loadContent('#task_information',"+:oldurl+")"
