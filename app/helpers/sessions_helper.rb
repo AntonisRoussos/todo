@@ -22,7 +22,7 @@ module SessionsHelper
     @current_user = user
   end
 
-  def deny_access
+   def deny_access
     store_location
     redirect_to signin_path, :notice => t(:Please_sign_in_to_access_this_page)
   end

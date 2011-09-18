@@ -1,0 +1,14 @@
+<h1><%= t(:Give_place_address) %></h1>
+
+<%= form_for "place_location", :action => "MapOfPlace", :html => { :method => :post }  do %>
+  <div class="field">
+        <%= t(:Give_place_address) %> 
+        <%= text_field_tag :location %>
+  </div>
+
+   <div class="actions">
+	<%= submit_tag t(:Show_map) %>
+  </div>
+
+<% end %>
+	

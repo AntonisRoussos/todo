@@ -1,4 +1,4 @@
-<h1>t(:Edit_user_settings)</h1>
+<h1><%= t(:Edit_user_settings) %></h1>
 
 <%= form_for @user, :html => { :id => "edit_user" } do |f| %>
 
@@ -37,7 +37,7 @@
   </div>
  <div class="field">
     <%= f.check_box :employer_view_access, {}, true, false %>
-    <%= f.label :employer_view_access, t(:allow_employer_view) %> 
+    <%= f.label :employer_view_access, t(:Allow_employer_view) %> 
   </div>
  <div class="field">
     <%= f.check_box :employer_assign_access, {}, true, false %>

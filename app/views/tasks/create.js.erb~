@@ -1,0 +1,2 @@
+$('#task_information').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
+$('#newtask').find('input[id|="task_description"]').val('');

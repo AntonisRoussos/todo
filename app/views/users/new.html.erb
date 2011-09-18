@@ -4,19 +4,19 @@
   <%= render 'shared/error_messages', :object => f.object %> 
   <div class="field">
     <%= f.label :name %><br />
-    <%= f.text_field :name %>
+    <%= f.text_field :name, :size => 23 %>
   </div>
   <div class="field">
     <%= f.label :email %><br />
-    <%= f.text_field :email %>
+    <%= f.text_field :email, :size => 45 %>
   </div>
   <div class="field">
     <%= f.label :password, t(:password) %><br />
-    <%= f.password_field :password %>
+    <%= f.password_field :password, :size => 20 %>
   </div>
   <div class="field">
     <%= f.label :password_confirmation, t(:password_confirmation) %><br />
-    <%= f.password_field :password_confirmation %>
+    <%= f.password_field :password_confirmation, :size => 23 %>
 
   </div>
   <div class="actions">

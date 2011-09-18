@@ -1,17 +1,6 @@
-
-locales = []	
-@files = Dir.glob("config/locales/*")
-
-for file in @files
- 
-locales << file
-puts locales
- 
-end
-
 # Load the rails application
 require File.expand_path('../application', __FILE__)
 
 # Initialize the rails application
 Todo::Application.initialize!
-
+config.log_level = :debug

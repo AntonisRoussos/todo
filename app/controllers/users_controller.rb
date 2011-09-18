@@ -80,9 +80,6 @@ class UsersController < ApplicationController
     	end
   end
 
-  def authenticate
-    deny_access unless signed_in?
-  end
 
   def activateuser 
     @user = User.find(params[:id])

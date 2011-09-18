@@ -2,10 +2,12 @@
 // This file is automatically included by javascript_include_tag :defaults
 
 $(document).ready(function () {
+//$('.pagination a').attr('data-remote', 'true');
+$("#task_due").datepicker();
 $("#new_user").validate({
 rules: {
-"user[name]": {required: true, maxlength: 20, remote: "/signup/users/check_name"},	
-"user[email]": {required: true, email: true, remote: "/signup/users/check_email"}, 
+"user[name]": {required: true, maxlength: 23, remote: "/signup/users/check_name"},	
+"user[email]": {required: true, maxlength: 45, email: true, remote: "/signup/users/check_email"}, 
 "user[password]": {required: true, minlength: 6, maxlength: 20},
 "user[password_confirmation]": {required: true, equalTo: "#user_password"}
 },
@@ -13,11 +15,22 @@ messages: {
     "user[email]": {
     required: I18n.t("javascripts.emailmissing"),
     email: I18n.t("javascripts.validemail"),
+    maxlength: I18n.t("javascripts.maximum_email_length_is_45"),
     remote: I18n.t("javascripts.existingemail")
 },
     "user[name]": {
     required:  I18n.t("javascripts.name_is_missing"),
-    remote: I18n.t("javascripts.This_name_is_already_allocated_by_another_user") 
+    remote: I18n.t("javascripts.This_name_is_already_allocated_by_another_user"),
+    maxlength: I18n.t("javascripts.maximum_user_name_length_is_23")
+},
+    "user[password]": {
+    required:  I18n.t("javascripts.password_is_missing"),
+    minlength: I18n.t("javascripts.minimum_password_length_is_6"),
+    maxlength: I18n.t("javascripts.maximum_password_length_is_20")
+},
+    "user[password_confirmation]": {
+    required:  I18n.t("javascripts.password_confirmation_is_missing"),
+    equalTo: I18n.t("javascripts.confirmation_password_should_be_equal_to_password") 
 }
 }
 });
@@ -58,13 +71,14 @@ messages: {
 });
 $("#edit_user").validate({
 rules: {
-"user[name]": {required: true, maxlength: 20, remote: { url: "/signup/users/check_name", data: { id: $("#user_id").val()}}},	
-"user[email]": {required: true, email: true, remote: { url: "/signup/users/check_email", data: { id: $("#user_id").val()}}}
+"user[name]": {required: true, maxlength: 23, remote: { url: "/signup/users/check_name", data: { id: $("#user_id").val()}}},	
+"user[email]": {required: true, maxlength: 45, email: true, remote: { url: "/signup/users/check_email", data: { id: $("#user_id").val()}}}
 },
 messages: {
     "user[email]": {
     required: I18n.t("javascripts.emailmissing"),
     email: I18n.t("javascripts.validemail"),
+    maxlength: I18n.t("javascripts.maximum_email_length_is_45"),
     remote: I18n.t("javascripts.existingemail")
 },
     "user[name]": {

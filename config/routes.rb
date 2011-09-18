@@ -1,5 +1,6 @@
 Todo::Application.routes.draw do 
 
+
   root :to => "home#index"
   match 'users/activateuser/:id', :to => 'users#activateuser'
   match '/users/:id/reset',  :to => 'users#updatepasswordreset'
@@ -17,12 +18,17 @@ Todo::Application.routes.draw do
   match '/ChangePassword',  :to => 'users#ChangePassword'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
+  match '/MapRequest',  :to => 'places#MapRequest'
+  match '/MapOfPlace',  :to => 'places#MapOfPlace'
+  match 'tasks/show',  :to => 'tasks#show'
+#  match 'tasks/create',  :to => 'tasks#create'
+  resources :tasks 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
   # Sample of regular route:
-  #   match 'products/:id' => 'catalog#view'
+  #   match 'products/:id' => 'catalog#view
   # Keep in mind you can assign values other than :controller and :action
 
   # Sample of named route:

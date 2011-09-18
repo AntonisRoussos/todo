@@ -1,7 +1,7 @@
 require 'digest'
 class User < ActiveRecord::Base
   attr_accessor :password
-  attr_accessible :name, :email, :password, :password_confirmation, :family_view_access, :family_assign_tasks, :friends_view_access, :friends_assign_access, :employer_view_access, :employer_assign_access, :status, :id
+  attr_accessible :name, :email, :password, :password_confirmation, :family_view_access, :family_assign_tasks, :friends_view_access, :friends_assign_access, :employer_view_access, :employer_assign_access, :status, :id, :selected_language
   
   email_regex = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
 
@@ -15,7 +15,10 @@ class User < ActiveRecord::Base
                        :confirmation => true,
 		       :unless => Proc.new { |a| a.password.blank? },
                        :length       => { :within => 6..40 }
- # has_many :posts, :dependent => :destroy
+  has_many  :tasks, :dependent => :destroy, :dependent => :destroy
+  has_many  :tasks, :foreign_key => 'assigner', :dependent => :destroy
+  has_many  :notifications, :dependent => :destroy
+  has_many  :notifications, :foreign_key => 'assigner', :dependent => :destroy
 
 #  before_create :encrypt_password
   before_save :encrypt_password, :unless => Proc.new { |a| a.password.blank? }
