@@ -33,27 +33,27 @@ ActiveRecord::Schema.define(:version => 20110908152355) do
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"
-    t.string   "ttype",                          :limit => 1,   :default => "P"
+    t.string   "ttype",                          :limit => 1,                                :default => "P"
     t.integer  "subtype",                        :limit => 2
-    t.string   "priority",                       :limit => 1,   :default => "L"
+    t.string   "priority",                       :limit => 1,                                :default => "L"
     t.datetime "due"
     t.datetime "notification"
-    t.boolean  "repititive",                                    :default => false
+    t.boolean  "repititive",                                                                 :default => false
     t.datetime "finish_on"
-    t.string   "status",                         :limit => 1,   :default => "O"
+    t.string   "status",                         :limit => 1,                                :default => "O"
     t.datetime "status_date"
     t.integer  "assigner"
     t.boolean  "email_notification_to_assignee"
     t.boolean  "sms_notification_to_assignee"
     t.boolean  "email_notification_to_assigner"
     t.boolean  "sms_notification_to_assigner"
-    t.string   "accessible_by",                  :limit => 1,   :default => "N"
-    t.decimal  "budget",                                        :default => 0.0
+    t.string   "accessible_by",                  :limit => 1,                                :default => "N"
+    t.decimal  "budget",                                       :precision => 9, :scale => 2, :default => 0.0
     t.integer  "place_id"
-    t.string   "description",                    :limit => 30
-    t.text     "long_description",               :limit => 120
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "description",                    :limit => 30
+    t.text     "long_description"
   end
 
   create_table "users", :force => true do |t|
