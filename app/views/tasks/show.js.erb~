@@ -10,14 +10,6 @@
 
 <table>
 
-    <tr>
-    	<th><%= t(:Task) %></th>
-	<th><%= t(:Date) %></th>
-	<th><%= t(:Priority) %></th>
-      <th></th>
-      <th></th>
-    </tr>
-
   <% @tasks.each do |task| %>
     <tr>
       <td><%= task.description %></td>
