@@ -91,4 +91,4 @@ DEPENDENCIES
   json (>= 1.4.6)
   mysql
   rails (= 3.0.3)
-  will_paginate (~> 3.0)
+  will_paginate (~> 3.0.0)
