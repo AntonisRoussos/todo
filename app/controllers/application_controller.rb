@@ -12,7 +12,7 @@ def set_locale
    end
 end
 
-before_filter :export_i18n_messages
+# before_filter :export_i18n_messages
 
   private
   def export_i18n_messages
