@@ -14,9 +14,13 @@
 
 <%=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" }, :remote => true do |f| %> 
 	<!-- %=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" } do |f| % -->
+   <!-- %= f.hidden_field(session[:tabpicked]) % -->
    <%= f.text_field :description, :size => 30, :placeholder => t(:Enter_task),  :maxlength => 30 %>
    <%= f.text_field :due, :size => 10, :value => l(Date.current, :format => :default), :maxlength => 10 %>
    <%= f.text_field :priority, :size => 1, :value => 'L', :maxlength => 1 %>
+   <!-- %= f.select("ttype", {"Personal" => "P", "Family" => "F", "Study" => "S", "Work" => "W"}) % -->
+   <!-- %= f.select("ttype",options_for_select(Todo::Application.config.task_types, session[:tabpicked])) % -->
+   <!-- %= f.select("ttype",options_for_select(Todo::Application.config.task_types)) % -->
    <%= f.submit t(:Add_task) %>
 <% end %>
 

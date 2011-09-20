@@ -74,4 +74,15 @@ class TasksController < ApplicationController
 
  end
 
+  def destroy
+    @task = Task.find(params[:id])
+    @task.destroy
+
+    respond_to do |format|
+      format.js 
+      format.html {redirect_to '/tasks/show'}
+    end
+  end
+
+
 end

@@ -1,6 +1,6 @@
 class TasksController < ApplicationController
 
-  class << self; attr_accessor :tabpicked end  
+  # class << self; attr_accessor :tabpicked end  
  
   # respond_to :html, :xml, :json
   before_filter :authenticate, :only => [:edit, :update]
@@ -14,12 +14,11 @@ class TasksController < ApplicationController
   end
 
   def create
-     logger.debug "#{session[:tabpicked]}"
-     logger.debug "--create-------------------------------------------"
+#     logger.debug "#{session[:tabpicked]}"
+#     logger.debug "--create-------------------------------------------"
 
     @task = Task.new(params[:task])
     @task.user_id = current_user.id
-#    @task.ttype = self.class.tabpicked
     @task.ttype = session[:tabpicked]
     if @task.ttype == 'A' then @task.ttype = 'P'end
 #    @task = current_user.tasks.create(params[:task])
@@ -54,10 +53,10 @@ class TasksController < ApplicationController
      if params[:id] == 'W' then tasktype = 'W' end
      if params[:id] == 'S' then tasktype = 'S' end
      if params[:id] == 'A' then tasktype = 'A' end
-        session[:tabpicked] =  tasktype 
+     session[:tabpicked] =  tasktype 
 #   	self.class.tabpicked = tasktype 
-     logger.debug "#{session[:tabpicked]}"
-     logger.debug "--show-------------------------------------------"
+#     logger.debug "#{session[:tabpicked]}"
+#     logger.debug "--show-------------------------------------------"
 #     if request.parameters["page"].nil? then page = 1 else page =  request.parameters["page"] end
      if !['F', 'P', 'W', 'S'].include? tasktype
 	then
