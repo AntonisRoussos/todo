@@ -1,8 +1,0 @@
-<li>
-<td><%= @task.description %></td>
-<td><%= @task.due %></td>
-<td><%= @task.priority %></td>
-<td><%= link_to t(:Show), @task %></td>
-<td><%= link_to t(:Edit), edit_task_path(@task) %></td>
-<td><%= link_to t(:Destroy), @task, :confirm => t(:Are_you_sure?), :method => :delete %></td> 
-</li>

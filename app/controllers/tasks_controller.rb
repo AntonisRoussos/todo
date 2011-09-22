@@ -14,12 +14,12 @@ class TasksController < ApplicationController
   end
 
   def create
-     logger.debug "#{session[:tabpicked]}"
-     logger.debug "--create-------------------------------------------"
+#     logger.debug "#{session[:tabpicked]}"
+#     logger.debug "--create-------------------------------------------"
 
     @task = Task.new(params[:task])
-    @task.user_id = current_user.id
     @task.ttype = session[:tabpicked]
+    @task.user_id = current_user.id
     if @task.ttype == 'A' then @task.ttype = 'P'end
 #    @task = current_user.tasks.create(params[:task])
 #    if @task.save!
@@ -55,8 +55,8 @@ class TasksController < ApplicationController
      if params[:id] == 'A' then tasktype = 'A' end
      session[:tabpicked] =  tasktype 
 #   	self.class.tabpicked = tasktype 
-     logger.debug "#{session[:tabpicked]}"
-     logger.debug "--show-------------------------------------------"
+#     logger.debug "#{session[:tabpicked]}"
+#     logger.debug "--show-------------------------------------------"
 #     if request.parameters["page"].nil? then page = 1 else page =  request.parameters["page"] end
      if !['F', 'P', 'W', 'S'].include? tasktype
 	then
