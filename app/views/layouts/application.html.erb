@@ -30,15 +30,17 @@ content="text/html;charset=utf-8" />
  <%= javascript_include_tag 'jquery.ui.datepicker-el' %>
 
  <script type="text/javascript">
+   var tabselected;    
   $(document).ready(function(){
     var tabselected = 0;
-    $('#tab-container').tabs({ spinner: 'Retrieving data...' });
-//    $('#tab-container' ).tabs({show: function(event, ui) 
-// 	{
-//		var $tabs = $('#tab-container').tabs();
-//		var tabselected = $tabs.tabs('option', 'selected');
-//	}
-//    });
+    $('#tab-container').tabs({spinner: 'Retrieving data...' });
+    $('#tab-container' ).tabs({show: function(event, ui) 
+ 	{
+		var $tabs = $('#tab-container').tabs();
+		tabselected = $tabs.tabs('option', 'selected');
+		alert(tabselected);
+	}
+    });
 		  
     $('#tab-container').tabs({ajaxOptions: {
         error: function(xhr, status, index, anchor) {
@@ -49,9 +51,9 @@ content="text/html;charset=utf-8" />
         },
       }
     });
+  });
 //    $('.pagination a').attr('data-remote', 'true');
 //    $('.pagination a').trigger('tabsselect');	  
-    });
 //  $(document).ready(function(){
 //    $('.pagination a').attr('data-remote', 'true');
 //    });

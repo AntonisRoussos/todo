@@ -1,13 +1,13 @@
+
  <script type="text/javascript">
-//    $(document).ready(function(){
-	    $(".pagination a").click(function (event) {
-    		 event.preventDefault();
+    $(document).ready(function(){
+         $(".pagination a").click(function () { 
 		 var id = $(this).attr('href');
-		 $('#task_information').empty().load(id);
+          $('#task_information').empty().load(id);
          });
-//    });
+    });
  </script>
- 
+
 <table>
 
   <% @tasks.each do |task| %>
@@ -21,7 +21,6 @@
       </tr><% end %>
 </table>
 
- <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
- <%= will_paginate @tasks %>
+ <%= will_paginate @tasks, :renderer => RemoteLinkRenderer %>
 
 

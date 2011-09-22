@@ -70,7 +70,10 @@ class TasksController < ApplicationController
           format.html 
           format.xml  { render :xml => @tasks }
           format.js  {if @tasks.count > 0 then render 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}
-      end
+#          format.js  {if @tasks.count > 0 then render :partial => 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}
+
+#          format.js  {render(:update) {|page| page.replace_html 'show', :partial => 'show'} }
+     end
 
  end
 
