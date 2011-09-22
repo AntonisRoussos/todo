@@ -32,13 +32,11 @@ content="text/html;charset=utf-8" />
  <script type="text/javascript">
    var tabselected;    
   $(document).ready(function(){
-    var tabselected = 0;
     $('#tab-container').tabs({spinner: 'Retrieving data...' });
-    $('#tab-container' ).tabs({show: function(event, ui) 
+    $('#tab-container').tabs({show: function(event, ui) 
  	{
 		var $tabs = $('#tab-container').tabs();
-		tabselected = $tabs.tabs('option', 'selected');
-		alert(tabselected);
+		var tabselected = $tabs.tabs('option', 'selected');
 	}
     });
 		  
