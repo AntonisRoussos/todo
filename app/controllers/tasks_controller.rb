@@ -53,7 +53,6 @@ class TasksController < ApplicationController
      if params[:id] == 'W' then tasktype = 'W' end
      if params[:id] == 'S' then tasktype = 'S' end
      if params[:id] == 'A' then tasktype = 'A' end
-     session[:tabpicked] =  tasktype 
 #   	self.class.tabpicked = tasktype 
 #     logger.debug "#{session[:tabpicked]}"
 #     logger.debug "--show-------------------------------------------"
@@ -66,7 +65,8 @@ class TasksController < ApplicationController
              @tasks = Task.where(:user_id => current_user, :ttype => tasktype).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
 #             @tasks = Task.where(:user_id => current_user, :ttype => tasktype).paginate(:page => page, :per_page => 3, :order =>'due DESC')
       end
-      respond_to do |format|
+     session[:tabpicked] =  tasktype 
+     respond_to do |format|
           format.html 
           format.xml  { render :xml => @tasks }
           format.js  {if @tasks.count > 0 then render 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}
