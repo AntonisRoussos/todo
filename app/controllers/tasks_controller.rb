@@ -18,7 +18,10 @@ class TasksController < ApplicationController
 #     logger.debug "--create-------------------------------------------"
 
     @task = Task.new(params[:task])
-    @task.due = Time.now
+    tdate = DateTime.strptime(str=params[:task][:due],fmt=I18n.t('date.formats.default'))
+#    logger.debug "#{tdate}"
+#     logger.debug "--datetime-------------------------------------------"
+    @task.due = tdate
     @task.ttype = session[:tabpicked]
     @task.user_id = current_user.id
     if @task.ttype == 'A' then @task.ttype = 'P'end
