@@ -18,6 +18,7 @@ class TasksController < ApplicationController
 #     logger.debug "--create-------------------------------------------"
 
     @task = Task.new(params[:task])
+    @task.due = Time.now
     @task.ttype = session[:tabpicked]
     @task.user_id = current_user.id
     if @task.ttype == 'A' then @task.ttype = 'P'end
