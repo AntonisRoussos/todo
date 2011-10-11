@@ -1,0 +1,49 @@
+ <script type="text/javascript">
+//    $(document).ready(function(){
+	    $(".pagination a").click(function (event) {
+    		 event.preventDefault();
+		 var id = $(this).attr('href');
+		 $('#task_information').empty().load(id);
+         });
+//    });
+ </script>
+	<style type="text/css">
+		li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+		span.ui-icon {float: left; margin: 0 4px;}
+		span.text {float: left; width: 180px;}
+	</style>
+
+	<script type="text/javascript">
+		$(function(){
+			$('.ui-state-default').hover(
+				function(){ $(this).addClass('ui-state-hover'); }, 
+				function(){ $(this).removeClass('ui-state-hover'); }
+			);
+			$('.ui-state-default').click(function(){ $(this).toggleClass('ui-state-active'); });
+		});
+</script>
+
+<table CLASS="tasklist">
+  <% @tasks.each do |task| %>
+    <tr CLASS="gridtable">
+      <td CLASS="desc"><%= task.description %></td>
+      <td CLASS="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
+      <td CLASS="prior"><%= task.priority %></td>
+      <td CLASS="prior"><%= link_to t(:Show), task %></td>
+      <td CLASS="prior"><%= link_to t(:Edit), edit_task_path(task) %></td>
+      <td><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
+   </tr>
+  <% end %>
+</table>
+
+<ul CLASS="taskinfo">
+              <li>Rails API</li>
+              <li>Ruby standard library</li>
+</ul>
+
+<%= will_paginate @tasks %>
+
+
+ <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
+
+

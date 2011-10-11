@@ -1,0 +1,56 @@
+ <style type="text/css">
+        .row-highlight
+        {
+            background-color: yellow;
+        }
+ </style>
+ <script type="text/javascript">
+	    $(".pagination a").click(function (event) {
+    		 event.preventdefault();
+		 var id = $(this).attr('href');
+		 $('#task_information').empty().load(id);
+         });
+ </script>
+ <script type="text/javascript">
+        $(function() {
+            var tr = $('#tbl').find('tr');
+            tr.hover(
+                 function() {  // mouseover
+                     $(this).removeclass('gridtable');
+                     $(this).addclass('row-highlight');
+		     var values = '';
+                     var tds = $(this).find('td');
+
+                     $.each(tds, function(index, item) {
+                         values = values + 'td' + (index + 1) + ':' + item.innerhtml + '<br/>';
+                     });
+                     $('#task-details').html(values);
+                 },
+                 function() {  // mouseout
+                     $(this).removeclass('row-highlight');
+  		     $("#tbl tr:nth-of-type(even)").addclass('gridtable');
+                     $('#task-details').html('');
+                 }
+            );
+        });
+ </script>
+<table id="tbl">
+<col style="visibility: collapse;" />
+  <% @tasks.each do |task| %>
+    <tr class="gridtable">
+      <td id="task"><%= task.id %></td>
+      <td class="desc"><%= task.description %></td>
+      <td class="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
+      <td class="prior"><%= task.priority %></td>
+      <td class="prior"><%= link_to t(:show), task %></td>
+      <td class="prior"><%= link_to t(:edit), edit_task_path(task) %></td>
+      <td class="prior"><%= link_to t(:destroy), task, :confirm => t(:are_you_sure?), :method => :delete %></td>
+   </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @tasks %>
+
+ <!-- %= will_paginate @tasks, :renderer => remotelinkrenderer % -->
+
+

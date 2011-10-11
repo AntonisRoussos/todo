@@ -105,6 +105,10 @@ jQuery(function($){
         <%= yield %>
       </section>
     </div>
+    
+<div id="task-details">
+</div>
+
 
 </body>
 </html>

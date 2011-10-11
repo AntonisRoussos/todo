@@ -84,6 +84,10 @@ el:
      maximum_password_length_is_20: "Το μέγιστο μήκος του σνθηματικού είναι 20"
      password_confirmation_is_missing: "Η επιβεβαίωση του συνθηματικού είναι κενή"
      confirmation_password_should_be_equal_to_password: "Η επιβεβαίωση του συνθηματικού είναι διαφορετική"
+     Please_give_task_description: "Παρακαλώ δώστε περιγραφή"
+     Please_give_task_date: "Παρακαλώ δώστε ημερομηνία" 
+     Wrong_date_format: "Λάθος ημερομηνία"
+     Please_give_task_priority: "Παρακαλώ δώστε προτεραιότητα"
   date:
     formats:
       default: "%d/%m/%Y"

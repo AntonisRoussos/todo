@@ -1,5 +1,3 @@
-$('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
-$('#newtask').find('input[id|="task_description"]').val('');
 $(function() {
             var tr = $('#tbl').find('tr');
 	    tr.hover(

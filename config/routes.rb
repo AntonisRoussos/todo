@@ -21,6 +21,8 @@ Todo::Application.routes.draw do
   match '/MapRequest',  :to => 'places#MapRequest'
   match '/MapOfPlace',  :to => 'places#MapOfPlace'
   match 'tasks/show',  :to => 'tasks#show'
+  match 'tasks/destroy',  :to => 'tasks#destroy'
+  match 'tasks/check_date_due', :to => 'tasks#check_date_due'
 #  match 'tasks/create',  :to => 'tasks#create'
   resources :tasks 
 

@@ -87,3 +87,8 @@ en:
      maximum_password_length_is_20: "maximum_password_length_is_20"
      password_confirmation_is_missing: "password confirmation is missing"
      confirmation_password_should_be_equal_to_password: "confirnation password should be equal to password"
+     Please_give_task_description: "Please give task description"
+     Please_give_task_date: "Please give task date" 
+     Wrong_date_format: "Wrong date format"
+     Please_give_task_priority: "Please give task priority"
+

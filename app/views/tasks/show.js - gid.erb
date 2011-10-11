@@ -1,13 +1,4 @@
-<style type="text/css">
-        .row-highlight
-        {
-            background-color: Yellow;
-        }
-</style>
-
-<%= javascript_include_tag 'tasklistview' %>  
-
-<script type="text/javascript">
+ <script type="text/javascript">
 //    $(document).ready(function(){
 	    $(".pagination a").click(function (event) {
     		 event.preventDefault();
@@ -15,10 +6,31 @@
 		 $('#task_information').empty().load(id);
          });
 //    });
-</script>
+ </script>
+ <script type="text/javascript">
+			$('.gridtable').mouseover(function()
+				{
+				var id = $(this).attr('href');
+		 		$('#task_information').empty().load(id);
+				}, 
+			);
+ </script>
+	<style type="text/css">
+		li {margin: 2px; position: relative; padding: 4px 0; cursor: pointer; float: left;  list-style: none;}
+		span.ui-icon {float: left; margin: 0 4px;}
+		span.text {float: left; width: 180px;}
+	</style>
 
-<table id="tbl">
-<col style="visibility: collapse;"/>
+	<script type="text/javascript">
+		$(function(){
+			$('.ui-state-default').hover(
+				function(){ $(this).addClass('ui-state-hover'); }, 
+				function(){ $(this).removeClass('ui-state-hover'); }
+			);
+			$('.ui-state-default').click(function(){ $(this).toggleClass('ui-state-active'); });
+		});
+	</script>
+<table>
   <% @tasks.each do |task| %>
     <tr CLASS="gridtable">
       <td CLASS="id"><%= task.id %></td>

@@ -10,9 +10,10 @@
    * This is a compressed file. See the sources in the 'src' directory.
 
 ----------------------------------------------------------------------- */
-#tab-container {float:left; width:70%;};
-#task-details {float:right; width:30%;};
+
 /* reset.css */
+#tab-container1 {float:left; width:70%;};
+#task-details1 {float:right; width:30%;};
 html {margin:0;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
 article, aside, dialog, figure, footer, header, hgroup, nav, section {display:block;}
@@ -60,19 +61,15 @@ dl {margin:0 0 1.5em 0;}
 dl dt {font-weight:bold;}
 dd {margin-left:1.5em;}
 table {margin-bottom:1.4em; width:100%}
-table.tasklist {width: 65%; float:left;};
-p.taskinfo {width: 35%; float:right;};
-p.pagefooter {width: 100%; float:bottom;};
 th {font-weight:bold;}thead th {background:#c3d9ff;}
 th, td, caption {padding:4px 10px 4px 5px;}
 tr.gridtable:nth-of-type(even) {background:#e5ecf9;}
-/* tr.appendtable:nth-last-child(even) {background:#e5ecf9;} */
+tr.appendtable:nth-last-child(even) {background:#e5ecf9;}
 tfoot {font-style:italic;}
 td
-.id {visibility: hidden}
-.desc {width:40%}
-.due {width:20%}
-.prior {width:10%}
+.desc {width:40%; max-width:40%; min-width:40%;}
+.due {width:12%; max-width:12%; min-width:12%;}
+.prior {width:12%; max-width:12%; min-width:12%;}
 caption {background:#eee;}
 .small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}
 .large {font-size:1.2em;line-height:2.5em;margin-bottom:1.25em;}

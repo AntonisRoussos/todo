@@ -1,4 +1,4 @@
-<tr CLASS="gridtable">
+<tr CLASS="appendtable">
       <td><%= @task.id %></td>
       <td CLASS="desc"><%= @task.description %></td>
       <td CLASS="due"><%= @day[@task.due.wday] + " " + @task.due.strftime("%d") %></td>

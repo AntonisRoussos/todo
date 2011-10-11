@@ -1,5 +1,48 @@
 <h1><%= t(:List_of_tasks) %></h1>
 
+<style type="text/css">
+        .row-highlight
+        {
+            background-color: Yellow;
+        }
+</style>
+
+
+<script type="text/javascript">
+        $(function() {
+            var tr = $('#tbl').find('tr');
+	    tr.hover(
+                 function() {  // mouseover
+                    $(this).removeClass('gridtable');
+                    $(this).addClass('row-highlight');
+                     var values = '';
+                     var tds = $(this).find('td');
+
+                     $.each(tds, function(index, item) {
+                         values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+                     });
+                     $('#task-details').html(values);
+                 },
+                 function() {  // mouseout
+                     $(this).removeClass('row-highlight');
+  		     $("#tbl tr:nth-of-type(even)").addClass('gridtable');
+                     $('#task-details').html('');
+                 }
+            );
+        });
+</script>
+
+
+<script type="text/javascript">
+//    $(document).ready(function(){
+	    $(".pagination a").click(function (event) {
+    		 event.preventDefault();
+		 var id = $(this).attr('href');
+		 $('#task_information').empty().load(id);
+         });
+//    });
+</script>
+
 <div id="tab-container">
   <ul>
 	  <li ><%= link_to  t(:All), {:controller => "tasks", :action => "show", :id => 'A', :page => params[:page], :format=>:js}, :remote=>true, :title => "task information" %></li>

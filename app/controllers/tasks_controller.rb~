@@ -49,7 +49,7 @@ class TasksController < ApplicationController
 #    end
     respond_to do |format|
     if @task.save
-      format.js 
+      format.js {render 'create', :content_type => 'text/html'} 
       format.html {redirect_to '/tasks/show'}
 #      format.js { render :js => @task, :status => :created, :location => @task, :layout => !request.xhr? }
 #      format.js {render 'show', :content_type => 'text/html'}

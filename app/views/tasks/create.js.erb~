@@ -1,0 +1,3 @@
+$('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
+$('#newtask').find('input[id|="task_description"]').val('');
+<%= javascript_include_tag '/public/javascripts/tasklistview' %>;

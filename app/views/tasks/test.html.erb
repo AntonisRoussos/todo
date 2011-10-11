@@ -1,11 +1,9 @@
 <style type="text/css">
         .row-highlight
         {
-            background-color: Yellow;
+            background-color: yellow;
         }
 </style>
-
-<%= javascript_include_tag 'tasklistview' %>  
 
 <script type="text/javascript">
 //    $(document).ready(function(){
@@ -17,8 +15,32 @@
 //    });
 </script>
 
+<script type="text/javascript">
+        $(function() {
+            var tr = $('#tbl').find('tr');
+	    tr.hover(
+                 function() {  // mouseover
+//                     $(this).removeclass('gridtable');
+//		    alert('ok');
+//                     $(this).addclass('row-highlight');
+		     var values = '';
+                     var tds = $(this).find('td');
+                     $.each(tds, function(index, item) {
+                         values = values + 'td' + (index + 1) + ':' + item.innerhtml + '<br/>';
+                     });
+                     $('#task-details').html(values);
+                 },
+                 function() {  // mouseout
+//                     $(this).removeclass('row-highlight');
+//  		     $("#tbl tr:nth-of-type(even)").addclass('gridtable');
+                     $('#task-details').html('');
+                 }
+            );
+        });
+</script>
+
 <table id="tbl">
-<col style="visibility: collapse;"/>
+<col style="visibility: collapse;" />
   <% @tasks.each do |task| %>
     <tr CLASS="gridtable">
       <td CLASS="id"><%= task.id %></td>
@@ -35,5 +57,6 @@
 <%= will_paginate @tasks %>
 
  <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
+
 
 

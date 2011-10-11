@@ -1,5 +1,14 @@
 <h1><%= t(:List_of_tasks) %></h1>
 
+    <style type="text/css">
+        #task_information
+        {
+		width:60%;
+		float: left;
+        }
+    </style>
+
+
 <div id="tab-container">
   <ul>
 	  <li ><%= link_to  t(:All), {:controller => "tasks", :action => "show", :id => 'A', :page => params[:page], :format=>:js}, :remote=>true, :title => "task information" %></li>
@@ -46,8 +55,6 @@
 <div id="task_information">
 </div>
 
-</div>
 
-<div CLASS="ui-widget-content" id="task-details">
 </div>
 
