@@ -1,5 +1,8 @@
 <style type="text/css">
-        .row-highlight {background-color: Yellow;}
+        .row-highlight
+        {
+            background-color: Yellow;
+        }
 </style>
 
 <%= javascript_include_tag 'tasklistview' %>  

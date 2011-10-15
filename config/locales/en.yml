@@ -91,4 +91,8 @@ en:
      Please_give_task_date: "Please give task date" 
      Wrong_date_format: "Wrong date format"
      Please_give_task_priority: "Please give task priority"
+     Description: "Description :"
+     Due: "Due on   :"
+     Priority: "Priority  :"
+
 

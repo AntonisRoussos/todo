@@ -8,7 +8,10 @@ $(function() {
                      var tds = $(this).find('td');
 
                      $.each(tds, function(index, item) {
-                         values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+//                         values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
+	 			if (index==1) {values = values + I18n.t("javascripts.Description") + item.innerHTML + '<br/>';}
+  				if (index==2) {values = values + I18n.t("javascripts.Due") + item.innerHTML + '<br/>';}
+  				if (index==3) {values = values + I18n.t("javascripts.Priority") + item.innerHTML + '<br/>';}
                      });
                      $('#task-details').html(values);
                  },

@@ -88,6 +88,9 @@ el:
      Please_give_task_date: "Παρακαλώ δώστε ημερομηνία" 
      Wrong_date_format: "Λάθος ημερομηνία"
      Please_give_task_priority: "Παρακαλώ δώστε προτεραιότητα"
+     Description: "Περιγραφή   :"
+     Due: "Ημερομηνία    :"
+     Priority: "Προτεραιότητα  :"
   date:
     formats:
       default: "%d/%m/%Y"

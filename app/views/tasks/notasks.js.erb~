@@ -1,6 +1,5 @@
 <style type="text/css">
         .hidden {display: none;}
-	.row-highlight {background-color: Yellow;}
 </style>
 <div id="notasks">
 <%= t(:No_tasks) %>
