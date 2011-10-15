@@ -75,8 +75,8 @@ class TasksController < ApplicationController
              @tasks = Task.where(:user_id => current_user, :ttype => tasktype).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
       end
      @day = get_day_name
-     session[:tabpicked] =  tasktype 
      respond_to do |format|
+	  session[:tabpicked] =  tasktype 
           format.html 
           format.xml  { render :xml => @tasks }
           format.js  {if @tasks.count > 0 then render 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}
