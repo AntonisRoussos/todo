@@ -26,9 +26,9 @@ class TasksController < ApplicationController
 #     logger.debug "#{session[:tabpicked]}"
 #     logger.debug "--create-------------------------------------------"
 
-    @day = get_day_name
     @task = Task.new(params[:task])
     @task.ttype = session[:tabpicked]
+    @day = get_day_name
     fmt=I18n.t('date.formats.default')
     tdate = DateTime.strptime(str=params[:task][:due],fmt)
 #    logger.debug "#{tdate}"
@@ -68,7 +68,6 @@ class TasksController < ApplicationController
      if params[:id] == 'W' then tasktype = 'W' end
      if params[:id] == 'S' then tasktype = 'S' end
      if params[:id] == 'A' then tasktype = 'A' end
-     session[:tabpicked] =  tasktype 
      if !['F', 'P', 'W', 'S'].include? tasktype
 	then
 	     @tasks = Task.where(:user_id => current_user).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
@@ -76,6 +75,7 @@ class TasksController < ApplicationController
              @tasks = Task.where(:user_id => current_user, :ttype => tasktype).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
       end
      @day = get_day_name
+     session[:tabpicked] =  tasktype 
      respond_to do |format|
           format.html 
           format.xml  { render :xml => @tasks }
