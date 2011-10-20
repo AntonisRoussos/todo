@@ -4,7 +4,7 @@ class TasksController < ApplicationController
  
   # respond_to :html, :xml, :json
   before_filter :authenticate, :only => [:edit, :update]
-  before_filter :correct_user, :only => [:edit, :update]
+#  before_filter :correct_user, :only => [:edit, :update]
   rescue_from ActiveRecord::RecordNotFound, :with => :deny_access
 
   protect_from_forgery
@@ -59,6 +59,31 @@ class TasksController < ApplicationController
     end
     end
 
+  end
+
+  def edit
+    @task = Task.find(params[:id])
+    @title = t(:Edit_user_settings)
+    render :layout => false
+    
+  end
+
+
+  def update
+        @task = Task.find(params[:id])
+    respond_to do |format|
+	if @task.update_attributes(params[:task])
+#	        flash[:success] = t(:Settings_updated)
+#		format.js 
+		format.html {redirect_to '/tasks/show'}
+	else
+#		format.js 
+		format.html {redirect_to '/tasks/show'}
+#	        flash[:success] = t(:Unexpected_error_during_user_settings_update)
+#      		@title = t(:Edit_user_settings)
+#   		render 'edit'
+    	end
+  end
   end
 
   def show

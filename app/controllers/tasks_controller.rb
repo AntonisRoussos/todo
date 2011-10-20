@@ -4,7 +4,7 @@ class TasksController < ApplicationController
  
   # respond_to :html, :xml, :json
   before_filter :authenticate, :only => [:edit, :update]
-  before_filter :correct_user, :only => [:edit, :update]
+#  before_filter :correct_user, :only => [:edit, :update]
   rescue_from ActiveRecord::RecordNotFound, :with => :deny_access
 
   protect_from_forgery
@@ -61,6 +61,31 @@ class TasksController < ApplicationController
 
   end
 
+  def edit
+    @task = Task.find(params[:id])
+    @title = t(:Edit_user_settings)
+    render :layout => false
+    
+  end
+
+
+  def update
+        @task = Task.find(params[:id])
+    respond_to do |format|
+	if @task.update_attributes(params[:task])
+#	        flash[:success] = t(:Settings_updated)
+		format.js 
+		format.html {redirect_to '/tasks/show'}
+	else
+		format.js 
+		format.html {redirect_to '/tasks/show'}
+#	        flash[:success] = t(:Unexpected_error_during_user_settings_update)
+#      		@title = t(:Edit_user_settings)
+#   		render 'edit'
+    	end
+  end
+  end
+
   def show
      
      if params[:id] == 'F' then tasktype = 'F' end
@@ -75,8 +100,8 @@ class TasksController < ApplicationController
              @tasks = Task.where(:user_id => current_user, :ttype => tasktype).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
       end
      @day = get_day_name
+     session[:tabpicked] =  tasktype 
      respond_to do |format|
-	  session[:tabpicked] =  tasktype 
           format.html 
           format.xml  { render :xml => @tasks }
           format.js  {if @tasks.count > 0 then render 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}

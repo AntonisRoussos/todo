@@ -1,22 +1,34 @@
 <style type="text/css">
-        .row-highlight
-        {
-            background-color: Yellow;
-        }
+        .row-highlight {background-color: Yellow;}
+        .row-white {background-color: white;}
 </style>
 
 <%= javascript_include_tag 'tasklistview' %>  
 
 <script type="text/javascript">
-//    $(document).ready(function(){
-	    $(".pagination a").click(function (event) {
+		$(".pagination a").click(function (event) {
     		 event.preventDefault();
 		 var id = $(this).attr('href');
 		 $('#task_information').empty().load(id);
-         });
-//    });
-</script>
+       		 $('#task-details').empty();
+  });
+  	    	$(".edit a").click(function (event) {
+                 event.preventDefault();
+                 var tr = $('#tbl').find('tr');
+		 tr.unbind('mouseenter').unbind('mouseleave');
+		 $(".pagination a").unbind('click');
+                 var id = $(this).attr('href');
+//		 $('#task-details').empty().load(id, function()
+//                 {$('#description').focus();});
+		 $('#task-details').empty().load(id);
+		});
+		$(document).ready(function() {
+//		$( "#tab-container" ).bind( "tabsselect", function() {
+			$('#task-details').empty().load(id);
+		});
 
+</script>
+ 
 <table id="tbl">
 <col style="visibility: collapse;"/>
   <% @tasks.each do |task| %>
@@ -25,8 +37,7 @@
       <td CLASS="desc"><%= task.description %></td>
       <td CLASS="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
       <td CLASS="prior"><%= task.priority %></td>
-      <td CLASS="prior"><%= link_to t(:Show), task %></td>
-      <td CLASS="prior"><%= link_to t(:Edit), edit_task_path(task) %></td>
+      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %></td>
       <td CLASS="prior"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
    </tr>
   <% end %>
@@ -35,5 +46,6 @@
 <%= will_paginate @tasks %>
 
  <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
+
 
 

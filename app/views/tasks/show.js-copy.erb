@@ -6,27 +6,19 @@
 <%= javascript_include_tag 'tasklistview' %>  
 
 <script type="text/javascript">
-		$(".pagination a").click(function (event) {
+	   $(".pagination a").click(function (event) {
     		 event.preventDefault();
 		 var id = $(this).attr('href');
 		 $('#task_information').empty().load(id);
-       		 $('#task-details').empty();
-  });
-  	    	$(".edit a").click(function (event) {
+         });
+  	    $(".edit a").click(function (event) {
                  event.preventDefault();
-                 var tr = $('#tbl').find('tr');
-		 tr.unbind('mouseenter').unbind('mouseleave');
-		 $(".edit a").unbind('click');
-                 var id = $(this).attr('href');
+		 $('#tbl').unbind('mouseenter mouseleave');
+  		 var id = $(this).attr('href');
 //		 $('#task-details').empty().load(id, function()
 //                 {$('#description').focus();});
 		 $('#task-details').empty().load(id);
-		});
-		$(document).ready(function() {
-//		$( "#tab-container" ).bind( "tabsselect", function() {
-			$('#task-details').empty().load(id);
-		});
-
+           });
 </script>
  
 <table id="tbl">
@@ -46,6 +38,5 @@
 <%= will_paginate @tasks %>
 
  <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
-
 
 

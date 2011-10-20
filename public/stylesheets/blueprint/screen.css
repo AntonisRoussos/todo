@@ -10,8 +10,8 @@
    * This is a compressed file. See the sources in the 'src' directory.
 
 ----------------------------------------------------------------------- */
-#tab-container {float:left; width:70%;};
-#task-details {float:right; width:30%;};
+#tab-container {float:left; width:65%;};
+#task-details {float:right; width:35%;};
 /* reset.css */
 .row-highlight {background-color: Yellow;}
 .hidden {display:none;}html {margin:0;padding:0;border:0;}

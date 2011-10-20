@@ -1,4 +1,3 @@
-<%= javascript_include_tag 'tasklistview' %>  
 <tr CLASS="gridtable">
       <td><%= @task.id %></td>
       <td CLASS="desc"><%= @task.description %></td>

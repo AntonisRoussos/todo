@@ -62,6 +62,10 @@ el:
   Priority: "Προτεραιότητα"
   Add_task: "Προσθήκη"
   Enter_task: "Νέα εργασία....."
+  Edit_task: "Αλλαγή εργασίας"
+  description: "Περιγραφή   :"
+  due: "Ημερομηνία    :"
+  priority: "Προτεραιότητα  :"
   will_paginate:
    previous: "< προηγούμενη"
    next: "επόμενη >"

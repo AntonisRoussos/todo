@@ -10,10 +10,11 @@
    * This is a compressed file. See the sources in the 'src' directory.
 
 ----------------------------------------------------------------------- */
-#tab-container {float:left; width:70%;};
-#task-details {float:right; width:30%;};
+#tab-container {float:left; width:65%;};
+#task-details {float:right; width:35%;};
 /* reset.css */
-html {margin:0;padding:0;border:0;}
+.row-highlight {background-color: Yellow;}
+.hidden {display:none;}html {margin:0;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
 article, aside, dialog, figure, footer, header, hgroup, nav, section {display:block;}
 body {line-height:1.5;background:white;}
@@ -63,8 +64,6 @@ table {margin-bottom:1.4em; width:100%}
 table.tasklist {width: 65%; float:left;};
 p.taskinfo {width: 35%; float:right;};
 p.pagefooter {width: 100%; float:bottom;};
-.row-highlight {background-color: Yellow;}
-.hidden {display:none;}
 th {font-weight:bold;}thead th {background:#c3d9ff;}
 th, td, caption {padding:4px 10px 4px 5px;}
 tr.gridtable:nth-of-type(even) {background:#e5ecf9;}
@@ -72,8 +71,8 @@ tr.gridtable:nth-of-type(even) {background:#e5ecf9;}
 tfoot {font-style:italic;}
 td
 .id {visibility: hidden}
-.desc {width:40%}
-.due {width:20%}
+.desc {width:45%}
+.due {width:25%}
 .prior {width:10%}
 caption {background:#eee;}
 .small {font-size:.8em;margin-bottom:1.875em;line-height:1.875em;}

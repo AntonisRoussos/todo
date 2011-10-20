@@ -65,6 +65,10 @@ en:
   Priority: "Priority"
   Add_task: "Add"
   Enter_task: "Insert task....."
+  Edit_task: "Edit task"
+  description: "Description :"
+  due: "Due on   :"
+  priority: "Priority  :"
   will_paginate:
    previous: "< previous"
    next: "next >"
@@ -94,5 +98,3 @@ en:
      Description: "Description :"
      Due: "Due on   :"
      Priority: "Priority  :"
-
-
