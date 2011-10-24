@@ -63,30 +63,43 @@ class TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-    @title = t(:Edit_user_settings)
-    render :layout => false
-    
+#    @title = t(:Edit_user_settings)
+#    render :layout => false
+    respond_to do |format|
+       format.html {render :action => "edit", :format => :html , :layout => false}
+       format.js {render :action => "edit", :format => :html , :layout => false}
+    end
   end
 
 
   def update
-        @task = Task.find(params[:id])
+    @task = Task.find(params[:id])
     respond_to do |format|
 	if @task.update_attributes(params[:task])
 #	        flash[:success] = t(:Settings_updated)
-		format.js 
-		format.html {redirect_to '/tasks/show'}
+		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
+#		format.html {redirect_to '/tasks/show'}
+#		format.html {redirect_to :back}
+		format.html {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
+
 	else
-		format.js 
-		format.html {redirect_to '/tasks/show'}
+		format.js  
+#		format.html {redirect_to :back}
+		format.html {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
+#		format.html {redirect_to '/tasks/show'}
 #	        flash[:success] = t(:Unexpected_error_during_user_settings_update)
 #      		@title = t(:Edit_user_settings)
 #   		render 'edit'
     	end
+    end
   end
+
+  def show1
   end
 
   def show
+     logger.debug "----------------------------------------------"
+     logger.debug "#{params[:id]}"
      
      if params[:id] == 'F' then tasktype = 'F' end
      if params[:id] == 'P' then tasktype = 'P' end

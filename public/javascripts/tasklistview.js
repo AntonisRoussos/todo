@@ -1,10 +1,11 @@
 $(function() {
             var tr = $('#tbl').find('tr');
 	    tr.hover(
-                  function() {  // mouseover
+                  a=function() {  // mouseover
 //                    previous.removeClass('row-highlight');
                     $(this).removeClass('gridtable');
                     $(this).addClass('row-highlight');
+		    $(this).addClass('active-row');
                      var values = '';
                      var tds = $(this).find('td');
 
@@ -16,11 +17,10 @@ $(function() {
                      });
                      $('#task-details').html(values);
                  },
-                  function() {  // mouseout
-//                     var previous = $(this);
+                  b=function() {  // mouseout
 		     $(this).removeClass('row-highlight');
+		     $(this).removeClass('active-row');
 //  		     $("#tbl tr:nth-of-type(even)").addClass('gridtable');
-//  		     $(this).addClass('row-white');
   		     $(this).addClass('gridtable');
                      $('#task-details').html('');
                  }

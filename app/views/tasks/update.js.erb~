@@ -1,8 +1,0 @@
-	alert('in');
-	$(document).ready(function() {
-		var id = $(this).attr('href');
-		 $('#task_information').empty().load(id);
-                 var tr = $('#tbl').find('tr');
-		 tr.bind('mouseenter').unbind('mouseleave');
-		 $('#task-details').empty().load(id);
-	});

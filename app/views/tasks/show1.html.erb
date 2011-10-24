@@ -3,7 +3,7 @@
 <div id="tab-container">
   <ul>
 	  <li ><%= link_to  t(:All), {:controller => "tasks", :action => "show", :id => 'A', :page => params[:page], :format=>:js}, :remote=>true, :title => "task information" %></li>
-	  <li ><%= link_to  t(:Personal), {:controller => "tasks", :action => "show",  :id => 'P',:page => params[:page], :format=>:js} , :remote=>true, :title => "task information %></li>
+	  <li ><%= link_to  t(:Personal), {:controller => "tasks", :action => "show",  :id => 'P',:page => params[:page], :format=>:js} , :remote=>true, :title => "task information" %></li>
 	  <li ><%= link_to  t(:Family), {:controller => "tasks", :action => "show", :id => 'F', :page => params[:page], :format=>:js} ,:remote=>true, :title => "task information" %></li>
 	  <li ><%= link_to  t(:Study), {:controller => "tasks", :action => "show",  :id => 'S', :page => params[:page], :format=>:js},:remote=>true,  :title => "task information" %></li>
 	  <li ><%= link_to  t(:Work), {:controller => "tasks", :action => "show",  :id => 'W', :page => params[:page], :format=>:js},:remote=>true,  :title => "task information" %></li>

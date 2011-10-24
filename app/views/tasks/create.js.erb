@@ -4,9 +4,11 @@ $('#newtask').find('input[id|="task_description"]').val('');
 $(function() {
             var tr = $('#tbl').find('tr');
 	    tr.hover(
-                 function() {  // mouseover
+                  a=function() {  // mouseover
+//                    previous.removeClass('row-highlight');
                     $(this).removeClass('gridtable');
                     $(this).addClass('row-highlight');
+		    $(this).addClass('active-row');
                      var values = '';
                      var tds = $(this).find('td');
 
@@ -18,11 +20,52 @@ $(function() {
                      });
                      $('#task-details').html(values);
                  },
-                 function() {  // mouseout
-                     $(this).removeClass('row-highlight');
+                  b=function() {  // mouseout
+//                     var previous = $(this);
+		     $(this).removeClass('row-highlight');
+		     $(this).removeClass('active-row');
 //  		     $("#tbl tr:nth-of-type(even)").addClass('gridtable');
+//  		     $(this).addClass('row-white');
   		     $(this).addClass('gridtable');
-//                     $('#task-details').html('');
+                     $('#task-details').html('');
                  }
             );
+});
+//$("#tbl").delegate('click', '.edit a', c=function(event){
+$(".edit a").bind('click', c=function (event) {
+//$("#tbl").click(c=function (event) {
+	event.preventDefault();
+                 var tr = $('#tbl').find('tr');
+		 tr.unbind('mouseenter').unbind('mouseleave');
+	//	 tr.removeClass('row-highlight');
+	//		 if bluerow == true {tr.addClass('gridtable');}	
+		 $(".edit a").unbind('click');
+	//	 $("#tbl").undelegate('click', '.edit a', c);
+                 var id = $(this).attr('href');
+	//		 $('#task-details').empty().load(id, function()
+	//                 {$('#description').focus();});
+		 $('#task-details').empty().load(id);
+});
+$("#task-details").submit(function(event) {
+	//	alert(event.target.action);
+        	event.preventDefault();
+	//		$('div.#task_information').$('td').filter(function(index) {
+	//  return index == 434;
+	//}). replaceWith('<p>ok</p>');
+                 var tr = $('#tbl').find('tr');
+		 $('tr.active-row td').filter('#desc').replaceWith('<td>desc</td>');
+		 $('tr.active-row td').filter('#due').replaceWith('<td>due</td>');
+		 $('tr.active-row td').filter('#prior').replaceWith('<td>prior</td>');
+	//	 $('div.task_information').$('.active-row').replaceWith("ok");
+	//  		var id = $(this).attr('action');
+		 tr.bind('mouseenter', a).bind('mouseleave', b);
+		 $(".edit a").bind('click', c);
+	//	 $("#tbl").delegate('click', '.edit a', c);
+	 	 //		 bluerow = $('tr.active-row').hasClass("gridtable")
+	//	 $("tr:even").css("background-color", "#e5ecf9");
+	//	 tr.removeClass('active-row');
+		 tr.removeClass('row-highlight');
+//                 $("#tbl tr:nth-of-type(even)").addClass('gridtable');
+                 tr.addClass('gridtable');
+     		 $('#task-details').empty();
 });

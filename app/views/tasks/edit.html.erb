@@ -1,7 +1,7 @@
 <h2><%= t(:Edit_task) %></h2>
 
-<!-- %= form_for @task, :remote => true, :html => { :id => "edit_task" } do |f| % -->
-<%= form_for @task, :html => { :id => "edit_task" } do |f| %>
+<%= form_for @task, :remote => true, :html => { :id => "edit_task" } do |f| %>
+<!-- %= form_for @task, :html => { :id => "edit_task" } do |f| % -->
 
   <%= render 'shared/error_messages', :object => f.object %> 
 
@@ -25,4 +25,3 @@
     <%= f.submit t(:Update) %>
   </div>
 <% end %>
-

@@ -1,43 +1,80 @@
 <style type="text/css">
         .row-highlight {background-color: Yellow;}
-        .row-white {background-color: white;}
+	.row-white {background-color: white;}
+	.active-row
 </style>
 
 <%= javascript_include_tag 'tasklistview' %>  
 
 <script type="text/javascript">
-		$(".pagination a").click(function (event) {
+
+$('#tab-container').tabs({spinner: 'Retrieving data...' });
+
+$(".pagination a").click(function (event) {
     		 event.preventDefault();
 		 var id = $(this).attr('href');
 		 $('#task_information').empty().load(id);
        		 $('#task-details').empty();
-  });
-  	    	$(".edit a").click(function (event) {
+});
+
+//$("#tbl").delegate('click', '.edit a', c=function(event){
+$(".edit a").bind('click', c=function (event) {
+//$(".edit a").click(c=function (event) {
                  event.preventDefault();
                  var tr = $('#tbl').find('tr');
 		 tr.unbind('mouseenter').unbind('mouseleave');
+	//	 tr.removeClass('row-highlight');
+	//		 if bluerow == true {tr.addClass('gridtable');}	
 		 $(".edit a").unbind('click');
+	//	 $("#tbl").undelegate('click', '.edit a', c);
                  var id = $(this).attr('href');
-//		 $('#task-details').empty().load(id, function()
-//                 {$('#description').focus();});
+	//		 $('#task-details').empty().load(id, function()
+	//                 {$('#description').focus();});
 		 $('#task-details').empty().load(id);
-		});
-		$(document).ready(function() {
-//		$( "#tab-container" ).bind( "tabsselect", function() {
+});
+
+$("#task-details").submit(function(event) {
+//		alert($("#edit_task").$("#task_description").val());
+///alert($("#edit_task").action);
+//	 	alert(event.target.find("input").val());
+	event.preventDefault();
+	//		$('div.#task_information').$('td').filter(function(index) {
+	//  return index == 434;
+	//}). replaceWith('<p>ok</p>');
+                 var tr = $('#tbl').find('tr');
+		 $('tr.active-row td').filter('#desc').replaceWith('<td>desc</td>');
+		 $('tr.active-row td').filter('#due').replaceWith('<td>due</td>');
+		 $('tr.active-row td').filter('#prior').replaceWith('<td>prior</td>');
+	//	 $('div.task_information').$('.active-row').replaceWith("ok");
+	//  		var id = $(this).attr('action');
+		 tr.bind('mouseenter', a).bind('mouseleave', b);
+		 $(".edit a").bind('click', c);
+	//	 $("#tbl").delegate('click', '.edit a', c);
+	 	 //		 bluerow = $('tr.active-row').hasClass("gridtable")
+	//	 $("tr:even").css("background-color", "#e5ecf9");
+	//	 tr.removeClass('active-row');
+		 tr.removeClass('row-highlight');
+        //         $("#tbl tr:nth-of-type(even)").addClass('gridtable');
+   		 tr.addClass('gridtable');
+     		 $('#task-details').empty();
+});
+
+$(document).ready(function() {
+	//		$( "#tab-container" ).bind( "tabsselect", function() {
 			$('#task-details').empty().load(id);
-		});
+});
 
 </script>
- 
+
 <table id="tbl">
 <col style="visibility: collapse;"/>
   <% @tasks.each do |task| %>
     <tr CLASS="gridtable">
       <td CLASS="id"><%= task.id %></td>
-      <td CLASS="desc"><%= task.description %></td>
-      <td CLASS="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
-      <td CLASS="prior"><%= task.priority %></td>
-      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %></td>
+      <td CLASS="desc" id="desc"><%= task.description %></td>
+      <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
+      <td CLASS="prior" id="prior"><%= task.priority %></td>
+      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %><!-- %= link_to t(:Edit), edit_task_path(task) % --></td>
       <td CLASS="prior"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
    </tr>
   <% end %>
