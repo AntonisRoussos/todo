@@ -1,8 +1,9 @@
 <tr CLASS="gridtable">
-      <td><%= @task.id %></td>
+      <td CLASS ="id" ><%= @task.id %></td>
+      <td CLASS="originaldue" ><%= @task.due.to_s[0,10] %></td>
       <td CLASS="desc" id="desc"><%= @task.description %></td>
       <td CLASS="due" id="due"><%= @day[@task.due.wday] + " " + @task.due.strftime("%d") %></td>
       <td CLASS="prior" id="prior"><%= @task.priority %></td>
-      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(@task) %></td>
+      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(@task), :remote => true %></td>
       <td CLASS="prior"><%= link_to t(:Destroy), @task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
 </tr>

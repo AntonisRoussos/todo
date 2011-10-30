@@ -13,6 +13,10 @@ class TasksController < ApplicationController
   
   def check_date_due
     fmt=I18n.t('date.formats.default')
+#     logger.debug "--format-------------------------------------------"
+#     logger.debug "#{fmt}"
+#     logger.debug "--date-------------------------------------------"
+#     logger.debug "#{params[:task]}"
     respond_to do |format|
           if date_is_valid?(fmt, params[:task][:due]) 
      		a = format.json { render :json => true }
@@ -73,7 +77,7 @@ class TasksController < ApplicationController
 
 
   def update
-    @task = Task.find(params[:id])
+    @task = Task.find(params[:task][:id])
     respond_to do |format|
 	if @task.update_attributes(params[:task])
 #	        flash[:success] = t(:Settings_updated)
@@ -83,7 +87,7 @@ class TasksController < ApplicationController
 		format.html {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
 
 	else
-		format.js  
+		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
 #		format.html {redirect_to :back}
 		format.html {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
 #		format.html {redirect_to '/tasks/show'}
@@ -98,8 +102,8 @@ class TasksController < ApplicationController
   end
 
   def show
-     logger.debug "----------------------------------------------"
-     logger.debug "#{params[:id]}"
+#     logger.debug "----------------------------------------------"
+#     logger.debug "#{params[:id]}"
      
      if params[:id] == 'F' then tasktype = 'F' end
      if params[:id] == 'P' then tasktype = 'P' end
@@ -135,5 +139,14 @@ class TasksController < ApplicationController
     end
   end
 
+  def retrieve_day
+     	@day = get_day_name
+	received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
+	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d")	
+    respond_to do |format|
+#      format.xml { render :xml => @date_response}
+	format.xml
+    end
+  end
 
 end

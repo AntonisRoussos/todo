@@ -98,3 +98,6 @@ en:
      Description: "Description :"
      Due: "Due on   :"
      Priority: "Priority  :"
+  date:
+    formats:
+      default: "%Y/%m/%d"

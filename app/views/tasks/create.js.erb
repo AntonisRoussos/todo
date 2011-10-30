@@ -14,58 +14,64 @@ $(function() {
 
                      $.each(tds, function(index, item) {
 //                         values = values + 'td' + (index + 1) + ':' + item.innerHTML + '<br/>';
-	 			if (index==1) {values = values + I18n.t("javascripts.Description") + item.innerHTML + '<br/>';}
-  				if (index==2) {values = values + I18n.t("javascripts.Due") + item.innerHTML + '<br/>';}
-  				if (index==3) {values = values + I18n.t("javascripts.Priority") + item.innerHTML + '<br/>';}
+	 			if (index==2) {values = values + I18n.t("javascripts.Description") + item.innerHTML + '<br/>';}
+  				if (index==3) {values = values + I18n.t("javascripts.Due") + item.innerHTML + '<br/>';}
+  				if (index==4) {values = values + I18n.t("javascripts.Priority") + item.innerHTML + '<br/>';}
                      });
                      $('#task-details').html(values);
                  },
                   b=function() {  // mouseout
-//                     var previous = $(this);
 		     $(this).removeClass('row-highlight');
 		     $(this).removeClass('active-row');
 //  		     $("#tbl tr:nth-of-type(even)").addClass('gridtable');
-//  		     $(this).addClass('row-white');
   		     $(this).addClass('gridtable');
                      $('#task-details').html('');
                  }
             );
 });
-//$("#tbl").delegate('click', '.edit a', c=function(event){
 $(".edit a").bind('click', c=function (event) {
-//$("#tbl").click(c=function (event) {
-	event.preventDefault();
+//$(".edit a").click(c=function (event) {
+		event.preventDefault();
+		var oldDesc;
+		var olddDue;
+		var oldPriority;
                  var tr = $('#tbl').find('tr');
 		 tr.unbind('mouseenter').unbind('mouseleave');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
 		 $(".edit a").unbind('click');
-	//	 $("#tbl").undelegate('click', '.edit a', c);
-                 var id = $(this).attr('href');
+
+
+                     var tds = $('tr.active-row').find(' td');
+
+                     $.each(tds, function(index, item) {
+	 			if (index==2) {oldDescription = item.innerHTML;}
+  				if (index==1) {oldDue = item.innerHTML;}
+  				if (index==4) {oldPriority = item.innerHTML;}
+                     });
+
+
+		 var href = $(this).attr('href');
+		 var i1 = href.indexOf("tasks");
+		 var i1 = i1 + 6;
+		 var i2 = href.indexOf("edit");
+		 var i2 = i2 - 1;
+		 var taskid = href.slice(i1, i2);
+		 var values = ''; 
+		  values = values + '<form accept-charset="UTF-8" action="/tasks/update" class="task_edit" data-remote="true" id="edit_task" method="post">';
+		  values = values + '<input id="task_id" name="task[id]" value=' + taskid + ' type="hidden" />';
+		  values = values + I18n.t("javascripts.Description");  
+		  values = values + '<input id="task_description" maxlength="30" name="task[description]" size="30" type="text" value ="' + oldDescription + '" />' + '<br/>';
+		  values = values + I18n.t("javascripts.Due"); 
+		  values = values + '<input id="task_due" maxlength="19" name="task[due]" size="19" type="text" value ="' + oldDue + '" />' + '<br/>';
+		  values = values + I18n.t("javascripts.Priority"); 
+		  values = values + '<input id="task_priority" maxlength="1" name="task[priority]" size="1" type="text" value ="' + oldPriority + '" />' + '<br/>';
+   		  values = values + '<input id="task_submit" name="commit" type="submit" value="Update" />';
+		  values = values + '</form>';
+		  $('#task-details').empty().html(values);
+	  	  //	 $("#tbl").undelegate('click', '.edit a', c);
+//                 var id = $(this).attr('href');
 	//		 $('#task-details').empty().load(id, function()
 	//                 {$('#description').focus();});
-		 $('#task-details').empty().load(id);
-});
-$("#task-details").submit(function(event) {
-	//	alert(event.target.action);
-        	event.preventDefault();
-	//		$('div.#task_information').$('td').filter(function(index) {
-	//  return index == 434;
-	//}). replaceWith('<p>ok</p>');
-                 var tr = $('#tbl').find('tr');
-		 $('tr.active-row td').filter('#desc').replaceWith('<td>desc</td>');
-		 $('tr.active-row td').filter('#due').replaceWith('<td>due</td>');
-		 $('tr.active-row td').filter('#prior').replaceWith('<td>prior</td>');
-	//	 $('div.task_information').$('.active-row').replaceWith("ok");
-	//  		var id = $(this).attr('action');
-		 tr.bind('mouseenter', a).bind('mouseleave', b);
-		 $(".edit a").bind('click', c);
-	//	 $("#tbl").delegate('click', '.edit a', c);
-	 	 //		 bluerow = $('tr.active-row').hasClass("gridtable")
-	//	 $("tr:even").css("background-color", "#e5ecf9");
-	//	 tr.removeClass('active-row');
-		 tr.removeClass('row-highlight');
-//                 $("#tbl tr:nth-of-type(even)").addClass('gridtable');
-                 tr.addClass('gridtable');
-     		 $('#task-details').empty();
+	//	 $('#task-details').empty().load(id);
 });

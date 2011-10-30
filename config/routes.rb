@@ -23,8 +23,10 @@ Todo::Application.routes.draw do
   match 'tasks/show',  :to => 'tasks#show'
   match 'tasks/show1',  :to => 'tasks#show1'
   match 'tasks/destroy',  :to => 'tasks#destroy'
+  match '/signup/users/check_name', :to => 'users#check_name'
   match 'tasks/check_date_due', :to => 'tasks#check_date_due'
-#  match 'tasks/create',  :to => 'tasks#create'
+  match '/tasks/retrieve_day',  :to => 'tasks#retrieve_day'
+  match '/tasks/update',  :to => 'tasks#update'
   resources :tasks 
 
   # The priority is based upon order of creation:

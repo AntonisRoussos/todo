@@ -1,9 +1,6 @@
 <style type="text/css">
         .row-highlight {background-color: Yellow;}
 	.row-white {background-color: white;}
-td.desc {width:50%;}
-td.due {width:20%;}
-td.prior {width:10%;}
 	.active-row
 </style>
 
@@ -37,9 +34,9 @@ $(".edit a").bind('click', c=function (event) {
                      var tds = $('tr.active-row').find(' td');
 
                      $.each(tds, function(index, item) {
-	 			if (index==2) {oldDescription = item.innerHTML;}
-  				if (index==1) {oldDue = item.innerHTML;}
-  				if (index==4) {oldPriority = item.innerHTML;}
+	 			if (index==1) {oldDescription = item.innerHTML;}
+  				if (index==2) {oldDue = item.innerHTML;}
+  				if (index==3) {oldPriority = item.innerHTML;}
                      });
 
 
@@ -112,17 +109,11 @@ $(document).ready(function() {
 </script>
 
 <table id="tbl">
-<col style="{visibility: collapse;}" />
-<col style="{visibility: collapse;}" />
-<col />
-<col />
-<col />
-<col />
-<col />
-<% @tasks.each do |task| %>
+<col style="visibility: collapse;"/>
+<col style="visibility: collapse;"/>
+  <% @tasks.each do |task| %>
     <tr CLASS="gridtable">
-      <td CLASS="id" ><%= task.id %></td>
-      <td CLASS="originaldue" ><%= task.due.to_s[0,10] %></td>
+      <td CLASS="id"><%= task.id %></td>
       <td CLASS="desc" id="desc"><%= task.description %></td>
       <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
       <td CLASS="prior" id="prior"><%= task.priority %></td>

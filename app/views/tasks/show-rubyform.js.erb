@@ -1,9 +1,6 @@
 <style type="text/css">
         .row-highlight {background-color: Yellow;}
 	.row-white {background-color: white;}
-td.desc {width:50%;}
-td.due {width:20%;}
-td.prior {width:10%;}
 	.active-row
 </style>
 
@@ -23,57 +20,22 @@ $(".pagination a").click(function (event) {
 //$("#tbl").delegate('click', '.edit a', c=function(event){
 $(".edit a").bind('click', c=function (event) {
 //$(".edit a").click(c=function (event) {
-		event.preventDefault();
-		var oldDesc;
-		var olddDue;
-		var oldPriority;
+                 event.preventDefault();
                  var tr = $('#tbl').find('tr');
 		 tr.unbind('mouseenter').unbind('mouseleave');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
 		 $(".edit a").unbind('click');
-
-
-                     var tds = $('tr.active-row').find(' td');
-
-                     $.each(tds, function(index, item) {
-	 			if (index==2) {oldDescription = item.innerHTML;}
-  				if (index==1) {oldDue = item.innerHTML;}
-  				if (index==4) {oldPriority = item.innerHTML;}
-                     });
-
-
-
-
-
-		 var href = $(this).attr('href');
-		 var i1 = href.indexOf("tasks");
-		 var i1 = i1 + 6;
-		 var i2 = href.indexOf("edit");
-		 var i2 = i2 - 1;
-		 var taskid = href.slice(i1, i2);
-		 var values = ''; 
-		  values = values + '<form accept-charset="UTF-8" action="/tasks/update" class="task_edit" data-remote="true" id="edit_task" method="post">';
-		  values = values + '<input id="task_id" name="task[id]" value=' + taskid + ' type="hidden" />';
-		  values = values + I18n.t("javascripts.Description");  
-		  values = values + '<input id="task_description" maxlength="30" name="task[description]" size="30" type="text" value ="' + oldDescription + '" />' + '<br/>';
-		  values = values + I18n.t("javascripts.Due"); 
-		  values = values + '<input id="task_due" maxlength="19" name="task[due]" size="19" type="text" value ="' + oldDue + '" />' + '<br/>';
-		  values = values + I18n.t("javascripts.Priority"); 
-		  values = values + '<input id="task_priority" maxlength="1" name="task[priority]" size="1" type="text" value ="' + oldPriority + '" />' + '<br/>';
-   		  values = values + '<input id="task_submit" name="commit" type="submit" value="Update" />';
-		  values = values + '</form>';
-		  $('#task-details').empty().html(values);
-	  	  //	 $("#tbl").undelegate('click', '.edit a', c);
-//                 var id = $(this).attr('href');
+	//	 $("#tbl").undelegate('click', '.edit a', c);
+                 var id = $(this).attr('href');
 	//		 $('#task-details').empty().load(id, function()
 	//                 {$('#description').focus();});
-	//	 $('#task-details').empty().load(id);
+		 $('#task-details').empty().load(id);
 });
 
 $("#task-details").submit({desc: '#edit_task #task_description', due: '#edit_task #task_due', prior: '#edit_task #task_priority'}, function(event) {
 
-//	         event.preventDefault();
+	         event.preventDefault();
                  var tr = $('#tbl').find('tr');
 
 
@@ -112,17 +74,10 @@ $(document).ready(function() {
 </script>
 
 <table id="tbl">
-<col style="{visibility: collapse;}" />
-<col style="{visibility: collapse;}" />
-<col />
-<col />
-<col />
-<col />
-<col />
-<% @tasks.each do |task| %>
+<col style="visibility: collapse;"/>
+  <% @tasks.each do |task| %>
     <tr CLASS="gridtable">
-      <td CLASS="id" ><%= task.id %></td>
-      <td CLASS="originaldue" ><%= task.due.to_s[0,10] %></td>
+      <td CLASS="id"><%= task.id %></td>
       <td CLASS="desc" id="desc"><%= task.description %></td>
       <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
       <td CLASS="prior" id="prior"><%= task.priority %></td>
