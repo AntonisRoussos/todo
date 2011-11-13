@@ -1,0 +1,6 @@
+var $tabs = $('#tab-container').tabs();
+var selected = $tabs.tabs('option', 'selected');
+//alert(selected);
+//$tabs.tabs('select', selected);
+$tabs.tabs('load',selected);
+//$('#tab-container').trigger('tabselected', '#' + selected);

@@ -138,8 +138,7 @@ class TasksController < ApplicationController
     @task.destroy
 
     respond_to do |format|
-#    		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
-    		format.js
+    		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked], :task_information => 'mpa'} 
 		format.html {redirect_to :back} 
     end
   end

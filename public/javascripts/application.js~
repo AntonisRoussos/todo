@@ -31,6 +31,8 @@ $.ajax({
 		 $('#task-details').empty();
 });
 
+
+//$('.pagination a').attr('data-remote', 'true');
 $("#task_due").datepicker();
 $("#new_user").validate({
 rules: {
