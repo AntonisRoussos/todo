@@ -5,5 +5,5 @@
       <td CLASS="due" id="due"><%= @day[@task.due.wday] + " " + @task.due.strftime("%d") %></td>
       <td CLASS="prior" id="prior"><%= @task.priority %></td>
       <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(@task), :remote => true %></td>
-      <td CLASS="prior"><%= link_to t(:Destroy), @task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
+      <td CLASS="prior destroy"><%= link_to t(:Destroy), @task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
 </tr>
