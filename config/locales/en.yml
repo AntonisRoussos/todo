@@ -100,4 +100,4 @@ en:
      Priority: "Priority  :"
   date:
     formats:
-      default: "%Y/%m/%d"
+      default: "%d/%m/%Y"
