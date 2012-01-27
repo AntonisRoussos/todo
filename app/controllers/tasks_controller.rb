@@ -148,7 +148,7 @@ class TasksController < ApplicationController
   def retrieve_day
      	@day = get_day_name
 	received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
-	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d")	
+	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
     respond_to do |format|
 #      format.xml { render :xml => @date_response}
 	format.xml

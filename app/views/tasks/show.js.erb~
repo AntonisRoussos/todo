@@ -3,7 +3,6 @@
 	.row-white {background-color: white;}
 	.active-row
 .rowLayout label {width:100px;float:left;}
-.rowLayout input {float:right;}
 </style>
 
  <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
@@ -47,7 +46,7 @@ $(".edit a").bind('click', c=function(event) {
 
 		 var href = $(this).attr('href');
 		 var i1 = href.indexOf("tasks");
-		 var i1 = i1 + 6;
+		 var i1 = i1 + 12;
 		 var i2 = href.indexOf("edit");
 		 var i2 = i2 - 1;
 		 var taskid = href.slice(i1, i2);
@@ -104,9 +103,9 @@ $(document).ready(function() {
       <td CLASS="id" style="display: none"><%= task.id %></td>
       <td CLASS="originaldue" style="display: none"><%= task.due.to_s[0,10] %></td>
       <td CLASS="desc" id="desc"><%= task.description %></td>
-      <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
+      <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y") %></td>
       <td CLASS="prior" id="prior"><%= task.priority %></td>
-      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %><!-- %= link_to t(:Edit), edit_task_path(task) % --></td>
+      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %></td>
       <td CLASS="prior destroy"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
    </tr>
   <% end %>

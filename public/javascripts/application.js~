@@ -31,8 +31,6 @@ $.ajax({
 		 $('#task-details').empty();
 });
 
-
-//$('.pagination a').attr('data-remote', 'true');
 $("#task_due").datepicker();
 $("#new_user").validate({
 rules: {
@@ -120,7 +118,8 @@ messages: {
 $("#newtask").validate({
 rules: {
 "task[description]": {required: true, maxlength: 30},
-"task[due]": {required: true, date: true,  remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
+// "task[due]": {required: true, date: true,  remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
+"task[due]": {required: true, remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
 "task[priority]": {required: true}
 },
 messages: {
@@ -129,7 +128,7 @@ messages: {
 },
     "task[due]": {
     required:  I18n.t("javascripts.Please_give_task_date"),
-    date:  I18n.t("javascripts.Wrong_date_format"),
+//    date:  I18n.t("javascripts.Wrong_date_format"),
     remote: I18n.t("javascripts.Wrong_date_format")
 },
     "task[priority]": {
