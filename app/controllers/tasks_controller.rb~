@@ -13,10 +13,10 @@ class TasksController < ApplicationController
   
   def check_date_due
     fmt=I18n.t('date.formats.default')
-#     logger.debug "--format-------------------------------------------"
-#     logger.debug "#{fmt}"
-#     logger.debug "--date-------------------------------------------"
-#     logger.debug "#{params[:task]}"
+     logger.debug "--format-------------------------------------------"
+     logger.debug "#{fmt}"
+     logger.debug "--date-------------------------------------------"
+     logger.debug "#{params[:task]}"
     respond_to do |format|
           if date_is_valid?(fmt, params[:task][:due]) 
      		a = format.json { render :json => true }
@@ -148,7 +148,7 @@ class TasksController < ApplicationController
   def retrieve_day
      	@day = get_day_name
 	received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
-	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y") %>	
+	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
     respond_to do |format|
 #      format.xml { render :xml => @date_response}
 	format.xml

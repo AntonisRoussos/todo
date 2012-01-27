@@ -13,28 +13,47 @@ end
 ActionView::Base.send :include, WillPaginate::I18nViewHelpers
 
 def date_is_valid?(format, date)
-  begin
-logger.debug ("===========================#{format}")
-logger.debug ("===========================#{date}")
+#  begin
+#logger.debug ("===========================#{format}")
+#logger.debug ("===========================#{date}")
   	if format == "%d/%m/%Y"  
 		then
-logger.debug ("===========================false1")
 		begin
 			Date.civil(date[6,4].to_i, date[3,2].to_i, date[0,2].to_i)
 			rescue ArgumentError 
-logger.debug ("===========================false")
 			 false 
   		end
+	else
+		if format == "%m/%d/%Y"  
+			then
+			begin
+				Date.civil(date[6,4].to_i, date[0,2].to_i, date[3,2].to_i)
+				rescue ArgumentError 
+			 	false 
+  			end
+		else
+  			if format == "%Y/%m/%d"  
+				then
+				begin
+					Date.civil(date[0,4].to_i, date[3,2].to_i, date[8,2].to_i)
+					rescue ArgumentError 
+			 		false 
+  				end
+	
+			else
+				false		
+			end
+		end
 	end
- 	civildate = case format
- 	when "%m/%d/%Y" then Date.civil(date[6,4].to_i, date[0,2].to_i, date[3,2].to_i)
-   	when "%Y/%m/%d" then Date.civil(date[0,4].to_i, date[3,2].to_i, date[8,2].to_i)
-   	else Date.civil(0000,00,00)
-  	end
-  Date.civil(date[6,4].to_i, date[3,2].to_i, date[0,2].to_i)
-  rescue ArgumentError
-    	false
-  end
+# 	civildate = case format
+# 	when "%m/%d/%Y" then Date.civil(date[6,4].to_i, date[0,2].to_i, date[3,2].to_i)
+#   	when "%Y/%m/%d" then Date.civil(date[0,4].to_i, date[3,2].to_i, date[8,2].to_i)
+#   	else Date.civil(0000,00,00)
+#  	end
+#  Date.civil(date[6,4].to_i, date[3,2].to_i, date[0,2].to_i)
+#  rescue ArgumentError
+#    	false
+#  end
 
 #      	return Date::valid_date?(civildate)
 end

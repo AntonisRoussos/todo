@@ -118,8 +118,8 @@ messages: {
 $("#newtask").validate({
 rules: {
 "task[description]": {required: true, maxlength: 30},
-"task[due]": {required: true, date: true,  remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
-//"task[due]": {required: true, remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
+//"task[due]": {required: true, date: true,  remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
+"task[due]": {required: true, remote: { url: "/tasks/check_date_due", data: { id: $("#task_due").val()}}},
 "task[priority]": {required: true}
 },
 messages: {
