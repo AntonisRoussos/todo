@@ -14,8 +14,8 @@ ActionView::Base.send :include, WillPaginate::I18nViewHelpers
 
 def date_is_valid?(format, date)
 #  begin
-#logger.debug ("===========================#{format}")
-#logger.debug ("===========================#{date}")
+logger.debug ("===========================#{format}")
+logger.debug ("===========================#{date}")
   	if format == "%d/%m/%Y"  
 		then
 		begin
@@ -35,7 +35,7 @@ def date_is_valid?(format, date)
   			if format == "%Y/%m/%d"  
 				then
 				begin
-					Date.civil(date[0,4].to_i, date[3,2].to_i, date[8,2].to_i)
+					Date.civil(date[0,4].to_i, date[5,2].to_i, date[8,2].to_i)
 					rescue ArgumentError 
 			 		false 
   				end
