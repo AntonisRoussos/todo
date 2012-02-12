@@ -1,7 +1,9 @@
-<h1><%= t(:Mail_me_the_password) %></h1>
+<h2><%= t(:Edit_task) %></h2>
 
-<%= form_tag('/MailPassword') do %> 
+<%= form_tag('/EditTask') do %>
   <%= t(:Send_to_email) %> <input size="45" type="text" name="email" />
   <input type="submit" value="Submit" />
+
+
 <% end %>
 

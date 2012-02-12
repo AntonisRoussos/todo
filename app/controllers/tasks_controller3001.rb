@@ -53,10 +53,10 @@ class TasksController < ApplicationController
 #    end
     respond_to do |format|
     if @task.save
-#      format.js 
+      format.js 
       format.html {redirect_to '/tasks/show'}
 #      format.js { render :js => @task, :status => :created, :location => @task, :layout => !request.xhr? }
-       format.js {render 'create', :content_type => 'text/html'}
+#      format.js {render 'show', :content_type => 'text/html'}
 #      format.js {render :template => '/tasks/show', :format=>:js}
 #      rescue 
 #      .error($!.to_s)
@@ -66,15 +66,15 @@ class TasksController < ApplicationController
   end
 
   def edit
-#    @task = Task.find(params[:id])
-#    @title = t(:Edit_user_settings)
+    @task = Task.find(params[:id])
+    @title = t(:Edit_user_settings)
 #    render :layout => false
-#    respond_to do |format|
+    respond_to do |format|
 #       format.html {render :action => "edit", :format => :html , :layout => false}
 #       format.js {render :action => "edit", :format => :html , :layout => false}
-#       format.html {render :action => "edit", :format => :html}
-#       format.js {render :action => "edit", :format => :js}
-#    end
+       format.html {render :action => "edit", :format => :html}
+       format.js {render :action => "edit", :format => :js}
+    end
   end
 
 
@@ -147,9 +147,7 @@ class TasksController < ApplicationController
 
   def retrieve_day
      	@day = get_day_name
-     logger.debug "--date-------------------------------------------"
-     logger.debug "#{params[:date]}"
-     received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
+	received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
 	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
     respond_to do |format|
 #      format.xml { render :xml => @date_response}

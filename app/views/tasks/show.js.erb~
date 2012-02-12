@@ -5,7 +5,8 @@
 .rowLayout label {width:100px;float:left;}
 </style>
 
-<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+ <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+
 
 <%= javascript_include_tag 'tasklistview' %>  
 

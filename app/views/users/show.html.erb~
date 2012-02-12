@@ -17,7 +17,7 @@
     </td>
     <td class="sidebar round">
       <strong>Name</strong> <%= @user.name %><br />
-      <strong>URL</strong>  <%= link_to user_path(@user), @user, :class => "nav" %>	    
+      <strong>URL</strong>  <%= link_to user_path(@user), @user %>	    
       <!--%= link_to "Change Password", :controller => "users", :action => "changepassword", :id => @user %-->
     </td>
   </tr>

@@ -12,7 +12,7 @@
 ----------------------------------------------------------------------- */
 #tab-container {float:left; width:65%;} 
 .task-info {float:right; width:300px; border-style:outset; border-width:5px;}
-/*#task-details {float:right; width:300px; border-style:outset; border-width:5px;} */
+#task-details {float:right; width:300px; border-style:outset; border-width:5px;}
 
 
 /* reset.css */

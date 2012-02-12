@@ -1,9 +1,12 @@
+<style type="text/css">
+        .hidden {display: none;}
+	.row-highlight {background-color: Yellow;}
+</style>
+
 <h2><%= t(:Edit_task) %></h2>
 
 <%= form_for @task, :remote => true, :html => { :id => "edit_task" } do |f| %>
-<!-- %= form_for @task, :html => { :id => "edit_task" } do |f| % -->
-
-  <%= render 'shared/error_messages', :object => f.object %> 
+<!--%= render 'shared/error_messages', :object => f.object %--> 
 
   <div class="field">
 	<%= f.hidden_field(:id) %>
@@ -26,4 +29,3 @@
   </div>
 
 <% end %>
-

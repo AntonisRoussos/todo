@@ -81,22 +81,22 @@ jQuery(function($){
 <!-- body style="background: #EEEEEE;" -->
 <div class="container">
       <header>
-        <div class="logo">
-        <div class="nav">
-	<%= link_to t(:Home), root_url, :class => "nav" %>
-            <%= link_to t(:Help), '#', :class => "nav" %>
+        <nav class="round">
+        <%= image_tag("goldfish.png", :alt => "Sample App", :class => "round") %>
+	<%= link_to t(:Home), root_url %>
+            <%= link_to t(:Help), '#' %>
             <% if signed_in? %>
-		<%= link_to t(:Profile), current_user, :class => "nav" %>
-	        <%= link_to t(:Settings), edit_user_path(current_user), :class => "nav" %>
-	        <%= link_to t(:Sign_out), signout_path, :method => :delete, :class => "nav" %>
-		<%= link_to t(:Change_Password), { :controller => "users", :action => "ChangePasswordRequest", :id => current_user }, :class => "nav" %>		
+	        <%= link_to t(:Profile), current_user %>
+	        <%= link_to t(:Settings), edit_user_path(current_user) %>
+	        <%= link_to t(:Sign_out), signout_path, :method => :delete %>
+		<%= link_to t(:Change_Password), :controller => "users", :action => "ChangePasswordRequest", :id => current_user %>		
       	    <% else %>
-                <%= link_to t(:Sign_in), signin_path, :class => "nav" %>
-		<%= link_to t(:Forgot_your_password), { :controller => "users", :action => "MailPasswordRequest" }, :class => "nav" %>
+                <%= link_to t(:Sign_in), signin_path %>
+		<%= link_to t(:Forgot_your_password), :controller => "users", :action => "MailPasswordRequest" %>
             <% end %>
-        </div>
-  	</div>
-	</header>
+        </nav>
+      </header>
+	   <br /> <br />
 	   <section class="round">
         <% flash.each do |key, value| %>
           <div class="flash <%= key %>"><%= value %></div>

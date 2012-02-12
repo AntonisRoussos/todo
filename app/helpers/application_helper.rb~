@@ -35,15 +35,12 @@ logger.debug ("===========================#{date}")
   			if format == "%Y/%m/%d"  
 				then
 				begin
-logger.debug ("=========================== Ymd")
 					Date.civil(date[0,4].to_i, date[5,2].to_i, date[8,2].to_i)
 					rescue ArgumentError 
-logger.debug ("===========================false Ymd")
 			 		false 
   				end
 	
 			else
-logger.debug ("===========================false format")
 				false		
 			end
 		end

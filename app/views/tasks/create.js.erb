@@ -1,11 +1,13 @@
 $('#notasks').addClass('hidden');
 $('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
 $('#newtask').find('input[id|="task_description"]').val('');
+
 $(function() {
             var tr = $('#tbl').find('tr');
 	    tr.hover(
                   a=function() {  // mouseover
 //                    previous.removeClass('row-highlight');
+		    $('#task-details').addClass('task-info'); 
                     $(this).removeClass('gridtable');
                     $(this).addClass('row-highlight');
 		    $(this).addClass('active-row');
@@ -21,6 +23,7 @@ $(function() {
                      $('#task-details').html(values);
                  },
                   b=function() {  // mouseout
+		    $('#task-details').removeClass('task-info'); 
 		     $(this).removeClass('row-highlight');
 		     $(this).removeClass('active-row');
 //  		     $("#tbl tr:nth-of-type(even)").addClass('gridtable');
@@ -29,7 +32,9 @@ $(function() {
                  }
             );
 });
-$(".edit a").bind('click', c=function (event) {
+
+//$("#tbl").delegate('click', '.edit a', c=function(event){
+$(".edit a").bind('click', c=function(event) {
 //$(".edit a").click(c=function (event) {
 		event.preventDefault();
 		var oldDesc;
@@ -37,6 +42,9 @@ $(".edit a").bind('click', c=function (event) {
 		var oldPriority;
                  var tr = $('#tbl').find('tr');
 		 tr.unbind('mouseenter').unbind('mouseleave');
+		 $("#task_due").attr('disabled', 'disabled');
+		 $("#task_description").attr('disabled', 'disabled');
+		 $("#task_priority").attr('disabled', 'disabled');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
 		 $(".edit a").unbind('click');
@@ -58,16 +66,24 @@ $(".edit a").bind('click', c=function (event) {
 		 var i2 = i2 - 1;
 		 var taskid = href.slice(i1, i2);
 		 var values = ''; 
+		 $('#task-details').addClass('task-info'); 
 		  values = values + '<form accept-charset="UTF-8" action="/tasks/update" class="task_edit" data-remote="true" id="edit_task" method="post">';
 		  values = values + '<input id="task_id" name="task[id]" value=' + taskid + ' type="hidden" />';
-		  values = values + I18n.t("javascripts.Description");  
-		  values = values + '<input id="task_description" maxlength="30" name="task[description]" size="30" type="text" value ="' + oldDescription + '" />' + '<br/>';
-		  values = values + I18n.t("javascripts.Due"); 
-		  values = values + '<input id="task_due" maxlength="19" name="task[due]" size="19" type="text" value ="' + oldDue + '" />' + '<br/>';
-		  values = values + I18n.t("javascripts.Priority"); 
-		  values = values + '<input id="task_priority" maxlength="1" name="task[priority]" size="1" type="text" value ="' + oldPriority + '" />' + '<br/>';
-   		  values = values + '<input id="task_submit" name="commit" type="submit" value="Update" />';
+		  values = values + '<div class="rowLayout">';
+		 values = values + '<label>'+I18n.t("javascripts.Description")+'</label>';  
+		  values = values + '<input id="task_description" maxlength="30" name="task[description]" size="30" type="text" value ="' + oldDescription + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values + '<label>'+I18n.t("javascripts.Due")+'</label>'; 
+		  values = values + '<input id="task_due1" class="datepicker" maxlength="10" name="task[due]" size="10" type="text" value ="' + oldDue + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.Priority")+'</label>';
+		  values = values + '<input id="task_priority" maxlength="1" name="task[priority]" size="1" type="text" value ="' + oldPriority + '" />';
+		 values = values +  '</div>';
+                 values = values + '<input id="task_submit" name="commit" type="submit" value="Update" />';
 		  values = values + '</form>';
+
 		  $('#task-details').empty().html(values);
 	  	  //	 $("#tbl").undelegate('click', '.edit a', c);
 //                 var id = $(this).attr('href');
@@ -75,3 +91,5 @@ $(".edit a").bind('click', c=function (event) {
 	//                 {$('#description').focus();});
 	//	 $('#task-details').empty().load(id);
 });
+
+

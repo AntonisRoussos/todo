@@ -1,0 +1,95 @@
+<style type="text/css">
+        .row-highlight {background-color: Yellow;}
+	.row-white {background-color: white;}
+	.active-row
+</style>
+
+<%= javascript_include_tag 'tasklistview' %>  
+
+<script type="text/javascript">
+
+$('#tab-container').tabs({spinner: 'Retrieving data...' });
+
+$(".pagination a").click(function (event) {
+    		 event.preventDefault();
+		 var id = $(this).attr('href');
+		 $('#task_information').empty().load(id);
+       		 $('#task-details').empty();
+});
+
+//$("#tbl").delegate('click', '.edit a', c=function(event){
+$(".edit a").bind('click', c=function (event) {
+//$(".edit a").click(c=function (event) {
+                 event.preventDefault();
+                 var tr = $('#tbl').find('tr');
+		 tr.unbind('mouseenter').unbind('mouseleave');
+	//	 tr.removeClass('row-highlight');
+	//		 if bluerow == true {tr.addClass('gridtable');}	
+		 $(".edit a").unbind('click');
+	//	 $("#tbl").undelegate('click', '.edit a', c);
+                 var id = $(this).attr('href');
+	//		 $('#task-details').empty().load(id, function()
+	//                 {$('#description').focus();});
+		 $('#task-details').empty().load(id);
+});
+
+$("#task-details").submit({desc: '#edit_task #task_description', due: '#edit_task #task_due', prior: '#edit_task #task_priority'}, function(event) {
+
+	         event.preventDefault();
+                 var tr = $('#tbl').find('tr');
+
+
+$.ajax({
+  	url: "/tasks/retrieve_day",
+  	type: "GET",
+  	data: {date : $(event.data.due).attr('value')},
+  	dataType: "xml",
+    	async: false,
+	success:function(rdata) {
+	$(rdata).find("Response").each(function()
+		{$('tr.active-row td').filter('#due').replaceWith('<td CLASS="due" id="due">'+$(this).find("Date").text()+'</td>');});
+	}
+});
+
+		 $('tr.active-row td').filter('#desc').replaceWith('<td CLASS="desc" id="desc">'+$(event.data.desc).attr('value')+'</td>');
+//		 $('tr.active-row td').filter('#due').replaceWith('<td>'+$(event.data.due).attr('value')+'</td>');
+		 $('tr.active-row td').filter('#prior').replaceWith('<td CLASS="prior" id="prior">'+$(event.data.prior).attr('value')+'</td>');
+		 tr.bind('mouseenter', a).bind('mouseleave', b);
+		 $(".edit a").bind('click', c);
+	//	 $("#tbl").delegate('click', '.edit a', c);
+	 	 //		 bluerow = $('tr.active-row').hasClass("gridtable")
+	//	 $("tr:even").css("background-color", "#e5ecf9");
+	//	 tr.removeClass('active-row');
+		 tr.removeClass('row-highlight');
+        //         $("#tbl tr:nth-of-type(even)").addClass('gridtable');
+   		 tr.addClass('gridtable');
+     		 $('#task-details').empty();
+});
+
+$(document).ready(function() {
+	//		$( "#tab-container" ).bind( "tabsselect", function() {
+			$('#task-details').empty().load(id);
+});
+
+</script>
+
+<table id="tbl">
+<col style="visibility: collapse;"/>
+  <% @tasks.each do |task| %>
+    <tr CLASS="gridtable">
+      <td CLASS="id"><%= task.id %></td>
+      <td CLASS="desc" id="desc"><%= task.description %></td>
+      <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") %></td>
+      <td CLASS="prior" id="prior"><%= task.priority %></td>
+      <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task), :remote => true %><!-- %= link_to t(:Edit), edit_task_path(task) % --></td>
+      <td CLASS="prior"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete %></td>
+   </tr>
+  <% end %>
+</table>
+
+<%= will_paginate @tasks %>
+
+ <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->
+
+
+

@@ -1,0 +1,6 @@
+<%= javascript_include_tag 'tasklistview' %> 
+<script type="text/javascript">
+$('#notasks').addClass('hidden');
+$('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
+$('#newtask').find('input[id|="task_description"]').val('');
+</script>

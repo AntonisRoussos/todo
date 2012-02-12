@@ -1,3 +1,6 @@
+
+<div id = "task-details" class = "task-info">
+
 <h2><%= t(:Edit_task) %></h2>
 
 <%= form_for @task, :remote => true, :html => { :id => "edit_task" } do |f| %>
@@ -26,4 +29,6 @@
   </div>
 
 <% end %>
+
+</div>
 
