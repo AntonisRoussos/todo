@@ -160,8 +160,13 @@ class TasksController < ApplicationController
     logger.debug "#{params[:date]}"
     @day = get_day_name
 #   received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
-    received_date = Time.parse(params[:date], "%d%m%Y %H:%M:%S")
+#    received_date = Time.parse(params[:date], "%d%m%Y %H:%M:%S")
+    received_date = Date.strptime(params[:date], '%d/%m/%Y') 
+    logger.debug "--received_date-------------------------------------------"
+    logger.debug "#{received_date}"
     @date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
+    logger.debug "--@date_response-------------------------------------------"
+    logger.debug "#{@date_response}"
     respond_to do |format|
 #      format.xml { render :xml => @date_response}
 	format.xml
