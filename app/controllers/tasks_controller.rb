@@ -89,7 +89,7 @@ class TasksController < ApplicationController
     logger.debug "--params[:date]-before------------------------------------------"
     logger.debug "#{params[:task][:due]}"
     params[:task][:due] = @task.due
-    logger.debug "--params[:date]-after------------------------------------------"
+     logger.debug "--params[:date]-after------------------------------------------"
     logger.debug "#{params[:task][:due]}"
 	if @task.update_attributes(params[:task])
 #	        flash[:success] = t(:Settings_updated)
