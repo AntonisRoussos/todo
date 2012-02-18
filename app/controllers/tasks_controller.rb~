@@ -86,7 +86,10 @@ class TasksController < ApplicationController
     @task.due = tdate
     logger.debug "--@task.due-------------------------------------------"
     logger.debug "#{@task.due}"
-    logger.debug "--params[:date]-------------------------------------------"
+    logger.debug "--params[:date]-before------------------------------------------"
+    logger.debug "#{params[:task][:due]}"
+    params[:task][:due] = @task.due
+    logger.debug "--params[:date]-after------------------------------------------"
     logger.debug "#{params[:task][:due]}"
 	if @task.update_attributes(params[:task][:due])
 #	        flash[:success] = t(:Settings_updated)

@@ -91,7 +91,7 @@ class TasksController < ApplicationController
     params[:task][:due] = @task.due
     logger.debug "--params[:date]-after------------------------------------------"
     logger.debug "#{params[:task][:due]}"
-	if @task.update_attributes(params[:task][:due])
+	if @task.update_attributes(params[:task])
 #	        flash[:success] = t(:Settings_updated)
 #		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
 #		format.html {redirect_to '/tasks/show'}
