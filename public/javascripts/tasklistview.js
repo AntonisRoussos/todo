@@ -54,7 +54,7 @@ $(".edit a").bind('click', c=function(event) {
   				if (index==4) {oldPriority = item.innerHTML;}
                      });
 
-
+		 
 		 var href = $(this).attr('href');
 		 var i1 = href.indexOf("tasks");
 		 var i1 = i1 + 6;
@@ -71,7 +71,7 @@ $(".edit a").bind('click', c=function(event) {
 		 values = values +  '</div>';
 		  values = values + '<div class="rowLayout">';
 		 values = values + '<label>'+I18n.t("javascripts.Due")+'</label>'; 
-		  values = values + '<input id="task_due1" class="datepicker" maxlength="10" name="task[due]" size="10" type="text" value ="' + oldDue + '" />';
+  		  values = values + '<input id="task_due1" readonly="true" class="datepicker" maxlength="10" name="task[due]" size="10" type="text" value ="' + oldDue + '" />';
 		 values = values +  '</div>';
 		  values = values + '<div class="rowLayout">';
 		 values = values +  '<label>'+I18n.t("javascripts.Priority")+'</label>';

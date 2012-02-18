@@ -81,7 +81,17 @@ class TasksController < ApplicationController
   def update
     @task = Task.find(params[:task][:id])
 #    respond_to do |format|
-	if @task.update_attributes(params[:task])
+    fmt=I18n.t('date.formats.default')
+    tdate = DateTime.strptime(str=params[:task][:due],fmt)
+    @task.due = tdate
+    logger.debug "--@task.due-------------------------------------------"
+    logger.debug "#{@task.due}"
+    logger.debug "--params[:date]-before------------------------------------------"
+    logger.debug "#{params[:task][:due]}"
+    params[:task][:due] = @task.due
+    logger.debug "--params[:date]-after------------------------------------------"
+    logger.debug "#{params[:task][:due]}"
+	if @task.update_attributes(params[:task][:due])
 #	        flash[:success] = t(:Settings_updated)
 #		format.js  {redirect_to :action => "show", :format => :js, :id => session[:tabpicked]} 
 #		format.html {redirect_to '/tasks/show'}
@@ -146,12 +156,12 @@ class TasksController < ApplicationController
 
 
   def retrieve_day
-     	@day = get_day_name
-     logger.debug "--date-------------------------------------------"
-     logger.debug "#{params[:date]}"
-#     received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
-     received_date = Time.parse(params[:date], "%d%m%Y %H:%M:%S")
-	@date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
+    logger.debug "--date-------------------------------------------"
+    logger.debug "#{params[:date]}"
+    @day = get_day_name
+#   received_date = Time.parse(params[:date], "%Y-%m-%d %H:%M:%S")
+    received_date = Time.parse(params[:date], "%d%m%Y %H:%M:%S")
+    @date_response = @day[received_date.wday] + " " + received_date.strftime("%d") + "/" + received_date.strftime("%m") + "/" + received_date.strftime("%y")	
     respond_to do |format|
 #      format.xml { render :xml => @date_response}
 	format.xml

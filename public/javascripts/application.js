@@ -42,7 +42,7 @@ $.ajax({
 $("#task_due1").live("click",function(){
      
     //$(this).datepicker({ dateFormat: 'yy-mm-dd' }).focus();
-     $(this).datepicker().focus();
+       $(this).datepicker().focus();
 //       return(false);
 
 
