@@ -38,8 +38,8 @@ $(document).ready(function() {
       <td CLASS="id" style="display: none"><%= task.id %></td>
       <td CLASS="originaldue" style="display: none"><%= task.due.to_s[0,10] %></td>
       <td CLASS="desc" id="desc"><%= task.description %></td>
-      <!-- td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y") % --><!-- /td -->
-      <td CLASS="due" id="due"><%= task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y")></td>
+      <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y") %></td>
+      <!-- td CLASS="due" id="due"><%= task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y") --><!-- /td-->
       <td CLASS="prior" id="prior"><%= task.priority %></td>
       <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task) %></td>
       <td CLASS="prior destroy"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
