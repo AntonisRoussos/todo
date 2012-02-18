@@ -40,7 +40,7 @@ class TasksController < ApplicationController
     @task.due = tdate
     @task.user_id = current_user.id
     if @task.ttype == 'A' then @task.ttype = 'P'end
-#     @task = current_user.tasks.create(params[:task])
+#    @task = current_user.tasks.create(params[:task])
 #    if @task.save!
 #     respond_with do |format|
 #      format.html do
