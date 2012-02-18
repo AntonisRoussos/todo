@@ -53,10 +53,10 @@ class TasksController < ApplicationController
 #    end
     respond_to do |format|
     if @task.save
-#      format.js 
+      format.js 
       format.html {redirect_to '/tasks/show'}
 #      format.js { render :js => @task, :status => :created, :location => @task, :layout => !request.xhr? }
-       format.js {render 'create', :content_type => 'text/html'}
+#      format.js {render 'create', :content_type => 'text/html'}
 #      format.js {render :template => '/tasks/show', :format=>:js}
 #      rescue 
 #      .error($!.to_s)
