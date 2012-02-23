@@ -97,7 +97,13 @@ en:
      Please_give_task_priority: "Please give task priority"
      Description: "Description :"
      Due: "Due on   :"
-     Priority: "Priority  :"
+     Priority: "Priority   :"
+     type: "Category     :"
+     status: "status     :"
+     status_date: "status Date     :"
+     budget: "budget      :"
+     long_description: "Comments:     "
+
   date:
     formats:
       default: "%d/%m/%Y"

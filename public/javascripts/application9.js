@@ -16,12 +16,14 @@ $.ajax({
   	dataType: "xml",
     	async: false,
 	success:function(rdata) {
-	$(rdata).find("Response").each(function()
-		{$('tr.active-row td').filter('#due').replaceWith('<td CLASS="due" id="due">'+$(this).find("Date").text()+'</td>');});
-	}
+				$(rdata).find("Response").each(function()
+					{$('tr.active-row td').filter('#due').replaceWith('<td CLASS="due" id="due">'+$(this).find("Date").text()+'</td>');});
+				}
 });
 		 $('tr.active-row td').filter('#desc').replaceWith('<td CLASS="desc" id="desc">'+$(event.data.desc).attr('value')+'</td>');
 		 $('tr.active-row td').filter('#prior').replaceWith('<td CLASS="prior" id="prior">'+$(event.data.prior).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#olddue').replaceWith('<td CLASS="olddue" id="olddue" style="display: none">'+$(event.data.due).attr('value')+'</td>');
+//		 task.description = $(event.data.desc).attr('value')
 		 tr.bind('mouseenter', a).bind('mouseleave', b);
 		 $(".edit a").bind('click', c);
 	//	 $("#tbl").delegate('click', '.edit a', c);
@@ -42,7 +44,7 @@ $.ajax({
 $("#task_due1").live("click",function(){
      
     //$(this).datepicker({ dateFormat: 'yy-mm-dd' }).focus();
-//     $(this).datepicker().focus();
+       $(this).datepicker().focus();
 //       return(false);
 
 

@@ -10,13 +10,85 @@
    * This is a compressed file. See the sources in the 'src' directory.
 
 ----------------------------------------------------------------------- */
+/* Custom part */
 #tab-container {float:left; width:65%;} 
 .task-info {float:right; width:300px; border-style:outset; border-width:5px;}
 /*#task-details {float:right; width:300px; border-style:outset; border-width:5px;} */
+.row-highlight {background-color: Yellow;}
+.row-white {background-color: white;}
+.active-row
+.rowLayout label {width:100px;float:left;}
+textarea.txtarea {
+	width: 290px;
+	height: 50px;
+	border: 3px solid #cccccc;
+	padding: 5px;
+	font-family: Tahoma, sans-serif;
+	background-image: url(bg.gif);
+	background-position: bottom right;
+	background-repeat: no-repeat;
+}
+
+form {
+	background:#fff;
+	padding:1em;
+	border:1px solid #eee;
+}
+.login {
+	background:url(../gfx/user.gif) no-repeat 95% 1em;
+}
+.contact {
+	background:url(../gfx/email2.gif) no-repeat 95% 1em;
+}
+fieldset div {
+	margin:0.3em 0;
+	clear:both;
+}
+form {
+	margin:1em;
+/*	width:20em; */
+}
+label {
+	float:left;
+	width:10em;
+	text-align:right;
+	margin-right:1em;
+}
+legend {
+	color:#0b77b7;
+	font-size:1.2em;
+}
+legend span {
+	width:10em;
+	text-align:right;
+}
+input {
+	padding:0.15em;
+	width:10em;
+	border:1px solid #ddd;
+	background:#fafafa;
+	font:bold 0.95em arial, sans-serif;
+	-moz-border-radius:0.4em;
+	-khtml-border-radius:0.4em;
+}
+input:hover, input:focus {
+	border-color:#c5c5c5;
+	background:#f6f6f6;
+} 
+fieldset {
+	border:1px solid #ddd;
+	padding:0 0.5em 0.5em;
+}
+.email {
+	width:14em;
+}
+
+input.default {
+	color:#bbb;
+}
 
 
 /* reset.css */
-.row-highlight {background-color: Yellow;}
 .hidden {display:none;}html {margin:0;padding:0;border:0;}
 body, div, span, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, code, del, dfn, em, img, q, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, dialog, figure, footer, header, hgroup, nav, section {margin:0;padding:0;border:0;font-weight:inherit;font-style:inherit;font-size:100%;font-family:inherit;vertical-align:baseline;}
 article, aside, dialog, figure, footer, header, hgroup, nav, section {display:block;}

@@ -1,3 +1,4 @@
+// <link rel="stylesheet" type="text/css" href="./stylesheets/blueprint/screen.css">
 $(function() {
             var tr = $('#tbl').find('tr');
 	    tr.hover(
@@ -15,6 +16,12 @@ $(function() {
 	 			if (index==2) {values = values + I18n.t("javascripts.Description") + item.innerHTML + '<br/>';}
   				if (index==3) {values = values + I18n.t("javascripts.Due") + item.innerHTML + '<br/>';}
   				if (index==4) {values = values + I18n.t("javascripts.Priority") + item.innerHTML + '<br/>';}
+  				if (index==7) {values = values + I18n.t("javascripts.type") + item.innerHTML + '<br/>';}
+  				if (index==8) {values = values + I18n.t("javascripts.status") + item.innerHTML + '<br/>';}
+  				if (index==9) {values = values + I18n.t("javascripts.status_date") + item.innerHTML + '<br/>';}
+  				if (index==10) {values = values + I18n.t("javascripts.budget") + item.innerHTML + '<br/>';}
+  				if (index==11) {values = values + I18n.t("javascripts.long_description") + '<br/><textarea class="txtarea">' + item.innerHTML + '</textarea>';
+						$('#txt').css("color","red");}
                      });
                      $('#task-details').html(values);
                  },
@@ -50,11 +57,16 @@ $(".edit a").bind('click', c=function(event) {
 
                      $.each(tds, function(index, item) {
 	 			if (index==2) {oldDescription = item.innerHTML;}
-  				if (index==1) {oldDue = item.innerHTML;}
+  				if (index==12) {oldDue = item.innerHTML;}
   				if (index==4) {oldPriority = item.innerHTML;}
+  				if (index==7) {oldType = item.innerHTML;}
+  				if (index==8) {oldStatus = item.innerHTML;}
+  				if (index==9) {oldStatusDate = item.innerHTML;}
+  				if (index==10) {oldBudget = item.innerHTML;}
+  				if (index==11) {oldLongDescription = item.innerHTML;}
                      });
 
-		 
+		  
 		 var href = $(this).attr('href');
 		 var i1 = href.indexOf("tasks");
 		 var i1 = i1 + 6;
@@ -66,7 +78,7 @@ $(".edit a").bind('click', c=function(event) {
 		  values = values + '<form accept-charset="UTF-8" action="/tasks/update" class="task_edit" data-remote="true" id="edit_task" method="post">';
 		  values = values + '<input id="task_id" name="task[id]" value=' + taskid + ' type="hidden" />';
 		  values = values + '<div class="rowLayout">';
-		 values = values + '<label>'+I18n.t("javascripts.Description")+'</label>';  
+		 values = values + '<label for="task[description]">'+I18n.t("javascripts.Description")+'</label>';  
 		  values = values + '<input id="task_description" maxlength="30" name="task[description]" size="30" type="text" value ="' + oldDescription + '" />';
 		 values = values +  '</div>';
 		  values = values + '<div class="rowLayout">';
@@ -76,6 +88,26 @@ $(".edit a").bind('click', c=function(event) {
 		  values = values + '<div class="rowLayout">';
 		 values = values +  '<label>'+I18n.t("javascripts.Priority")+'</label>';
 		  values = values + '<input id="task_priority" maxlength="1" name="task[priority]" size="1" type="text" value ="' + oldPriority + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.type")+'</label>';
+		  values = values + '<input id="task_ttype" maxlength="1" name="task[ttype]" size="1" type="text" value ="' + oldType + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.status")+'</label>';
+		  values = values + '<input id="task_status" maxlength="1" name="task[status]" size="1" type="text" value ="' + oldStatus + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.status_date")+'</label>';
+		  values = values + '<input id="task_status_date" maxlength="10" name="task[status_date]" size="10" type="text" value ="' + oldStatusDate + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.budget")+'</label>';
+		  values = values + '<input id="task_budget" maxlength="11" name="task[budget]" size="11" type="text" value ="' + oldBudget + '" />';
+		 values = values +  '</div>';
+		  values = values + '<div class="rowLayout">';
+		 values = values +  '<label>'+I18n.t("javascripts.long_description")+'</label>';
+		  values = values + '<textarea id="task_long_description" class="txtarea" maxlength="100" name="task[long_description]" size="100">' + oldLongDescription + '</textarea>';
 		 values = values +  '</div>';
                  values = values + '<input id="task_submit" name="commit" type="submit" value="Update" />';
 		  values = values + '</form>';

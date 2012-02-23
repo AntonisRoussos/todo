@@ -1,10 +1,3 @@
-<style type="text/css">
-        .row-highlight {background-color: Yellow;}
-	.row-white {background-color: white;}
-	.active-row
-.rowLayout label {width:100px;float:left;}
-</style>
-
 <%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
 
 <%= javascript_include_tag 'tasklistview' %>  
@@ -42,6 +35,12 @@ $(document).ready(function() {
       <td CLASS="prior" id="prior"><%= task.priority %></td>
       <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task) %></td>
       <td CLASS="prior destroy"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
+      <td CLASS="ttype" id="ttype" style="display: none"><%= task.ttype %></td>
+      <td CLASS="status" id="status" style="display: none"><%= task.status %></td>
+      <td CLASS="status_date" id="status_date" style="display: none"><%= task.status_date %></td>
+      <td CLASS="budget" id="budget" style="display: none"><%= task.budget %></td>
+      <td CLASS="long_description" id="long_description" style="display: none"><%= task.long_description %></td>
+      <td CLASS="olddue" id="olddue" style="display: none"><%= task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%Y") %></td>
    </tr>
   <% end %>
 </table>

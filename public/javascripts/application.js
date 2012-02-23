@@ -3,12 +3,13 @@
 
 $(document).ready(function () {
 
-$("#task-details").submit({desc: '#edit_task #task_description', due: '#edit_task #task_due1', prior: '#edit_task #task_priority'}, function(event) {
-//	         event.preventDefault();
+$("#task-details").submit({
+			  	desc: '#edit_task #task_description', due: '#edit_task #task_due1', prior: '#edit_task #task_priority',
+			  	type: '#edit_task #task_ttype', stat: '#edit_task #task_status', statusdate: '#edit_task #task_status_date',
+			  	budget: '#edit_task #task_budget', longdes: '#edit_task #task_long_description'
+			  },
+function(event) {
                  var tr = $('#tbl').find('tr');
-
-//		 alert($(event.data.desc).attr('value'));
-//		 alert($(event.data.due).attr('value'));
 $.ajax({
   	url: "/tasks/retrieve_day",
   	type: "GET",
@@ -16,12 +17,19 @@ $.ajax({
   	dataType: "xml",
     	async: false,
 	success:function(rdata) {
-	$(rdata).find("Response").each(function()
-		{$('tr.active-row td').filter('#due').replaceWith('<td CLASS="due" id="due">'+$(this).find("Date").text()+'</td>');});
-	}
+				$(rdata).find("Response").each(function()
+					{$('tr.active-row td').filter('#due').replaceWith('<td CLASS="due" id="due">'+$(this).find("Date").text()+'</td>');});
+				}
 });
 		 $('tr.active-row td').filter('#desc').replaceWith('<td CLASS="desc" id="desc">'+$(event.data.desc).attr('value')+'</td>');
 		 $('tr.active-row td').filter('#prior').replaceWith('<td CLASS="prior" id="prior">'+$(event.data.prior).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#olddue').replaceWith('<td CLASS="olddue" id="olddue" style="display: none">'+$(event.data.due).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#ttype').replaceWith('<td CLASS="ttype" id="ttype" style="display: none">'+$(event.data.type).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#status').replaceWith('<td CLASS="status" id="status" style="display: none">'+$(event.data.stat).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#status_date').replaceWith('<td CLASS="status_date" id="status_date" style="display: none">'+$(event.data.statusdate).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#budget').replaceWith('<td CLASS="budget" id="budget" style="display: none">'+$(event.data.budget).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#long_description').replaceWith('<td CLASS="long_description" id="long_description" style="display: none">'+$(event.data.longdes).attr('value')+'</td>');
+//		 task.description = $(event.data.desc).attr('value')
 		 tr.bind('mouseenter', a).bind('mouseleave', b);
 		 $(".edit a").bind('click', c);
 	//	 $("#tbl").delegate('click', '.edit a', c);
