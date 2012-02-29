@@ -1,10 +1,8 @@
-$('#notasks').addClass('hidden');
-$('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
-$('#newtask').find('input[id|="task_description"]').val('');
-// <link rel="stylesheet" type="text/css" href="./stylesheets/blueprint/screen.css">
 $(function() {
             var tr = $('#tbl').find('tr');
-	    tr.hover(
+//	    $("table").delegate("td", "click", function()
+	    tr.delegate({
+		  mouseover:
                   a=function() {  // mouseover
 //                    previous.removeClass('row-highlight');
 		    $('#task-details').addClass('task-info'); 
@@ -28,6 +26,7 @@ $(function() {
                      });
                      $('#task-details').html(values);
                  },
+		 mouseout:
                   b=function() {  // mouseout
 		    $('#task-details').removeClass('task-info'); 
 		     $(this).removeClass('row-highlight');
@@ -36,24 +35,29 @@ $(function() {
   		     $(this).addClass('gridtable');
                      $('#task-details').html('');
                  }
-            );
+	    });
 });
 
-//$("#tbl").delegate('click', '.edit a', c=function(event){
-$(".edit a").bind('click', c=function(event) {
+$("body").delegate(".container", "click", c=function(event){
+//$('body').delegate(".edit a", "click", c=function(event){
+//$(".edit a").live('click', c=function(event) {
 //$(".edit a").click(c=function (event) {
 		event.preventDefault();
 		var oldDesc;
 		var olddDue;
 		var oldPriority;
-                 var tr = $('#tbl').find('tr');
-		 tr.unbind('mouseenter').unbind('mouseleave');
+                var tr = $('#tbl').find('tr');
+		alert('in');
+//	        tr.undelegate();
+//	         $('#tbl').undelegate('tr', "mouseout");
+		 tr.undelegate();
+//		 tr.undelegate({mouseout: b});
 		 $("#task_due").attr('disabled', 'disabled');
 		 $("#task_description").attr('disabled', 'disabled');
 		 $("#task_priority").attr('disabled', 'disabled');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
-		 $(".edit a").unbind('click');
+	//	 $(".edit a").unbind('click');
 
 
                      var tds = $('tr.active-row').find(' td');
