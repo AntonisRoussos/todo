@@ -1,3 +1,6 @@
+$('#notasks').addClass('hidden');
+$('#tbl').prepend("<%= escape_javascript(render(:partial => 'tasks/addtask')) %>");
+$('#newtask').find('input[id|="task_description"]').val('');
 // <link rel="stylesheet" type="text/css" href="./stylesheets/blueprint/screen.css">
 $(function() {
             var tr = $('#tbl').find('tr');
@@ -50,8 +53,7 @@ $(".edit a").bind('click', c=function(event) {
 		 $("#task_priority").attr('disabled', 'disabled');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
-	//	 $(".edit a").unbind('click');
-		 $("a").click(function(){return false;})
+		 $(".edit a").unbind('click');
 
 
                      var tds = $('tr.active-row').find(' td');

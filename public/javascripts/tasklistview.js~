@@ -50,8 +50,7 @@ $(".edit a").bind('click', c=function(event) {
 		 $("#task_priority").attr('disabled', 'disabled');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
-	//	 $(".edit a").unbind('click');
-		 $("a").click(function(){return false;})
+		 $(".edit a").unbind('click');
 
 
                      var tds = $('tr.active-row').find(' td');
