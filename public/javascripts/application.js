@@ -31,8 +31,9 @@ $.ajax({
                  $('tr.active-row td').filter('#long_description').replaceWith('<td CLASS="long_description" id="long_description" style="display: none">'+$(event.data.longdes).attr('value')+'</td>');
 //		 task.description = $(event.data.desc).attr('value')
 		 tr.bind('mouseenter', a).bind('mouseleave', b);
-	//	 $(".edit a").bind('click', c);
-		 $("a").click(function(){return false;})
+		 $(".edit a").bind('click', c);
+	//	 $(".destroy a").bind('click');
+	//	 $("a").click(function(){return true;})
 	//	 $("#tbl").delegate('click', '.edit a', c);
 	 	 //		 bluerow = $('tr.active-row').hasClass("gridtable")
 	//	 $("tr:even").css("background-color", "#e5ecf9");
