@@ -18,6 +18,7 @@
 .row-white {background-color: white;}
 .active-row
 .rowLayout label {width:100px;float:left;}
+
 textarea.txtarea {
 	width: 290px;
 	height: 50px;
@@ -71,7 +72,7 @@ input {
 	-moz-border-radius:0.4em;
 	-khtml-border-radius:0.4em;
 }
-input:hover, input:focus {
+input:hover:not(.search), input:focus:not(.search) {
 	border-color:#c5c5c5;
 	background:#f6f6f6;
 } 
@@ -87,6 +88,9 @@ input.default {
 	color:#bbb;
 }
 
+.search {color:#0b77b7; 
+	background: url(images/search.png) no-repeat scroll 7px 7px;
+	padding-left:20px;}
 
 /* reset.css */
 .hidden {display:none;}html {margin:0;padding:0;border:0;}

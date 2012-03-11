@@ -1,25 +1,3 @@
-
-<script type="text/javascript">
-       
- $(function() {
-	$('#search').autocomplete({
-            		minLength: 0,
-            		source: function (request, response) {
-                            $.ajax({
-                                url: "/tasks/show", type: "GET", dataType: "script",
-//                                url: "/tasks/show", type: "GET", dataType: "json",
-				data: { term: request.term },
-			    	async: true
-            		    })
-			},
-	    open: function(event, ui) {
-			  $(".ui-menu-item").hide();
-	    },
-	})
- })
-
-    </script>
-
 <h1><%= t(:List_of_tasks) %></h1>
 
 <div id="tab-container">
@@ -34,7 +12,7 @@
 
 <!-- % if :id != "A"% -->
 
-<input id="search" class="search"/>
+<input id="search"/>
 
 <%=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" }, :remote => true do |f| %> 
 	<!-- %=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" } do |f| % -->
@@ -74,5 +52,4 @@
 
 <div id="task-details">
 </div>
-
 

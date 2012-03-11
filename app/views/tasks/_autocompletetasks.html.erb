@@ -1,35 +1,7 @@
-<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
-
-<%= javascript_include_tag 'tasklistview' %>  
-
-<script type="text/javascript">
-
-
-$(".pagination a").click(function (event) {
-    		 event.preventDefault();
-		 var id = $(this).attr('href');
-		 $('#task_information').empty().load(id);
-       		 $('#task-details').empty();
-});
-
-
-
-$(document).ready(function() {
-	//		$( "#tab-container" ).bind( "tabsselect", function() {
-			$('#task-details').removeClass('task-info'); 
-			$('#task-details').empty();
-			$('#paginate').show();
-			$('#paginateautocomplete').hide();
-
-});
-
-
-</script>
-
 <table id="tbl">
 <!-- col style="{visibility: collapse;}" / -->
 <% @tasks.each do |task| %>
-    <tr CLASS="gridtable">
+<tr CLASS="gridtable">
       <td CLASS="id" style="display: none"><%= task.id %></td>
       <td CLASS="originaldue" style="display: none"><%= task.due.to_s[0,10] %></td>
       <td CLASS="desc" id="desc"><%= task.description %></td>
@@ -43,11 +15,10 @@ $(document).ready(function() {
       <td CLASS="budget" id="budget" style="display: none"><%= task.budget %></td>
       <td CLASS="long_description" id="long_description" style="display: none"><%= task.long_description %></td>
       <td CLASS="olddue" id="olddue" style="display: none"><%= task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%Y") %></td>
-   </tr>
-  <% end %>
+</tr>
+ <% end %>
 </table>
 
-<div id="paginate">
+<div id="paginateautocomplete">
 <%= will_paginate @tasks %>
 </div>
- <!-- %= will_paginate @tasks, :renderer => RemoteLinkRenderer % -->

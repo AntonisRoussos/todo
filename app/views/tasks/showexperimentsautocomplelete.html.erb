@@ -1,0 +1,151 @@
+<script type="text/javascript">
+// var results = $.ui.autocomplete.filter(	$('#search').data("autocomplete")._renderItem, request.term);
+var availableTags = ["ActionScript", "AppleScript", "Asp", "BASIC", "C", "C++", "Clojure",
+    "COBOL", "ColdFusion", "Erlang", "Fortran", "Groovy", "Haskell", "Java", "JavaScript",
+    "Lisp", "Perl", "PHP", "Python", "Ruby", "Scala", "Scheme"];
+ $(function() {
+	$('#search').autocomplete({
+            minLength: 0,
+//   source: '/tasks.json',
+//            source: '<%= task_path(:json) %>',
+                        source: function (request, response) {
+//	    		var results = $.ui.autocomplete.filter(data, request.term);
+//			  $('#task_information').prepend("<a>" + results.join(", ") + "</a>");
+                            $.ajax({
+                                url: "/tasks/index", type: "GET", dataType: "json",
+                                data: { term: request.term },
+				success: function (rdata) {
+				$('#task_information').empty();
+				$('#task_information').append('<ul>');
+				$(rdata).each(function(i,elem){
+					$('#task_information').append('<li>' + elem.task.description + '</li>');
+				});
+				$('#task_information').append('</ul>');
+				
+				//					for(var memberi in rdata){ for(var member in memberi){ alert(memberi[member]);}};
+//       				var obj = JSON.stringify(rdata);
+//				var obj = jQuery.parseJSON;
+//				$("#task_information").prepend(obj);
+//				$(obj).find("task").each(function()
+//					{
+//					$('#task_information').prepend($(this).find("description").text());
+//					});
+                             response($.map(rdata, function (item) {
+                                        return {
+    					value: item.task.description,
+                                            id: item.task.id,
+                                        }
+                                    }))
+                                }
+                            })
+                        },
+	    open: function(event, ui) {
+			  //    	    	for(var member in item){ alert(member); };
+			  $(".ui-menu-item").hide();
+	    },
+
+	focus: function(event, ui) {
+//  $('#task_information').prepend( "<a>" + ui.item.task.description + "</a>");
+//                $('#search').val(ui.item.task.description);
+//                $('#tbl').val(ui.item.task.description);
+                return false;
+            },
+     	    search: function(event, ui) {
+//			alert(ui.item.task.description);
+//  			    $('#task_information').empty();
+//  		    	    $('#tbl').val(ui);
+//			return false;
+		    }
+	})
+// // The below code is straight from the jQuery example. It formats what data is displayed in the dropdown box, and can be customized.
+//                 .data("autocomplete")._renderItem = function( ul, item ) {
+//                 return $( "<li></li>" )
+//                 .data( "item.autocomplete", item ) 
+ // For now which just want to show the person.given_name in the list.
+//                 .append( "<a>" + item.task.description + "</a>" )
+//                 .appendTo(ul);
+//        };
+//		            source: availableTags
+
+
+ });
+
+// JSON.stringify = JSON.stringify || function (obj) {
+//    var t = typeof (obj);
+//    if (t != "object" || obj === null) {
+//        // simple data type
+//        if (t == "string") obj = '"'+obj+'"';
+//        return String(obj);
+//    }
+//    else {
+//        // recurse array or object
+//        var n, v, json = [], arr = (obj && obj.constructor == Array);
+//        for (n in obj) {
+//            v = obj[n]; t = typeof(v);
+//            if (t == "string") v = '"'+v+'"';
+//            else if (t == "object" && v !== null) v = JSON.stringify(v);
+//            json.push((arr ? "" : '"' + n + '":') + String(v));
+//        }
+//        return (arr ? "[" : "{") + String(json) + (arr ? "]" : "}");
+//    }
+};
+
+
+    </script>
+
+<h1><%= t(:List_of_tasks) %></h1>
+
+<div id="tab-container">
+  <ul>
+	  <li ><%= link_to  t(:All), {:controller => "tasks", :action => "show", :id => 'A', :page => params[:page], :format=>:js}, :remote=>true, :title => "task information" %></li>
+	  <li ><%= link_to  t(:Personal), {:controller => "tasks", :action => "show",  :id => 'P',:page => params[:page], :format=>:js} , :remote=>true, :title => "task information" %></li>
+	  <li ><%= link_to  t(:Family), {:controller => "tasks", :action => "show", :id => 'F', :page => params[:page], :format=>:js} ,:remote=>true, :title => "task information" %></li>
+	  <li ><%= link_to  t(:Study), {:controller => "tasks", :action => "show",  :id => 'S', :page => params[:page], :format=>:js},:remote=>true,  :title => "task information" %></li>
+	  <li ><%= link_to  t(:Work), {:controller => "tasks", :action => "show",  :id => 'W', :page => params[:page], :format=>:js},:remote=>true,  :title => "task information" %></li>
+  </ul>
+
+
+<!-- % if :id != "A"% -->
+
+<input id="search"/>
+
+<%=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" }, :remote => true do |f| %> 
+	<!-- %=  form_for @task, :as => :task, :url => { :action => "create" }, :html => { :id => "newtask" } do |f| % -->
+   <!-- %= f.hidden_field(session[:tabpicked]) % -->
+   <!-- %= tabselected % -->
+   <%= f.text_field :description, :size => 30, :placeholder => t(:Enter_task),  :maxlength => 30 %>
+   <%= f.text_field :due, :size => 10, :value => l(Date.current, :format => :default), :maxlength => 10 %>
+   <%= f.text_field :priority, :size => 1, :value => 'L', :maxlength => 1 %>
+   <!-- %= f.select("ttype", {"Personal" => "P", "Family" => "F", "Study" => "S", "Work" => "W"}) % -->
+   <!-- %= f.select("ttype",options_for_select(Todo::Application.config.task_types, session[:tabpicked])) % -->
+   <!-- %= f.select("ttype",options_for_select(Todo::Application.config.task_types)) % -->
+   <%= f.submit t(:Add_task) %>
+<% end %>
+
+<!-- % end % -->
+<table>
+
+<thead>
+
+  <tr>
+      <th CLASS="desc"><%= t(:Task) %></th>
+      <th CLASS="due"><%= t(:Date) %></th>
+      <th CLASS="prior"><%= t(:Priority) %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+ </tr>
+
+</thead>
+
+</table>
+
+<div id="task_information">
+</div>
+
+</div>
+
+<div id="task-details">
+</div>
+
+
