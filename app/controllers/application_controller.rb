@@ -21,7 +21,7 @@ end
   end
 
 
-  protect_from_forgery
+#  protect_from_forgery
 
   private
         

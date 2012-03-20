@@ -123,9 +123,12 @@ class TasksController < ApplicationController
      if params[:id] == 'S' then tasktype = 'S' end
      if params[:id] == 'A' then tasktype = 'A' end
      if params[:term]
-    	@tasks = Task.where('user_id = ? AND description LIKE ?', current_user, "%#{params[:term]}%").paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
-#    	@tasks = Task.paginate(:all ,:conditions => ['user_id = ? AND description LIKE ?', current_user, "%#{params[:term]}%"], :page => params[:page], :per_page => 10, :order =>'due DESC')
-#    	@tasks = Task.find(:all,:conditions => ['user_id = ? AND description LIKE ?', current_user, "%#{params[:term]}%"]).paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
+	tasktype = session[:tabpicked]
+	if tasktype == 'A'
+    		@tasks = Task.where('user_id = ? AND description LIKE ?', current_user, "%#{params[:term]}%").paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
+	else	
+	    	@tasks = Task.where('user_id = ? AND ttype = ? AND description LIKE ?', current_user, tasktype ,"%#{params[:term]}%").paginate(:page => params[:page], :per_page => 10, :order =>'due DESC')
+	end
      else
 	if !['F', 'P', 'W', 'S'].include? tasktype
 	then

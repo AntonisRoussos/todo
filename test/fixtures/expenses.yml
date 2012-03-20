@@ -1,0 +1,17 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  amount: 9.99
+  dateOccured: 2012-03-15
+  category: MyString
+  subcategory: MyString
+  type: MyString
+  method: MyString
+
+two:
+  amount: 9.99
+  dateOccured: 2012-03-15
+  category: MyString
+  subcategory: MyString
+  type: MyString
+  method: MyString

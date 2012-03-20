@@ -10,7 +10,19 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111015211513) do
+ActiveRecord::Schema.define(:version => 20120317081652) do
+
+  create_table "expenses", :force => true do |t|
+    t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
+    t.date     "dateOccured"
+    t.string   "category",    :limit => 2,                               :default => "01"
+    t.string   "subcategory", :limit => 4,                               :default => "0101"
+    t.string   "ttype",       :limit => 1,                               :default => "E"
+    t.string   "method",      :limit => 1,                               :default => "M"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "webid"
+  end
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"

@@ -89,7 +89,7 @@ input.default {
 }
 
 .search {color:#0b77b7; 
-	background: url(images/search.png) no-repeat scroll 7px 7px;
+	background: url(images/search.png) no-repeat scroll 7px 7px; background-position:left top;
 	padding-left:20px;}
 
 /* reset.css */
