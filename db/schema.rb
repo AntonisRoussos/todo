@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120317081652) do
+ActiveRecord::Schema.define(:version => 20120407053841) do
 
   create_table "expenses", :force => true do |t|
     t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(:version => 20120317081652) do
     t.datetime "updated_at"
     t.integer  "webid"
   end
+
+  add_index "expenses", ["webid"], :name => "index_expenses_on_webid", :unique => true
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"

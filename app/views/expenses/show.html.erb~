@@ -30,11 +30,6 @@
   <%= @expense.method %>
 </p>
 
-<p>
-  <b>Created_at:</b>
-  <%= @expense.created_at %>
-</p>
-
 
 <%= link_to 'Edit', edit_expense_path(@expense) %> |
 <%= link_to 'Back', expenses_path %>

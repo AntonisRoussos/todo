@@ -48,7 +48,7 @@ def get_mobile_updates(mobile_data)
     end 
 
     if (remainder == 8 and trxtype == 'A')
-    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc)
+    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime.getutc), :updated_at => Time.parse(trxdatetime.getutc))
       if @expense.save
          response.push(@expense.webid, @expense.id)
       else
@@ -98,7 +98,7 @@ def get_mobile_updates(mobile_data)
     logger.debug "#{Time.parse(trxdatetime).getutc}"
     logger.debug "#{@expense.updated_at}"
 	
-	   if @expense.updated_at < Time.parse(trxdatetime).getutc
+	   if @expense.updated_at < Time.parse(trxdatetime.getutc)
 		if @expense.destroy
    		      response.push(@expense.webid, @expense.id)
       		else
@@ -150,7 +150,7 @@ def get_mobile_updates(mobile_data)
     logger.debug "#{Time.parse(trxdatetime).getutc}"
     logger.debug "#{@expense.updated_at}"
 	   if @expense.updated_at < Time.parse(trxdatetime).getutc
-		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc)
+		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime.getutc), :updated_at => Time.parse(trxdatetime.getutc))
    		      response.push(@expense.webid, @expense.id)
       		else
          	      response.push(@expense.webid, 0)
