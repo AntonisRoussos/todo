@@ -1,5 +1,12 @@
 module ExpensesHelper
 
+def insert_to_expenses_journal(operation, expense)
+
+	@expense_journal = ExpenseJournal.new({:trxtype => operation, :trxdatetime => Time.now, :sn => expense.id, :amount => expense.amount, :dateoccured => expense.dateOccured, :category => expense.category, :subcategory => expense.subcategory, :exptype => expense.ttype, :expmethod =>expense.method})
+		@expense_journal.save
+
+end
+
 def get_mobile_updates(mobile_data)
 	
   response = Array.new
@@ -11,11 +18,12 @@ def get_mobile_updates(mobile_data)
   trxsubcategory = '' 
   trxttype = ''
   trxmethod = ''
-  trxwebid = 0
+  trxmobileid = 0
   trxdatetime = ''
 
 # Additions
-  mobile_data.each_index{|i|
+  if !mobile_data.nil?
+   mobile_data.each_index{|i|
 
     remainder = i % 9
 
@@ -26,7 +34,7 @@ def get_mobile_updates(mobile_data)
 	trxdatetime = mobile_data[i]
     end
     if remainder == 2
-	trxwebid = mobile_data[i]
+	trxmobileid = mobile_data[i]
     end
     if remainder == 3
     	trxamount = mobile_data[i]
@@ -48,19 +56,20 @@ def get_mobile_updates(mobile_data)
     end 
 
     if (remainder == 8 and trxtype == 'A')
-    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc)
+    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
       if @expense.save
-         response.push(@expense.webid, @expense.id)
+#         response.push(@expense.mobileid, @expense.id)
       else
-         response.push(@expense.webid, 0)
+#         response.push(@expense.mobileid, 0)
       end
     end
-
-}
+   }
+  end
 
 
 # Deletions
-  mobile_data.each_index{|i|
+  if !mobile_data.nil?
+   mobile_data.each_index{|i|
 
     remainder = i % 9
 
@@ -71,7 +80,7 @@ def get_mobile_updates(mobile_data)
 	trxdatetime = mobile_data[i]
     end
     if remainder == 2
-	trxwebid = mobile_data[i]
+	trxmobileid = mobile_data[i]
     end
     if remainder == 3
     	trxamount = mobile_data[i]
@@ -93,25 +102,28 @@ def get_mobile_updates(mobile_data)
     end 
 
     if (remainder == 8 and trxtype == 'D')
-     @expense =  Expense.find_by_webid(trxwebid)
+     @expense =  Expense.find_by_mobileid(trxmobileid)
 	if @expense
-    logger.debug "#{Time.parse(trxdatetime).getutc}"
-    logger.debug "#{@expense.updated_at}"
+#    logger.debug "#{Time.parse(trxdatetime).getutc}"
+#    logger.debug "#{@expense.updated_at}"
 	
-	   if @expense.updated_at < Time.parse(trxdatetime).getutc
+#	   if @expense.updated_at < Time.parse(trxdatetime).getutc
 		if @expense.destroy
-   		      response.push(@expense.webid, @expense.id)
+#   		      response.push(@expense.mobileid, @expense.id)
       		else
-         	      response.push(@expense.webid, 0)
+#         	      response.push(@expense.mobileid, 0)
 		end
-	   end
+#	   end
 
 	end
     end
+   }
+  
+  end 
 
-}
-# Updates
-  mobile_data.each_index{|i|
+  # Updates
+  if !mobile_data.nil?
+   mobile_data.each_index{|i|
 
     remainder = i % 9
 
@@ -122,7 +134,7 @@ def get_mobile_updates(mobile_data)
 	trxdatetime = mobile_data[i]
     end
     if remainder == 2
-	trxwebid = mobile_data[i]
+	trxmobileid = mobile_data[i]
     end
     if remainder == 3
     	trxamount = mobile_data[i]
@@ -145,24 +157,33 @@ def get_mobile_updates(mobile_data)
 
  
     if (remainder == 8 and trxtype == 'U')
-      @expense =  Expense.find_by_webid(trxwebid)
+      @expense =  Expense.find_by_mobileid(trxmobileid)
 	if @expense 
-    logger.debug "#{Time.parse(trxdatetime).getutc}"
-    logger.debug "#{@expense.updated_at}"
+#    logger.debug "#{Time.parse(trxdatetime).getutc}"
+#    logger.debug "#{@expense.updated_at}"
 	   if @expense.updated_at < Time.parse(trxdatetime).getutc
-		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :webid =>trxwebid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc)
-   		      response.push(@expense.webid, @expense.id)
+		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S") 
+#   		      response.push(@expense.mobileid, @expense.id)
       		else
-         	      response.push(@expense.webid, 0)
+#         	      response.push(@expense.mobileid, 0)
 		end
 	   end
 	end
     end
 
-}
+   }
+  end
+
+  @expense_journal = ExpenseJournal.all
+  if !@expense_journal.nil?
+    @expense_journal.each do |expense|
+         response.push(expense.trxtype, expense.trxdatetime.to_formatted_s(:db), expense.sn, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category, expense.subcategory, expense.exptype, expense.expmethod)
+         expense.destroy
+    end
+  end 
 
   return response
 
-end	
+ end
 
 end

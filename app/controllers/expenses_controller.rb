@@ -44,9 +44,14 @@ class ExpensesController < ApplicationController
   # POST /expenses.xml
   def create
     @expense = Expense.new(params[:expense])
-
+    operation = "A"
+    if success = @expense.save
+	expense=@expense
+	insert_to_expenses_journal(operation, expense)   
+    end
     respond_to do |format|
       if @expense.save
+#      if @expense.save and responsecode == "success" 
         format.html { redirect_to(@expense, :notice => 'Expense was successfully created.') }
         format.xml  { render :xml => @expense, :status => :created, :location => @expense }
       else
@@ -63,7 +68,10 @@ class ExpensesController < ApplicationController
 
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
-        format.html { redirect_to(@expense, :notice => 'Expense was successfully updated.') }
+	operation = "U"
+        expense=@expense
+	insert_to_expenses_journal(operation, expense)   
+	format.html { redirect_to(@expense, :notice => 'Expense was successfully updated.') }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -76,7 +84,10 @@ class ExpensesController < ApplicationController
   # DELETE /expenses/1.xml
   def destroy
     @expense = Expense.find(params[:id])
+    expense=@expense
     @expense.destroy
+    operation = "D"
+    insert_to_expenses_journal(operation, expense)   
 
     respond_to do |format|
       format.html { redirect_to(expenses_url) }

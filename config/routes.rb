@@ -1,6 +1,8 @@
 Todo::Application.routes.draw do 
 
 
+  resources :expense_journals
+
   resources :expenses
 
   root :to => "home#index"
@@ -31,7 +33,7 @@ Todo::Application.routes.draw do
   match '/tasks/update',  :to => 'tasks#update'
   resources :tasks 
   match '/expenses/synchronize_with_mobile',  :to => 'expenses#synchronize_with_mobile'
-  resources :expenses 
+#  resources :expenses 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

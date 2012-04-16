@@ -10,7 +10,21 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120407053841) do
+ActiveRecord::Schema.define(:version => 20120411070549) do
+
+  create_table "expense_journals", :force => true do |t|
+    t.string   "trxtype",     :limit => 1
+    t.datetime "trxdatetime"
+    t.integer  "sn"
+    t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
+    t.date     "dateoccured"
+    t.string   "category",    :limit => 2
+    t.string   "subcategory", :limit => 4
+    t.string   "exptype",     :limit => 1
+    t.string   "expmethod",   :limit => 1
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "expenses", :force => true do |t|
     t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
@@ -21,10 +35,11 @@ ActiveRecord::Schema.define(:version => 20120407053841) do
     t.string   "method",      :limit => 1,                               :default => "M"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "webid"
+    t.integer  "mobileid"
+    t.string   "sync",        :limit => 1
   end
 
-  add_index "expenses", ["webid"], :name => "index_expenses_on_webid", :unique => true
+  add_index "expenses", ["mobileid"], :name => "index_expenses_on_webid", :unique => true
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"

@@ -1,0 +1,50 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Trxtype:</b>
+  <%= @expense_journal.trxtype %>
+</p>
+
+<p>
+  <b>Trxdatetime:</b>
+  <%= @expense_journal.trxdatetime %>
+</p>
+
+<p>
+  <b>Sn:</b>
+  <%= @expense_journal.sn %>
+</p>
+
+<p>
+  <b>Amount:</b>
+  <%= @expense_journal.amount %>
+</p>
+
+<p>
+  <b>Dateoccured:</b>
+  <%= @expense_journal.dateoccured %>
+</p>
+
+<p>
+  <b>Category:</b>
+  <%= @expense_journal.category %>
+</p>
+
+<p>
+  <b>Subcategory:</b>
+  <%= @expense_journal.subcategory %>
+</p>
+
+<p>
+  <b>Exptype:</b>
+  <%= @expense_journal.exptype %>
+</p>
+
+<p>
+  <b>Expmethod:</b>
+  <%= @expense_journal.expmethod %>
+</p>
+
+
+<%= link_to 'Edit', edit_expense_journal_path(@expense_journal) %> |
+<%= link_to 'Back', expense_journals_path %>

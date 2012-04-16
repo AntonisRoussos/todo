@@ -1,0 +1,39 @@
+<h1>Listing expense_journals</h1>
+
+<table>
+  <tr>
+    <th>Trxtype</th>
+    <th>Trxdatetime</th>
+    <th>Sn</th>
+    <th>Amount</th>
+    <th>Dateoccured</th>
+    <th>Category</th>
+    <th>Subcategory</th>
+    <th>Exptype</th>
+    <th>Expmethod</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @expense_journals.each do |expense_journal| %>
+  <tr>
+    <td><%= expense_journal.trxtype %></td>
+    <td><%= expense_journal.trxdatetime %></td>
+    <td><%= expense_journal.sn %></td>
+    <td><%= expense_journal.amount %></td>
+    <td><%= expense_journal.dateoccured %></td>
+    <td><%= expense_journal.category %></td>
+    <td><%= expense_journal.subcategory %></td>
+    <td><%= expense_journal.exptype %></td>
+    <td><%= expense_journal.expmethod %></td>
+    <td><%= link_to 'Show', expense_journal %></td>
+    <td><%= link_to 'Edit', edit_expense_journal_path(expense_journal) %></td>
+    <td><%= link_to 'Destroy', expense_journal, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Expense journal', new_expense_journal_path %>

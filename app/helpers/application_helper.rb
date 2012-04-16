@@ -65,8 +65,6 @@ f.collection_select(:selected_language, language_lookup,:label,:value,{:prompt=>
 #f.collection_select(:selected_language, I18n.available_locales,:label,:value,{:prompt=>"Select language"})
 end
 
-
-
 private
 
 def language_lookup

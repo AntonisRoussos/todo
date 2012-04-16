@@ -1,0 +1,23 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+one:
+  trxtype: MyString
+  trxdatetime: 2012-04-11 10:05:50
+  sn: 1
+  amount: 9.99
+  dateoccured: 2012-04-11
+  category: MyString
+  subcategory: MyString
+  exptype: MyString
+  expmethod: MyString
+
+two:
+  trxtype: MyString
+  trxdatetime: 2012-04-11 10:05:50
+  sn: 1
+  amount: 9.99
+  dateoccured: 2012-04-11
+  category: MyString
+  subcategory: MyString
+  exptype: MyString
+  expmethod: MyString

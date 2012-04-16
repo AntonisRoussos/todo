@@ -1,0 +1,53 @@
+<%= form_for(@expense_journal) do |f| %>
+  <% if @expense_journal.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@expense_journal.errors.count, "error") %> prohibited this expense_journal from being saved:</h2>
+
+      <ul>
+      <% @expense_journal.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :trxtype %><br />
+    <%= f.text_field :trxtype %>
+  </div>
+  <div class="field">
+    <%= f.label :trxdatetime %><br />
+    <%= f.datetime_select :trxdatetime %>
+  </div>
+  <div class="field">
+    <%= f.label :sn %><br />
+    <%= f.text_field :sn %>
+  </div>
+  <div class="field">
+    <%= f.label :amount %><br />
+    <%= f.text_field :amount %>
+  </div>
+  <div class="field">
+    <%= f.label :dateoccured %><br />
+    <%= f.date_select :dateoccured %>
+  </div>
+  <div class="field">
+    <%= f.label :category %><br />
+    <%= f.text_field :category %>
+  </div>
+  <div class="field">
+    <%= f.label :subcategory %><br />
+    <%= f.text_field :subcategory %>
+  </div>
+  <div class="field">
+    <%= f.label :exptype %><br />
+    <%= f.text_field :exptype %>
+  </div>
+  <div class="field">
+    <%= f.label :expmethod %><br />
+    <%= f.text_field :expmethod %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>
