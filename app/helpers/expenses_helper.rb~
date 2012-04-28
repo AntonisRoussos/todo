@@ -58,9 +58,9 @@ def get_mobile_updates(mobile_data)
     if (remainder == 8 and trxtype == 'A')
     	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
       if @expense.save
-#         response.push(@expense.mobileid, @expense.id)
+         response.push(@expense.mobileid, @expense.id)
       else
-#         response.push(@expense.mobileid, 0)
+         response.push(@expense.mobileid, 0)
       end
     end
    }
@@ -159,10 +159,13 @@ def get_mobile_updates(mobile_data)
     if (remainder == 8 and trxtype == 'U')
       @expense =  Expense.find_by_mobileid(trxmobileid)
 	if @expense 
-#    logger.debug "#{Time.parse(trxdatetime).getutc}"
+#     logger.debug "#{Time.zone}"
+#     logger.debug "#{Time.zone.parse(trxdatetime)}"
+#     logger.debug "#{Time.parse(trxdatetime)}"
 #    logger.debug "#{@expense.updated_at}"
-	   if @expense.updated_at < Time.parse(trxdatetime).getutc
-		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S") 
+	   if @expense.updated_at < Time.zone.parse(trxdatetime)
+#	   if @expense.updated_at < Time.parse(trxdatetime).getutc
+		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
 #   		      response.push(@expense.mobileid, @expense.id)
       		else
 #         	      response.push(@expense.mobileid, 0)
@@ -176,8 +179,8 @@ def get_mobile_updates(mobile_data)
 
   @expense_journal = ExpenseJournal.all
   if !@expense_journal.nil?
+    response.push('web')	
     @expense_journal.each do |expense|
-	response.push('web')	
    	response.push(expense.trxtype, expense.trxdatetime.to_formatted_s(:db), expense.sn, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category, expense.subcategory, expense.exptype, expense.expmethod)
 #         response.push(expense.trxtype, expense.trxdatetime, expense.sn, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category, expense.subcategory, expense.exptype, expense.expmethod)
          expense.destroy
@@ -186,6 +189,41 @@ def get_mobile_updates(mobile_data)
 
   return response
 
+ end
+
+
+ def get_mobile_updates_second_step(mobile_data_2)
+ # Update mobile_id
+  logger.debug "#{mobile_data_2}"
+
+  webid = 0
+
+  if !mobile_data_2.nil?
+   mobile_data_2.each_index{|i|
+
+    remainder = i % 2
+
+    if remainder == 0
+    	webid = mobile_data_2[i]
+    end
+    if remainder == 1
+	mobid = mobile_data_2[i]
+#	if Expense.exists?(webid)
+#	   @expense =  Expense.find(webid)
+#	   @expense.update_attributes(:mobileid =>mobid) 
+	 begin
+   	   @expense =  Expense.find(webid)
+	   @expense.update_attributes(:mobileid =>mobid) 
+	   rescue ActiveRecord::RecordNotFound
+ 	 end
+	end
+#	if !@expense.nil?
+#	   @expense.update_attributes(:mobileid =>mobid) 
+#	end
+    end
+
+   }
+  end
  end
 
 end

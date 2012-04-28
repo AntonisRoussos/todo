@@ -108,6 +108,8 @@ class ExpensesController < ApplicationController
                             params[:password])
 
     respond_to do |format|
+    logger.debug "--------------------------------------#{user.id}"
+    logger.debug "#{user.id}"
 	if user.nil?
 	   responsecode = 1
     	else
