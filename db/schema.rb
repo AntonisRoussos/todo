@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120411070549) do
+ActiveRecord::Schema.define(:version => 20120513055049) do
 
   create_table "expense_journals", :force => true do |t|
     t.string   "trxtype",     :limit => 1
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20120411070549) do
     t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
     t.date     "dateoccured"
     t.string   "category",    :limit => 2
-    t.string   "subcategory", :limit => 4
+    t.string   "subcategory", :limit => 2,                               :default => "01"
     t.string   "exptype",     :limit => 1
     t.string   "expmethod",   :limit => 1
     t.datetime "created_at"
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(:version => 20120411070549) do
     t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
     t.date     "dateOccured"
     t.string   "category",    :limit => 2,                               :default => "01"
-    t.string   "subcategory", :limit => 4,                               :default => "0101"
+    t.string   "subcategory", :limit => 2,                               :default => "01"
     t.string   "ttype",       :limit => 1,                               :default => "E"
     t.string   "method",      :limit => 1,                               :default => "M"
     t.datetime "created_at"

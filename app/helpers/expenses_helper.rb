@@ -178,8 +178,10 @@ def get_mobile_updates(mobile_data)
   end
 
   @expense_journal = ExpenseJournal.all
-  if !@expense_journal.nil?
-    response.push('web')	
+#  if !@expense_journal.nil?
+  unless @expense_journal.empty?
+      response.push('web')
+#     logger.debug "#{@expense_journal}"
     @expense_journal.each do |expense|
    	response.push(expense.trxtype, expense.trxdatetime.to_formatted_s(:db), expense.sn, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category, expense.subcategory, expense.exptype, expense.expmethod)
 #         response.push(expense.trxtype, expense.trxdatetime, expense.sn, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category, expense.subcategory, expense.exptype, expense.expmethod)

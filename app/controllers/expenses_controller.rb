@@ -164,21 +164,4 @@ class ExpensesController < ApplicationController
 
   end
 
-  def copy
-    mobile_data = params[:mobiledata]
-    mobile_user =  params[:user]
-    mobile_password =  params[:password]
-    @user = User.find_by_email(mobile_user)
-    logger.debug "#{@user.id}"
-    respond_to do |format|
-      if (@user and @user.status == true)
-#	need check password as well
- 	format.json  {render :json => get_mobile_updates(mobile_data)}
-      else
-# 	format.json { render :json => 99 }
-      end
-    end
- end
-
-
 end
