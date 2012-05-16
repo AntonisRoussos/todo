@@ -12,6 +12,7 @@ en:
   Sign_up: "Sign up"
   New_user?: "New user?"
   Forgot_your_password: "Forgot your password?"
+  Download: "Download"
   password: "password"
   password_confirmation: "password confirmation"
   email: "email"

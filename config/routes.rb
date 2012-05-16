@@ -20,6 +20,7 @@ Todo::Application.routes.draw do
   match '/ResetPassword',  :to => 'users#ResetPassword'
   match '/ChangePasswordRequest',  :to => 'users#ChangePasswordRequest'
   match '/ChangePassword',  :to => 'users#ChangePassword'
+  match '/DownloadMobile', :to => 'users#DownloadMobile'
   match '/signin',  :to => 'sessions#new'
   match '/signout', :to => 'sessions#destroy'
   match '/MapRequest',  :to => 'places#MapRequest'

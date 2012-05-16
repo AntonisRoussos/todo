@@ -10,6 +10,7 @@ el:
   Sign_up: "Γραφτείτε"
   New_user?: "Νέος χρήστης;"
   Forgot_your_password: "Ξεχάσατε το συνθηματικό σας;"
+  Download: "Κατεβάστε"
   password: "Συνθηματικό"
   password_confirmation: "Επιβεβαίωση συνθηματικού"
   email: "Ηλεκ. θυρίδα"
