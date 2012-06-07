@@ -56,7 +56,8 @@ def get_mobile_updates(mobile_data)
     end 
 
     if (remainder == 8 and trxtype == 'A')
-    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
+#    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
+    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.zone.parse(trxdatetime), :updated_at => Time.zone.parse(trxdatetime), :sync => "S")
       if @expense.save
          response.push(@expense.mobileid, @expense.id)
       else
@@ -160,9 +161,9 @@ def get_mobile_updates(mobile_data)
       @expense =  Expense.find_by_mobileid(trxmobileid)
 	if @expense 
 #     logger.debug "#{Time.zone}"
-#     logger.debug "#{Time.zone.parse(trxdatetime)}"
 #     logger.debug "#{Time.parse(trxdatetime)}"
-#    logger.debug "#{@expense.updated_at}"
+    logger.debug "#{@expense.updated_at}"
+     logger.debug "#{Time.zone.parse(trxdatetime)}"
 	   if @expense.updated_at < Time.zone.parse(trxdatetime)
 #	   if @expense.updated_at < Time.parse(trxdatetime).getutc
 		if @expense.update_attributes(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
