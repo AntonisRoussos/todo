@@ -85,6 +85,7 @@ jQuery(function($){
         <div class="nav">
 	    <%= link_to t(:Home), root_url, :class => "nav" %>
             <%= link_to t(:Help), '#', :class => "nav" %>
+            <%= link_to t(:Download), { :controller => "users", :action => "DownloadMobile"}, :class => "nav" %>
             <% if signed_in? %>
 		<%= link_to t(:Profile), current_user, :class => "nav" %>
 	        <%= link_to t(:Settings), edit_user_path(current_user), :class => "nav" %>
@@ -96,15 +97,14 @@ jQuery(function($){
             <% end %>
         </div>
   	</div>
-	</header>
-	   <section class="round">
-        <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-      </section>
-        <%= yield %>
-      </section>
-    </div>
+     </header>
+	<section class="round">
+        	<% flash.each do |key, value| %>
+          		<div class="flash <%= key %>"><%= value %></div>
+        	<% end %>
+      	</section>
+   <%= yield %>
+</div>
 
 </body>
 </html>

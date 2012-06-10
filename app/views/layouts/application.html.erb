@@ -97,15 +97,14 @@ jQuery(function($){
             <% end %>
         </div>
   	</div>
-	</header>
-	   <section class="round">
-        <% flash.each do |key, value| %>
-          <div class="flash <%= key %>"><%= value %></div>
-        <% end %>
-      </section>
-        <%= yield %>
-      </section>
-    </div>
+     </header>
+	<section class="round">
+        	<% flash.each do |key, value| %>
+          		<div class="flash <%= key %>"><%= value %></div>
+        	<% end %>
+      	</section>
+   <%= yield %>
+</div>
 
 </body>
 </html>
