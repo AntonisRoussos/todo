@@ -201,7 +201,8 @@ class UsersController < ApplicationController
 
   def DownloadMobile
 #	send_file './public/downloads/Expenses.apk', :type => 'application/apk', :disposition => 'inline'
-	send_file './public/downloads/Expenses.apk', :type => 'application/apk'
+#	send_file './public/downloads/Expenses.apk', :type => 'application/apk'
+	send_file './public/downloads/Expenses.apk'
   end
 
 end
