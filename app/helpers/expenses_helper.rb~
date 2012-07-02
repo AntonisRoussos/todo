@@ -246,7 +246,7 @@ def get_mobile_updates(mobile_data, user_id)
   unless @expense_all.empty?
       response.push('expenses')
     @expense_all.each do |expense|
-   	response.push(expense.id, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category,  expense.subcategory, expense.ttype, expense.expmethod, expense.updated_at.to_formatted_s(:db))
+   	response.push(expense.id, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category,  expense.subcategory, expense.ttype, expense.expmethod, expense.trxdatetime.to_formatted_s(:db))
     end
   end 
 

@@ -1,6 +1,10 @@
 Todo::Application.routes.draw do 
 
 
+  resources :categories
+
+  resources :subcategories
+
   resources :expense_journals
 
   resources :expenses
@@ -36,6 +40,7 @@ Todo::Application.routes.draw do
   match '/expenses/synchronize_with_mobile',  :to => 'expenses#synchronize_with_mobile'
   match '/expenses/synchronize_with_mobile_second_step',  :to => 'expenses#synchronize_with_mobile_second_step'
   match '/expenses/authenticate_mobile_user',  :to => 'expenses#authenticate_mobile_user'
+  match '/expenses/copy_to_mobile',  :to => 'expenses#copy_to_mobile'
 #  resources :expenses 
 
   # The priority is based upon order of creation:

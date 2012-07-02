@@ -10,7 +10,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120513055049) do
+ActiveRecord::Schema.define(:version => 20120701093552) do
+
+  create_table "categories", :force => true do |t|
+    t.string   "code",          :limit => 2
+    t.string   "type",          :limit => 1
+    t.string   "enDescription", :limit => 30
+    t.string   "elDescription", :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "expense_journals", :force => true do |t|
     t.string   "trxtype",     :limit => 1
@@ -24,6 +34,7 @@ ActiveRecord::Schema.define(:version => 20120513055049) do
     t.string   "expmethod",   :limit => 1
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "expenses", :force => true do |t|
@@ -37,6 +48,7 @@ ActiveRecord::Schema.define(:version => 20120513055049) do
     t.datetime "updated_at"
     t.integer  "mobileid"
     t.string   "sync",        :limit => 1
+    t.integer  "user_id"
   end
 
   add_index "expenses", ["mobileid"], :name => "index_expenses_on_webid", :unique => true
@@ -69,6 +81,17 @@ ActiveRecord::Schema.define(:version => 20120513055049) do
 
   add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "subcategories", :force => true do |t|
+    t.string   "Category_code",    :limit => 2
+    t.string   "Subcategory_code", :limit => 2
+    t.string   "type",             :limit => 1
+    t.string   "enDescription",    :limit => 30
+    t.string   "elDescription",    :limit => 30
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.integer  "user_id"
+  end
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"
