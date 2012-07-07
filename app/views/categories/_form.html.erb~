@@ -16,8 +16,8 @@
     <%= f.text_field :code %>
   </div>
   <div class="field">
-    <%= f.label :ttype %><br />
-    <%= f.text_field :ttype %>
+    <%= f.label :type %><br />
+    <%= f.text_field :type %>
   </div>
   <div class="field">
     <%= f.label :enDescription %><br />

@@ -7,7 +7,7 @@
 
 <p>
   <b>Type:</b>
-  <%= @category.ttype %>
+  <%= @category.type %>
 </p>
 
 <p>

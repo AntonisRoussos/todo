@@ -246,7 +246,7 @@ def get_mobile_updates(mobile_data, user_id)
   unless @expense_all.empty?
       response.push('expenses')
     @expense_all.each do |expense|
-   	response.push(expense.id, expense.amount, expense.dateoccured.to_formatted_s(:db).gsub!('-','/'), expense.category,  expense.subcategory, expense.ttype, expense.expmethod, expense.updated_at.to_formatted_s(:db))
+   	response.push(expense.id, expense.amount, expense.dateOccured.to_formatted_s(:db).gsub!('-','/'), expense.category,  expense.subcategory, expense.ttype, expense.method, expense.updated_at.to_formatted_s(:db))
     end
   end 
 
@@ -254,7 +254,7 @@ def get_mobile_updates(mobile_data, user_id)
   unless @category_all.empty? 
       response.push('categories')
     @category_all.each do |category|
-   	response.push(category.code, category.type, category.enDescription, category.elDescription)
+   	response.push(category.code, category.ttype, category.enDescription, category.elDescription)
     end
   end 
 
@@ -262,7 +262,7 @@ def get_mobile_updates(mobile_data, user_id)
   unless @subcategory_all.empty?
       response.push('subcategories')
     @subcategory_all.each do |subcategory|
-   	response.push(subcategory.Category_code, subcategory.Subcategory_code, subcategory.type, subcategory.enDescription, subcategory.elDescription)
+   	response.push(subcategory.Category_code, subcategory.Subcategory_code, subcategory.ttype, subcategory.enDescription, subcategory.elDescription)
     end
   end 
 

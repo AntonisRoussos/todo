@@ -16,7 +16,7 @@
   <tr>
     <td><%= subcategory.Category_code %></td>
     <td><%= subcategory.Subcategory_code %></td>
-    <td><%= subcategory.ttype %></td>
+    <td><%= subcategory.type %></td>
     <td><%= subcategory.enDescription %></td>
     <td><%= subcategory.elDescription %></td>
     <td><%= link_to 'Show', subcategory %></td>

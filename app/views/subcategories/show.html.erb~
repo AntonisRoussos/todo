@@ -12,7 +12,7 @@
 
 <p>
   <b>Type:</b>
-  <%= @subcategory.ttype %>
+  <%= @subcategory.type %>
 </p>
 
 <p>

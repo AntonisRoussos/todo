@@ -30,6 +30,7 @@ class CategoriesController < ApplicationController
   # GET /categories/new.xml
   def new
     @category = Category.new
+    @category.user_id = current_user.id
 		
     respond_to do |format|
       format.html # new.html.erb
@@ -46,7 +47,6 @@ class CategoriesController < ApplicationController
   # POST /categories.xml
   def create
     @category = Category.new(params[:category])
-    @category.user_id = current_user.id
 
     respond_to do |format|
       if @category.save

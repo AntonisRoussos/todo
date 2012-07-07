@@ -14,7 +14,7 @@
 <% @categories.each do |category| %>
   <tr>
     <td><%= category.code %></td>
-    <td><%= category.ttype %></td>
+    <td><%= category.type %></td>
     <td><%= category.enDescription %></td>
     <td><%= category.elDescription %></td>
     <td><%= link_to 'Show', category %></td>
