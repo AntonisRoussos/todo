@@ -270,4 +270,15 @@ def get_mobile_updates(mobile_data, user_id)
 
  end
 
+  def update_user_id(user_id)
+  logger.debug "#{@expense_all_nil_user}"
+  @expense_all_nil_user = Expense.where(:user_id => nil)
+  unless @expense_all_nil_user.empty?
+    @expense_all_nil_user.each do |expense|
+  logger.debug "---------------------------------------------#{expense}"
+   	expense.update_attributes(:user_id => user_id) 
+    end
+  end 
+ end
+
 end

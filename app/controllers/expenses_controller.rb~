@@ -185,12 +185,19 @@ class ExpensesController < ApplicationController
      
     logger.debug "#{responsecode}"
     	if responsecode == 0
- 		format.json  {render :json => get_full_updates(mobile_data,user.id).unshift(responsecode)}
+ 		format.json  {render :json => get_full_updates(user.id).unshift(responsecode)}
     	else
  		format.json  {render :json => responsecode}
     	end
     end
   
  end
+
+ def fix_user_id
+#    user_id = params[:user]
+    logger.debug "#{user.id}"
+    update_user_id(user.id)
+ end
+
 
 end
