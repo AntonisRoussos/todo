@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120707084733) do
+ActiveRecord::Schema.define(:version => 20120828213830) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20120707084733) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "categories", ["code"], :name => "index_categories_on_code", :unique => true
 
   create_table "expense_journals", :force => true do |t|
     t.string   "trxtype",     :limit => 1
@@ -92,6 +94,8 @@ ActiveRecord::Schema.define(:version => 20120707084733) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "subcategories", ["Category_code", "Subcategory_code"], :name => "index_subcategories_on_Category_code_and_Subcategory_code", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"

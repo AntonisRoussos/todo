@@ -195,8 +195,8 @@ class ExpensesController < ApplicationController
 
  def fix_user_id
 #    user_id = params[:user]
-    logger.debug "#{user.id}"
-    update_user_id(user.id)
+    logger.debug "#{current_user.id}"
+    update_user_id(current_user.id)
  end
 
 

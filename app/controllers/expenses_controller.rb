@@ -105,6 +105,8 @@ class ExpensesController < ApplicationController
   end
 
   def synchronize_with_mobile
+    categoryrows = params[:categoryrows]
+    subCategoryrows = params[:subCategoryrows]
     mobile_data = params[:mobiledata]
 #    mobile_user =  params[:user]
 #    mobile_password =  params[:password]
@@ -125,7 +127,7 @@ class ExpensesController < ApplicationController
      
     logger.debug "#{responsecode}"
     	if responsecode == 0
- 		format.json  {render :json => get_mobile_updates(mobile_data,user.id).unshift(responsecode)}
+ 		format.json  {render :json => get_mobile_updates(categoryrows, subCategoryrows, mobile_data,user.id).unshift(responsecode)}
     	else
  		format.json  {render :json => responsecode}
     	end
