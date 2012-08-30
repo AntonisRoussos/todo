@@ -13,7 +13,7 @@ gem "http_accept_language", :git => 'http://github.com/iain/http_accept_language
 #gem 'geokit-rails3', :git => 'http://git@github.com:dealtech/geokit-rails3.git'
 gem 'geokit-rails3'
 gem 'jquery-rails', '>= 1.0.12'
-gem 'hairtrigger'
+#gem 'hairtrigger'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
