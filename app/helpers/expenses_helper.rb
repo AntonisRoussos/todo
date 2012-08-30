@@ -7,84 +7,9 @@ def insert_to_expenses_journal(operation, expense)
 
 end
 
-def get_mobile_updates(categoryrows, subCategoryrows, mobile_data, user_id)
+def get_mobile_updates(mobile_data, user_id)
 	
   response = Array.new
-
-
-#update Categories
-
-    categorycode = ''
-    categorytype = ''
-    categoryenDescription = ''
-    categoryelDescription = ''
-
-  if !categoryrows.nil?
-   categoryrows.each_index{|i|
-
-    remainder = i % 4
-
-    if remainder == 0
-    	categorycode = categoryrows[i]
-    end
-    if remainder == 1
-	categorytype = categoryrows[i]
-    end
-    if remainder == 2
-	categoryenDescription = categoryrows[i]
-    end
-    if remainder == 3
-	 categoryelDescription = categoryrows[i]
-    	 @category = Category.find_by_code(categorycode)
-	 if @category
-		@category.update_attributes(:code =>categorycode, :ttype => categorytype, :enDescription => categoryenDescription, :elDescription => categoryelDescription, :updated_at => Time.zone.now, :user_id => user_id) 
-	 else
-		@category = Category.new(:code =>categorycode, :ttype => categorytype, :enDescription => categoryenDescription, :elDescription => categoryelDescription, :created_at => Time.zone.now, :updated_at => Time.zone.now, :user_id => user_id)
-      		@category.save
-	 end
-    end
-   }
-  end
-
-#update subCategories
-
-    subCategorycode = ''
-    subsubCategorycode = ''
-    subCategorytype = ''
-    subCategoryenDescription = ''
-    subCategoryelDescription = ''
-
-    if !subCategoryrows.nil?
-   subCategoryrows.each_index{|i|
-
-    remainder = i % 5
-
-    if remainder == 0
-    	subCategorycode = subCategoryrows[i]
-    end
-    if remainder == 1
-	subsubCategorycode = subCategoryrows[i]
-    end
-    if remainder == 2
-	subCategorytype = subCategoryrows[i]
-    end
-    if remainder == 3
-	subCategoryelDescription = subCategoryrows[i]
-    end
-    if remainder == 4
-	subCategoryelDescription = subCategoryrows[i]
-    	@subcategory = Subcategory.find_by_Category_code_and_Subcategory_code(subCategorycode, subsubCategorycode)
-	 if @subcategory
-		@subcategory.update_attributes(:Category_code =>subCategorycode, :Subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :updated_at => Time.zone.now, :user_id => user_id) 
-	 else
-		@subcategory = Subcategory.new(:Category_code =>subCategorycode, :Subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :created_at => Time.zone.now, :updated_at => Time.zone.now, :user_id => user_id) 
-      		@subcategory.save
-	 end
-    end
-   }
-  end
-
-
 
   trxtype = ''
   trxamount = 0
