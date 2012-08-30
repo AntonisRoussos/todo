@@ -56,7 +56,7 @@ def get_mobile_updates(mobile_data, user_id)
     end 
 
     if (remainder == 8 and trxtype == 'A')
-#    	@expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
+#    	 @expense = Expense.new(:amount => trxamount, :dateOccured => trxdateOccured, :category => trxcategory, :subcategory => trxsubcategory, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.parse(trxdatetime).getutc, :updated_at => Time.parse(trxdatetime).getutc, :sync => "S")
 #logger.debug "#{trxamount}"
 #	logger.debug "#{trxcategory}"
 #logger.debug "#{trxsubcategory}"

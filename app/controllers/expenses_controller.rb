@@ -106,7 +106,7 @@ class ExpensesController < ApplicationController
 
   def synchronize_with_mobile
     mobile_data = params[:mobiledata]
-#    mobile_user =  params[:user]
+#   mobile_user =  params[:user]
 #    mobile_password =  params[:password]
     user = User.authenticate(params[:user],
                             params[:password])

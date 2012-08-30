@@ -16,8 +16,8 @@ before_filter :export_i18n_messages
 
   private
   def export_i18n_messages
-#     SimplesIdeias::I18n.export! if Rails.env.development?
-     SimplesIdeias::I18n.export!
+     SimplesIdeias::I18n.export! if Rails.env.development?
+#     SimplesIdeias::I18n.export!
   end
 
 
