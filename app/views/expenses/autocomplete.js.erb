@@ -1,3 +1,8 @@
+$('#notasks').addClass('hidden');
+$('#paginate').hide();
+$('#paginateautocomplete').show();
+$('#tbl').empty().append("<%= escape_javascript(render(:partial => 'tasks/autocompletetasks')) %>");
+
 // <link rel="stylesheet" type="text/css" href="./stylesheets/blueprint/screen.css">
 $(function() {
             var tr = $('#tbl').find('tr');
@@ -40,7 +45,6 @@ $(function() {
 $(".edit a").bind('click', c=function(event) {
 //$(".edit a").click(c=function (event) {
 		event.preventDefault();
-//		alert('in');
 		var oldDesc;
 		var olddDue;
 		var oldPriority;
@@ -51,7 +55,7 @@ $(".edit a").bind('click', c=function(event) {
 		 $("#task_priority").attr('disabled', 'disabled');
 	//	 tr.removeClass('row-highlight');
 	//		 if bluerow == true {tr.addClass('gridtable');}	
-		 $(".edittask a").unbind('click');
+		 $(".edit a").unbind('click');
 	//	 $("a").click(function(){return false;})
 
 
@@ -121,4 +125,5 @@ $(".edit a").bind('click', c=function(event) {
 	//                 {$('#description').focus();});
 	//	 $('#task-details').empty().load(id);
 });
+
 

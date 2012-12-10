@@ -37,10 +37,9 @@ $(function() {
 });
 
 //$("#tbl").delegate('click', '.edit a', c=function(event){
-$(".edit a").bind('click', c=function(event) {
+$(".edittask a").bind('click', c=function(event) {
 //$(".edit a").click(c=function (event) {
 		event.preventDefault();
-//		alert('in');
 		var oldDesc;
 		var olddDue;
 		var oldPriority;

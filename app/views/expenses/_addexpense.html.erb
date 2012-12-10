@@ -1,0 +1,15 @@
+<tr CLASS="gridtable">
+      <td CLASS="id" style="display: none"><%= @expense.id %></td>
+      <td CLASS="expamount" id="expamount"><%= @expense.amount %></td>
+      <td CLASS="originaldateOccured" id="expdate"><%= @day[@expense.dateOccured.wday] + " " + @expense.dateOccured.strftime("%d") + "/" +@expense.dateOccured.strftime("%m")+ "/" +@expense.dateOccured.strftime("%y") %></td>
+      <td CLASS="expcategory" id="expcategory"><%= @expense.category.elDescription %></td>
+      <% if @expense.subcategory.nil? %>
+	  <td CLASS="expsubcategory" id="expsubcategory"><%= " " %></td>
+      <%else %>      
+          <td CLASS="expsubcategory" id="expsubcategory"><%= @expense.subcategory.elDescription %></td>
+      <% end %>
+      <td CLASS="expmethod" id="expmethod"><%= @expense.method %></td>
+      <td CLASS="prior editexpense"><%= link_to (image_tag 'ico_edit.png'), edit_expense_path(@expense), :remote => true %></td>
+      <td CLASS="prior destroyexpense"><%= link_to (image_tag 'ico_delete.png'), @expense, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
+</tr>
+

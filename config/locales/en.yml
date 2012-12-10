@@ -52,11 +52,16 @@ en:
   Show_map: "Show the map"
   No_tasks: "No tasks to display ...."
   List_of_tasks: "List of tasks"
+  List_of_expenses: "List of expenses"
   All: "All"
   Family: "Family"
   Personal: "Personal"
   Study: "Study"
   Work: "Work"
+  Expenses: "'Εξοδα"
+  Income: "Έσοδα"
+  Reccuring_Expenses: "Επαναλ.έξοδα"
+  Budget: "Προϋπολογισμός"
   Show: "Show"
   Edit: "Edit"
   Destroy: "Destroy"
@@ -70,6 +75,16 @@ en:
   description: "Description :"
   due: "Due on   :"
   priority: "Priority  :"
+  Enter_expense_amount: "Insert expense....."
+  Amount: "Amount"
+  Category_description: "Category"
+  Subcategory_description: "Subcategory"
+  Method: "Paid using:"
+  No_expenses: "No expenses...."
+  Cash: "Cash"
+  Card: "Card"
+
+
   will_paginate:
    previous: "< previous"
    next: "next >"
@@ -96,6 +111,7 @@ en:
      Please_give_task_date: "Please give task date" 
      Wrong_date_format: "Wrong date format"
      Please_give_task_priority: "Please give task priority"
+     Please_give_expense_amount: "Please give expense amount"
      Description: "Description :"
      Due: "Due on   :"
      Priority: "Priority   :"
@@ -104,6 +120,12 @@ en:
      status_date: "status Date     :"
      budget: "budget      :"
      long_description: "Comments:     "
+     Amount:                   "Amount.....:"
+     Date:                     "Date.......:"
+     Category_description:     "Category...:"
+     Subcategory_description: "Subcategory.:"
+     Method:                  "Paid using..:"
+
 
   date:
     formats:

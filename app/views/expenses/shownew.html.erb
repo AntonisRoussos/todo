@@ -1,0 +1,66 @@
+<script type="text/javascript">
+       
+ $(function() {
+	$('#search').autocomplete({
+            		minLength: 0,
+            		source: function (request, response) {
+                            $.ajax({
+                                url: "/expenses/shownew", type: "GET", dataType: "script",
+//                                url: "/tasks/show", type: "GET", dataType: "json",
+				data: { term: request.term },
+			    	async: true
+            		    })
+			},
+	    open: function(event, ui) {
+			  $(".ui-menu-item").hide();
+	    },
+	})
+ })
+
+    </script>
+
+<h1><%= t(:List_of_expenses) %></h1>
+
+<div id="tab-container">
+  <ul>
+	  <li ><%= link_to  t(:Expenses), {:controller => "expenses", :action => "shownew", :id => 'E', :page => params[:page], :format=>:js}, :remote=>true, :title => "expense information" %></li>
+	  <li ><%= link_to  t(:Income), {:controller => "expenses", :action => "shownew",  :id => 'I',:page => params[:page], :format=>:js} , :remote=>true, :title => "expense information" %></li>
+	  <li ><%= link_to  t(:Reccuring_Expenses), {:controller => "expenses", :action => "shownew", :id => 'R', :page => params[:page], :format=>:js} ,:remote=>true, :title => "expense information" %></li>
+	  <li ><%= link_to  t(:Budget), {:controller => "expenses", :action => "shownew",  :id => 'B', :page => params[:page], :format=>:js},:remote=>true,  :title => "expense information" %></li>
+  </ul>
+
+
+<input id="search" class="search"/>
+
+<!--  validations on public/javascripts/application.js -->
+
+<%= render 'addExpenseForm' %>
+
+<table>
+
+<thead>
+
+  <tr>
+      <th CLASS="expAmount"><%= t(:Amount) %></th>
+      <th CLASS="expdateOccured"><%= t(:Date) %></th>
+      <th CLASS="expCategory"><%= t(:Category_description) %></th>
+      <th CLASS="expSubcategory"><%= t(:Subcategory_description) %></th>
+      <th CLASS="expPaymentMethod"><%= t(:Method) %></th>
+      <th></th>
+      <th></th>
+      <th></th>
+ </tr>
+
+</thead>
+
+</table>
+
+<div id="expense_information">
+</div>
+
+</div>
+
+<div id="expense-details">
+</div>
+
+

@@ -1,0 +1,26 @@
+$('#expense-details').addClass('expense-info'); 
+$('#expense-details').html("<%= escape_javascript(render :partial => "updateExpenseForm") %>");
+$(".editexpense a").on('click', c=function(event) {
+		var oldexpamount;
+		var oldoriginaldateOccured;
+		var oldexpcategory;
+		var oldexpsubcategory;
+		var oldexpmethod;
+                 var tr = $('#tbl').find('tr');
+		 tr.unbind('mouseenter').unbind('mouseleave');
+		 $("#expense_amount").attr('disabled', 'disabled');
+		 $("#expense_dateOccured").attr('disabled', 'disabled');
+		 $("#expense_category_id").attr('disabled', 'disabled');
+		 $("#expense_subcategory_id").attr('disabled', 'disabled');
+		 $("#expense_method").attr('disabled', 'disabled');
+		 $(".editexpense a").off('click');
+                     var tds = $('tr.active-row').find(' td');
+                     $.each(tds, function(index, item) {
+	 			if (index==2) {oldexpamount = item.innerHTML;}
+  				if (index==12) {oldoriginaldateOccured = item.innerHTML;}
+  				if (index==4) {oldexpcategory = item.innerHTML;}
+  				if (index==7) {oldexpsubcategory = item.innerHTML;}
+  				if (index==8) {oldexpmethod = item.innerHTML;}
+                    });
+});
+

@@ -36,7 +36,7 @@ $(document).ready(function() {
       <td CLASS="due" id="due"><%= @day[task.due.wday] + " " + task.due.strftime("%d") + "/" + task.due.strftime("%m")+ "/" + task.due.strftime("%y") %></td>
       <td CLASS="prior" id="prior"><%= task.priority %></td>
       <td CLASS="prior edit"><%= link_to t(:Edit), edit_task_path(task) %></td>
-      <td CLASS="prior destroytask"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
+      <td CLASS="prior destroy"><%= link_to t(:Destroy), task, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
       <td CLASS="ttype" id="ttype" style="display: none"><%= task.ttype %></td>
       <td CLASS="status" id="status" style="display: none"><%= task.status %></td>
       <td CLASS="status_date" id="status_date" style="display: none"><%= task.status_date %></td>

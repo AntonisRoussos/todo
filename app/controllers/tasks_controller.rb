@@ -110,8 +110,27 @@ class TasksController < ApplicationController
 #    end
   end
 
-#  def show1
-#  end
+  def show1
+     
+     respond_to do |format|
+          format.html  
+          format.xml  { render :xml => @tasks }
+          format.js  {
+	     if params[:term]
+	     then 
+		render 'autocomplete'
+	     else
+		  if @tasks.count > 0 then render 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end
+	     end
+	  }
+          format.json  { render :json => @tasks }
+#          format.json  { render :json => @tasks }
+#          format.js  {if @tasks.count > 0 then render :partial => 'show', :content_type => 'text/html' else render 'notasks', :content_type => 'text/html'  end}
+
+#          format.js  {render(:update) {|page| page.replace_html 'show', :partial => 'show'} }
+     end
+
+  end
 
   def show
 #     logger.debug "----------------------------------------------"

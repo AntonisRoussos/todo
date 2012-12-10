@@ -1,13 +1,13 @@
-class AddUserToExpenseJournals < ActiveRecord::Migration
+class AddCategoryIdToExpenses < ActiveRecord::Migration
   def self.up
   	change_table :expenses do |t|
-    		t.references :user
+    		t.references :category
 	end
   end
 
   def self.down
     	change_table :expenses do |t|
-      		t.remove :user_id
+      		t.remove :category_id
 	end
   end
 end

@@ -7,7 +7,7 @@ Todo::Application.routes.draw do
 
   resources :expense_journals
 
-  resources :expenses
+#  resources :expenses
 
   root :to => "home#index"
   match 'users/activateuser/:id', :to => 'users#activateuser'
@@ -30,7 +30,7 @@ Todo::Application.routes.draw do
   match '/MapRequest',  :to => 'places#MapRequest'
   match '/MapOfPlace',  :to => 'places#MapOfPlace'
   match 'tasks/show',  :to => 'tasks#show'
- # match 'tasks/show1',  :to => 'tasks#show1'
+  match 'tasks/show1',  :to => 'tasks#show1'
   match 'tasks/destroy',  :to => 'tasks#destroy'
   match '/signup/users/check_name', :to => 'users#check_name'
   match 'tasks/check_date_due', :to => 'tasks#check_date_due'
@@ -42,7 +42,11 @@ Todo::Application.routes.draw do
   match '/expenses/authenticate_mobile_user',  :to => 'expenses#authenticate_mobile_user'
   match '/expenses/copy_to_mobile',  :to => 'expenses#copy_to_mobile'
   match '/fix_user_id',  :to => 'expenses#fix_user_id'
-#  resources :expenses 
+  match '/expenses/shownew',  :to => 'expenses#shownew'
+  match '/expenses/show1',  :to => 'expenses#show1'
+  match '/expenses/getSubcategories',  :to => 'expenses#getSubcategories'
+  match 'expenses/check_date_due', :to => 'expenses#check_date_due'
+  resources :expenses 
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

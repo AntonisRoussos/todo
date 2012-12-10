@@ -1,0 +1,53 @@
+<%= stylesheet_link_tag 'blueprint/screen', :media => 'screen' %>
+
+<%= javascript_include_tag 'expenselistview' %>  
+
+<script type="text/javascript">
+
+
+$(".pagination a").click(function (event) {
+    		 event.preventDefault();
+		 var id = $(this).attr('href');
+		 $('#expense_information').empty().load(id);
+       		 $('#expense-details').empty();
+});
+
+
+
+$(document).ready(function() {
+	//		$( "#tab-container" ).bind( "tabsselect", function() {
+			$('#expense-details').removeClass('expense-info'); 
+			$('#expense-details').empty();
+			$('#paginate').show();
+			$('#paginateautocomplete').hide();
+
+});
+
+
+</script>
+
+<table id="tbl">
+<!-- col style="{visibility: collapse;}" / -->
+
+<% @expenses.each do |expense| %>
+    <tr CLASS="gridtable">
+      <td CLASS="id" style="display: none"><%= expense.id %></td>
+      <td CLASS="expamount" id="expamount"><%= expense.amount %></td>
+      <td CLASS="originaldateOccured" id="expdate"><%= @day[expense.dateOccured.wday] + " " + expense.dateOccured.strftime("%d") + "/" +expense.dateOccured.strftime("%m")+ "/" +expense.dateOccured.strftime("%y") %></td>
+      <td CLASS="expcategory" id="expcategory"><%= expense.category.elDescription %></td>
+      <% if expense.subcategory.nil? %>
+	  <td CLASS="expsubcategory" id="expsubcategory"><%= " " %></td>
+      <%else %>      
+          <td CLASS="expsubcategory" id="expsubcategory"><%= expense.subcategory.elDescription %></td>
+      <% end %>
+      <td CLASS="expmethod" id="expmethod"><%= expense.method %></td>
+      <td CLASS="prior editexpense"><%= link_to (image_tag 'ico_edit.png'), edit_expense_path(expense), :remote => true %></td>
+      <td CLASS="prior destroyexpense"><%= link_to (image_tag 'ico_delete.png'), expense, :confirm => t(:Are_you_sure?), :method => :delete, :remote => true %></td>
+  </tr>
+  <% end %>
+</table>
+
+<div id="paginate">
+<%= will_paginate @expenses %>
+</div>
+ <!-- %= will_paginate @expenses, :renderer => RemoteLinkRenderer % -->

@@ -21,6 +21,8 @@ class User < ActiveRecord::Base
   has_many  :notifications, :foreign_key => 'assigner', :dependent => :destroy
   has_many  :places, :foreign_key => 'user', :dependent => :destroy
   has_many  :expenses, :dependent => :destroy
+  has_many  :categories, :dependent => :destroy
+  has_many  :subcategories, :dependent => :destroy
 
 #  before_create :encrypt_password
   before_save :encrypt_password, :unless => Proc.new { |a| a.password.blank? }

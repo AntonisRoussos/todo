@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120828213830) do
+ActiveRecord::Schema.define(:version => 20121027154301) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
@@ -21,8 +21,6 @@ ActiveRecord::Schema.define(:version => 20120828213830) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
-
-  add_index "categories", ["code"], :name => "index_categories_on_code", :unique => true
 
   create_table "expense_journals", :force => true do |t|
     t.string   "trxtype",     :limit => 1
@@ -40,17 +38,17 @@ ActiveRecord::Schema.define(:version => 20120828213830) do
   end
 
   create_table "expenses", :force => true do |t|
-    t.decimal  "amount",                   :precision => 9, :scale => 2, :default => 0.0
+    t.decimal  "amount",                      :precision => 9, :scale => 2, :default => 0.0
     t.date     "dateOccured"
-    t.string   "category",    :limit => 2,                               :default => "01"
-    t.string   "subcategory", :limit => 2,                               :default => "01"
-    t.string   "ttype",       :limit => 1,                               :default => "E"
-    t.string   "method",      :limit => 1,                               :default => "M"
+    t.string   "method",         :limit => 1,                               :default => "M"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "mobileid"
-    t.string   "sync",        :limit => 1
+    t.string   "sync",           :limit => 1
     t.integer  "user_id"
+    t.integer  "category_id"
+    t.string   "ttype",          :limit => 1
+    t.integer  "subcategory_id"
   end
 
   add_index "expenses", ["mobileid"], :name => "index_expenses_on_webid", :unique => true
@@ -93,9 +91,8 @@ ActiveRecord::Schema.define(:version => 20120828213830) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
+    t.integer  "category_id"
   end
-
-  add_index "subcategories", ["Category_code", "Subcategory_code"], :name => "index_subcategories_on_Category_code_and_Subcategory_code", :unique => true
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"

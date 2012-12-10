@@ -48,6 +48,41 @@ $.ajax({
 		 $("#task_priority").removeAttr('disabled');
 });
 
+$("#expense-details").submit({
+			  	amount: '#edit_expense #expense_amount', dateoccured: '#update-expense-date', categoryid: '#edit_expense #expense_id',
+			  	subcategoryid: '#edit_expense #expense_subcategory_id', method: '#edit_expense #expense_method'
+			  },
+function(event) {
+                 var tr = $('#tbl').find('tr');
+$.ajax({
+  	url: "/tasks/retrieve_day",
+  	type: "GET",
+  	data: {date : $(event.data.dateoccured).attr('value')},
+  	dataType: "xml",
+    	async: false,
+	success:function(rdata) {
+				$(rdata).find("Response").each(function()
+					{$('tr.active-row td').filter('#expdate').replaceWith('<td CLASS="originaldateOccured" id="expdate">'+$(this).find("Date").text()+'</td>');});
+				}
+});
+		 $('tr.active-row td').filter('#expamount').replaceWith('<td CLASS="expamount" id="expamount">'+$(event.data.amount).attr('value')+'</td>');
+                 $('tr.active-row td').filter('#originaldateOccured').replaceWith('<td CLASS="originaldateOccured" id="originaldateOccured" style="display: none">'+$(event.data.dateoccured).attr('value')+'</td>');
+		 $('tr.active-row td').filter('#expcategory').replaceWith('<td CLASS="expcategory" id="expcategory">'+$("select[id='update-expense-category'] option:selected").html()+'</td>');
+		 $('tr.active-row td').filter('#expsubcategory').replaceWith('<td CLASS="expsubcategory" id="expsubcategory">'+$("select[id='update-expense-subcategory'] option:selected").html()+'</td>');
+		 $('tr.active-row td').filter('#expmethod').replaceWith('<td CLASS="expmethod" id="expmethod">'+$(event.data.method).attr('value')+'</td>');
+		 tr.bind('mouseenter', a).bind('mouseleave', b);
+		 $(".edit a").bind('click', c);
+		 tr.removeClass('row-highlight');
+		 tr.removeClass('active-row');
+   		 tr.addClass('gridtable');
+                 $('#expense-details').removeClass('expense-info'); 
+		 $('#expense-details').empty();
+		 $("#expense_amount").removeAttr('disabled');
+		 $("#expense_dateOccured").removeAttr('disabled');
+		 $("#expense_category_id").removeAttr('disabled');
+		 $("#expense_subcategory_id").removeAttr('disabled');
+		 $("#expense_method").removeAttr('disabled');
+});
 
 $("#task_due1").live("click",function(){
      
@@ -58,8 +93,17 @@ $("#task_due1").live("click",function(){
 
 });
 
+$("#update-expense-date").live("click",function(){
+    //$(this).datepicker({ dateFormat: 'yy-mm-dd' }).focus();
+       $(this).datepicker().focus();
+//       return(false);
+
+
+});
+
 
 $("#task_due:not(.datepicker)").datepicker();
+$("#expense_dateoccured:not(.datepicker)").datepicker();
 
 $("#new_user").validate({
 rules: {
@@ -144,6 +188,23 @@ messages: {
 }
 }
 });
+$("#newexpense").validate({
+rules: {
+"expense[amount]": {required: true, maxlength: 10},
+"expense[dateOccured]": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#expense_dateOccured").val()}}}
+},
+messages: {
+    "expense[amount]": {
+    required:  I18n.t("javascripts.Please_give_expense_amount")
+},
+    "expense[dateOccured]": {
+    required:  I18n.t("javascripts.Please_give_expense_amount"),
+    date:  I18n.t("javascripts.Wrong_date_format"),
+    remote: I18n.t("javascripts.Wrong_date_format")
+}
+}
+});
+
 $("#newtask").validate({
 rules: {
 "task[description]": {required: true, maxlength: 30},
@@ -166,6 +227,59 @@ messages: {
 }
 });
 
+
+    $("#add-expense-category").live("change", function (){
+          var str = "";
+          $("select[id='add-expense-category'] option:selected").each(function () {
+                str += $(this).val() + " ";
+              });
+
+        $.ajax({
+            url: "/expenses/getSubcategories", type: "GET", dataType: "script",
+            data: { category: str },
+            async: true,
+            success: function(msg) {
+                $("#add-expense-subcategory").get(0).options.length = 0;
+//                $("#add-expense-subcategory").get(0).options[0] = new Option("Subcategory", "-1"); 
+			var msg1 = jQuery.parseJSON(msg); 
+ 		
+			$.each(msg1, function(index, item) {
+                   	$("#add-expense-subcategory").get(0).options[$("#add-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+			});
+            },
+            error: function() {
+                $("#add-expense-subcategory").get(0).options.length = 0;
+            }
+        });
+ 
+    })
+        .change();
+$("#update-expense-category").live("change", function (){
+          var str = "";
+          $("select[id='update-expense-category'] option:selected").each(function () {
+                str += $(this).val() + " ";
+              });
+
+        $.ajax({
+            url: "/expenses/getSubcategories", type: "GET", dataType: "script",
+            data: { category: str },
+            async: true,
+            success: function(msg) {
+                $("#update-expense-subcategory").get(0).options.length = 0;
+//                $("#update-expense-subcategory").get(0).options[0] = new Option("Subcategory", "-1"); 
+			var msg1 = jQuery.parseJSON(msg); 
+ 		
+			$.each(msg1, function(index, item) {
+                   	$("#update-expense-subcategory").get(0).options[$("#update-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+			});
+            },
+            error: function() {
+                $("#update-expense-subcategory").get(0).options.length = 0;
+            }
+        });
+ 
+    })
+        .change();
 
 });
 
