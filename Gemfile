@@ -1,9 +1,11 @@
 source 'http://rubygems.org'
 
 #gem "rake", "0.8.7"
+gem "rake", "10.0.0"
 #gem 'json'
 gem 'json', '>= 1.4.6', :platforms => :ruby_19
 gem 'rails', '3.0.3'
+#gem 'rails', '3.1.0'
 gem 'gravatar_image_tag', '1.0.0.pre2'
 gem 'will_paginate', '3.0.pre2'
 #gem 'will_paginate', '~> 3.0.0'
@@ -11,9 +13,11 @@ gem "http_accept_language", "~> 1.0.2"
 gem  "i18n-js"
 #gem "http_accept_language", :git => 'http://github.com/iain/http_accept_language.git'
 #gem "http_accept_language"
-#gem 'geokit-rails3', :git => 'http://git@github.com:dealtech/geokit-rails3.git'
-gem 'geokit-rails3'
+gem 'geokit-rails3', :git => 'http://git@github.com:dealtech/geokit-rails3.git'
+#gem 'geokit-rails3'
 gem 'jquery-rails', '>= 1.0.12'
+gem "heroku-rake", "~> 0.0.2"
+gem "rdoc", "~> 3.12"
 #gem 'hairtrigger'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
