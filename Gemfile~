@@ -1,10 +1,6 @@
 source 'http://rubygems.org'
 
-#gem "rake", "0.8.7"
 gem "rake", "10.0.0"
-#gem 'json'
-#gem 'json', '>= 1.4.6', :platforms => :ruby_19
-#gem 'json', '1.5.1'
 gem 'rails', '3.0.3'
 #gem 'rails', '3.1.0'
 gem 'gravatar_image_tag', '1.0.0.pre2'
