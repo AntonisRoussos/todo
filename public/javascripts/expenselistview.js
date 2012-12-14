@@ -34,7 +34,6 @@ $(function() {
 });
 
 $(".editexpense a").on('click', c=function(event) {
-	alert('innn');
 		var oldexpamount;
 		var oldoriginaldateOccured;
 		var oldexpcategory;

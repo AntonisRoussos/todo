@@ -269,7 +269,7 @@ class ExpensesController < ApplicationController
      if params[:id] == 'I' then expensetype = 'I' end
      if params[:id] == 'R' then expensetype = 'R' end
      if params[:id] == 'B' then expensetype = 'B' end
-     @expenses = Expense.where(:user_id => current_user).paginate(:include => [:category, :subcategory], :page => params[:page], :per_page => 10, :order =>'dateOccured DESC')
+     @expenses = Expense.where(:user_id => current_user).paginate(:include => [:category, :subcategory], :page => params[:page], :per_page => 10, :order =>'"dateOccured" DESC')
 #     @categories = Category.where(:user_id => current_user)
      $subcategories = Array.new()
 =begin
