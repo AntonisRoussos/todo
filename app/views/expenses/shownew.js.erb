@@ -33,7 +33,7 @@ $(document).ready(function() {
     <tr CLASS="gridtable">
       <td CLASS="id" style="display: none"><%= expense.id %></td>
       <td CLASS="expamount" id="expamount"><%= expense.amount %></td>
-      <td CLASS="originaldateOccured" id="expdate"><%= @day[expense.dateOccured.wday] + " " + expense.dateOccured.strftime("%d") + "/" +expense.dateOccured.strftime("%m")+ "/" +expense.dateOccured.strftime("%y") %></td>
+      <td CLASS="originaldateoccured" id="expdate"><%= @day[expense.dateoccured.wday] + " " + expense.dateoccured.strftime("%d") + "/" +expense.dateoccured.strftime("%m")+ "/" +expense.dateoccured.strftime("%y") %></td>
       <td CLASS="expcategory" id="expcategory"><%= expense.category.elDescription %></td>
       <% if expense.subcategory.nil? %>
 	  <td CLASS="expsubcategory" id="expsubcategory"><%= " " %></td>

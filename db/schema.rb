@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121027154301) do
+ActiveRecord::Schema.define(:version => 20121214095030) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
@@ -39,7 +39,7 @@ ActiveRecord::Schema.define(:version => 20121027154301) do
 
   create_table "expenses", :force => true do |t|
     t.decimal  "amount",                      :precision => 9, :scale => 2, :default => 0.0
-    t.date     "dateOccured"
+    t.date     "dateoccured"
     t.string   "method",         :limit => 1,                               :default => "M"
     t.datetime "created_at"
     t.datetime "updated_at"
