@@ -1,8 +1,16 @@
 module ExpensesHelper
 
 def insert_to_expenses_journal(operation, expense)
+       	category_code = ''
+	subcategory_code = ''
+	category_code = Category.where(:id => expense.category).first.code
+	if !expense.subcategory.nil? 
+		subcategory_code = Subcategory.where(:id => expense.subcategory).first.Subcategory_code
+	else
+	     	subcategory_code = ''
+       	end
 
-	@expense_journal = ExpenseJournal.new({:trxtype => operation, :trxdatetime => Time.now, :sn => expense.id, :amount => expense.amount, :dateoccured => expense.dateoccured, :category => expense.category, :subcategory => expense.subcategory, :exptype => expense.ttype, :expmethod =>expense.method, :user_id =>expense.user_id})
+	@expense_journal = ExpenseJournal.new({:trxtype => operation, :trxdatetime => Time.now, :sn => expense.id, :amount => expense.amount, :dateoccured => expense.dateoccured, :category => category_code, :subcategory => subcategory_code, :exptype => expense.ttype, :expmethod =>expense.method, :user_id =>expense.user_id})
 		@expense_journal.save
 
 end
