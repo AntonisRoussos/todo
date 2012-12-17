@@ -78,7 +78,7 @@ $.ajax({
                  $('#expense-details').removeClass('expense-info'); 
 		 $('#expense-details').empty();
 		 $("#expense_amount").removeAttr('disabled');
-		 $("#expense_dateOccured").removeAttr('disabled');
+		 $("#expense_dateoccured").removeAttr('disabled');
 		 $("#expense_category_id").removeAttr('disabled');
 		 $("#expense_subcategory_id").removeAttr('disabled');
 		 $("#expense_method").removeAttr('disabled');
@@ -191,13 +191,13 @@ messages: {
 $("#newexpense").validate({
 rules: {
 "expense[amount]": {required: true, maxlength: 10},
-"expense[dateOccured]": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#expense_dateOccured").val()}}}
+"expense[dateoccured]": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#expense_dateoccured").val()}}}
 },
 messages: {
     "expense[amount]": {
     required:  I18n.t("javascripts.Please_give_expense_amount")
 },
-    "expense[dateOccured]": {
+    "expense[dateoccured]": {
     required:  I18n.t("javascripts.Please_give_expense_amount"),
     date:  I18n.t("javascripts.Wrong_date_format"),
     remote: I18n.t("javascripts.Wrong_date_format")

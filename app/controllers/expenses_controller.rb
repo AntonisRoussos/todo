@@ -10,7 +10,7 @@ class ExpensesController < ApplicationController
   def check_date_due
     fmt=I18n.t('date.formats.default')
     respond_to do |format|
-          if date_is_valid?(fmt, params[:expense][:dateOccured]) 
+          if date_is_valid?(fmt, params[:expense][:dateoccured]) 
      		a = format.json { render :json => true }
           else
      		a = format.json { render :json => false }
@@ -97,8 +97,8 @@ class ExpensesController < ApplicationController
     @expense.ttype = "E"
     @day = get_day_name
     fmt=I18n.t('date.formats.default')
-    tdate = DateTime.strptime(str=params[:expense][:dateOccured],fmt)
-    @expense.dateOccured = tdate
+    tdate = DateTime.strptime(str=params[:expense][:dateoccured],fmt)
+    @expense.dateoccured = tdate
     operation = "A"
     respond_to do |format|
       if success = @expense.save
@@ -139,7 +139,8 @@ class ExpensesController < ApplicationController
     insert_to_expenses_journal(operation, expense)   
 
     respond_to do |format|
-      format.html { redirect_to(expenses_url) }
+#      format.html { redirect_to(expenses_url) }
+      format.html {redirect_to :back} 
       format.xml  { head :ok }
     end
   end

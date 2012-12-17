@@ -1,6 +1,7 @@
 require 'rake'
 require 'rake/testtask'
 require 'rake/rdoctask'
+#require 'rdoc/task'
 
 desc 'Default: run unit tests.'
 task :default => :test
@@ -13,7 +14,7 @@ Rake::TestTask.new(:test) do |t|
 end
 
 desc 'Generate documentation for the gm plugin.'
-Rake::RDocTask.new(:rdoc) do |rdoc|
+Rake::RdocTask.new(:rdoc) do |rdoc|
   rdoc.rdoc_dir = 'ym4r_gm-doc'
   rdoc.title    = 'GM'
   rdoc.options << '--line-numbers' << '--inline-source'

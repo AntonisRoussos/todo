@@ -7,9 +7,9 @@ class RemoveCategoryToExpenses < ActiveRecord::Migration
   end
 
   def self.down
-	add_index :categories, :code, :unique => true
-	add_index :subcategories, [:Category_code, :Subcategory_code], :unique => true
 	add_column :expenses, :category, :string, :limit => 2
 	add_column :expenses, :subcategory, :string, :limit => 2
+	add_index :categories, :code, :unique => true
+	add_index :subcategories, [:Category_code, :Subcategory_code], :unique => true
   end
 end

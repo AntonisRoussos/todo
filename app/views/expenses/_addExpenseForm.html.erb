@@ -1,6 +1,6 @@
 <%=  form_for @expense, :as => :expense, :url => { :action => "create" }, :html => { :id => "newexpense" }, :remote => true do |f| %> 
    <%= f.text_field :amount, :size => 8, :placeholder => t(:Enter_expense_amount),  :maxlength => 10 %>
-   <%= f.text_field :dateOccured, :size => 10, :value => l(Date.current, :format => :default), :maxlength => 10 %>
+   <%= f.text_field :dateoccured, :size => 10, :value => l(Date.current, :format => :default), :maxlength => 10 %>
    <%= f.collection_select :category_id, Category.where(:user_id => current_user), :id, :elDescription, {}, {:id=>'add-expense-category'}%>
    <!-- %= f.collection_select :category_id, Category.all, :id, :elDescription% -->
    <!--%= f.collection_select :category_id, Category.all, :id, :elDescription, :prompt => "Category" % -->

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121214095030) do
+ActiveRecord::Schema.define(:version => 20121215082548) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
@@ -21,6 +21,8 @@ ActiveRecord::Schema.define(:version => 20121214095030) do
     t.datetime "updated_at"
     t.integer  "user_id"
   end
+
+  add_index "categories", ["user_id"], :name => "index_categories_on_user_id"
 
   create_table "expense_journals", :force => true do |t|
     t.string   "trxtype",     :limit => 1
@@ -52,6 +54,7 @@ ActiveRecord::Schema.define(:version => 20121214095030) do
   end
 
   add_index "expenses", ["mobileid"], :name => "index_expenses_on_webid", :unique => true
+  add_index "expenses", ["user_id"], :name => "index_expenses_on_user_id"
 
   create_table "notifications", :force => true do |t|
     t.integer  "user_id"
@@ -83,7 +86,6 @@ ActiveRecord::Schema.define(:version => 20121214095030) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subcategories", :force => true do |t|
-    t.string   "Category_code",    :limit => 2
     t.string   "Subcategory_code", :limit => 2
     t.string   "ttype",            :limit => 1
     t.string   "enDescription",    :limit => 30
@@ -93,6 +95,8 @@ ActiveRecord::Schema.define(:version => 20121214095030) do
     t.integer  "user_id"
     t.integer  "category_id"
   end
+
+  add_index "subcategories", ["category_id"], :name => "index_subcategories_on_category_id"
 
   create_table "tasks", :force => true do |t|
     t.integer  "user_id"

@@ -14,8 +14,8 @@ ActionView::Base.send :include, WillPaginate::I18nViewHelpers
 
 def date_is_valid?(format, date)
 #  begin
-#logger.debug ("===========================#{format}")
-#logger.debug ("===========================#{date}")
+logger.debug ("===========================#{format}")
+logger.debug ("===========================#{date}")
   	if format == "%d/%m/%Y"  
 		then
 		begin

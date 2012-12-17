@@ -46,6 +46,7 @@ Todo::Application.routes.draw do
   match '/expenses/show1',  :to => 'expenses#show1'
   match '/expenses/getSubcategories',  :to => 'expenses#getSubcategories'
   match 'expenses/check_date_due', :to => 'expenses#check_date_due'
+  # match '/expenses', :to => 'expenses#shownew'
   resources :expenses 
 
   # The priority is based upon order of creation:
