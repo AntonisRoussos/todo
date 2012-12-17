@@ -83,8 +83,9 @@ def get_mobile_updates(categoryrows, subCategoryrows, mobile_data, user_id)
 	subCategoryelDescription = subCategoryrows[i]
 	category_id = Category.where('user_id = ? AND code = ?', user_id, subCategorycode).first.id
 logger.debug "-----------------------------------------------#{category_id}"
-    	@subcategory = Subcategory.where('user_id = ? AND category_id = ? AND subcategory_code = ?', user_id, category_id, subsubCategorycode).first.id
-	 if @subcategory
+#    	@subcategory = Subcategory.where('user_id = ? AND category_id = ? AND subcategory_code = ?', user_id, category_id, subsubCategorycode).first.id
+	@subcategory = Subcategory.find_by_user_id_and_category_id_and_subcategory_code( user_id, category_id, subsubCategorycode)
+	if @subcategory
 		@subcategory.update_attributes(:category_id => category_id, :subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :updated_at => Time.zone.now, :user_id => user_id) 
 	 else
 		@subcategory = Subcategory.new(:category_id =>category_id, :subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :created_at => Time.zone.now, :updated_at => Time.zone.now, :user_id => user_id) 
