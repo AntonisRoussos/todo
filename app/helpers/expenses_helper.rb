@@ -5,7 +5,7 @@ def insert_to_expenses_journal(operation, expense)
 	subcategory_code = ''
 	category_code = Category.where(:id => expense.category).first.code
 	if !expense.subcategory.nil? 
-		subcategory_code = Subcategory.where(:id => expense.subcategory).first.Subcategory_code
+		subcategory_code = Subcategory.where(:id => expense.subcategory).first.subcategory_code
 	else
 	     	subcategory_code = ''
        	end
@@ -83,11 +83,11 @@ def get_mobile_updates(categoryrows, subCategoryrows, mobile_data, user_id)
 	subCategoryelDescription = subCategoryrows[i]
 	category_id = Category.where('user_id = ? AND code = ?', user_id, subCategorycode).first.id
 logger.debug "-----------------------------------------------#{category_id}"
-    	@subcategory = Subcategory.find_by_user_id_and_category_id_and_Subcategory_code( user_id, category_id, subsubCategorycode)
+    	@subcategory = Subcategory.find_by_user_id_and_category_id_and_subcategory_code( user_id, category_id, subsubCategorycode)
 	 if @subcategory
-		@subcategory.update_attributes(:category_id => category_id, :Subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :updated_at => Time.zone.now, :user_id => user_id) 
+		@subcategory.update_attributes(:category_id => category_id, :subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :updated_at => Time.zone.now, :user_id => user_id) 
 	 else
-		@subcategory = Subcategory.new(:category_id =>category_id, :Subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :created_at => Time.zone.now, :updated_at => Time.zone.now, :user_id => user_id) 
+		@subcategory = Subcategory.new(:category_id =>category_id, :subcategory_code =>subsubCategorycode, :ttype => subCategorytype, :enDescription => subCategoryenDescription, :elDescription => subCategoryelDescription, :created_at => Time.zone.now, :updated_at => Time.zone.now, :user_id => user_id) 
       		@subcategory.save
 	 end 
     end
@@ -151,7 +151,7 @@ logger.debug "-----------------------------------------------#{category_id}"
 #logger.debug "#{trxmethod}"
 #logger.debug "#{trxmobileid}"
 	category_id =  Category.where('user_id = ? AND code = ?', user_id, trxcategory).first.id
-	subcategory_id = Subcategory.where('user_id = ? AND category_id = ? AND Subcategory_code = ?', user_id, category_id, trxsubcategory).first.id
+	subcategory_id = Subcategory.where('user_id = ? AND category_id = ? AND subcategory_code = ?', user_id, category_id, trxsubcategory).first.id
 	logger.debug "----------------------#{category_id}"
 	logger.debug "----------------------#{subcategory_id}"
 	@expense = Expense.new(:amount => trxamount, :dateoccured => trxdateOccured, :category_id => category_id, :subcategory_id => subcategory_id, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :created_at => Time.zone.parse(trxdatetime), :updated_at => Time.zone.parse(trxdatetime), :sync => "S", :user_id => user_id)
@@ -266,7 +266,7 @@ logger.debug "#{@expense.amount}"
      logger.debug "#{Time.zone.parse(trxdatetime)}"
 	   if @expense.updated_at < Time.zone.parse(trxdatetime)
 #	   if @expense.updated_at < Time.parse(trxdatetime).getutc
-		if @expense.update_attributes(:amount => trxamount, :dateoccured => trxdateOccured, :category_id => Category.where('user_id = ? AND code = ?', user_id, trxcategory).first.id, :subcategory_id => Subcategory.where('user_id = ? AND Category_code = ? AND Subcategory_code = ?', user_id, trxcategory, trxsubcategory).first.id, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
+		if @expense.update_attributes(:amount => trxamount, :dateoccured => trxdateOccured, :category_id => Category.where('user_id = ? AND code = ?', user_id, trxcategory).first.id, :subcategory_id => Subcategory.where('user_id = ? AND Category_code = ? AND subcategory_code = ?', user_id, trxcategory, trxsubcategory).first.id, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
 #   		      response.push(@expense.mobileid, @expense.id)
       		else
 #         	      response.push(@expense.mobileid, 0)
@@ -337,7 +337,7 @@ logger.debug "#{@expense.amount}"
       response.push('expenses')
     @expense_all.each do |expense|
 	if !expense.subcategory_id.nil? 
-		subcategory_code = Subcategory.where(:id => expense.subcategory_id).first.Subcategory_code
+		subcategory_code = Subcategory.where(:id => expense.subcategory_id).first.subcategory_code
 	else
 	     	subcategory_code = ''
        	end
@@ -357,7 +357,7 @@ logger.debug "#{@expense.amount}"
   unless @subcategory_all.empty?
       response.push('subcategories')
     @subcategory_all.each do |subcategory|
-   	response.push(Category.where(:id => subcategory.category_id).first.code, subcategory.Subcategory_code, subcategory.ttype, subcategory.enDescription, subcategory.elDescription)
+   	response.push(Category.where(:id => subcategory.category_id).first.code, subcategory.subcategory_code, subcategory.ttype, subcategory.enDescription, subcategory.elDescription)
     end
   end 
 

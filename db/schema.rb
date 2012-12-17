@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121215082548) do
+ActiveRecord::Schema.define(:version => 20121217180959) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
@@ -86,7 +86,7 @@ ActiveRecord::Schema.define(:version => 20121215082548) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "subcategories", :force => true do |t|
-    t.string   "Subcategory_code", :limit => 2
+    t.string   "subcategory_code", :limit => 2
     t.string   "ttype",            :limit => 1
     t.string   "enDescription",    :limit => 30
     t.string   "elDescription",    :limit => 30
