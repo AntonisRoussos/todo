@@ -121,13 +121,12 @@ class ExpensesController < ApplicationController
     @expense = Expense.find(params[:id])
 
     respond_to do |format|
+    fmt=I18n.t('date.formats.default')
+    tdate = DateTime.strptime(str=params[:expense][:dateoccured],fmt)
+    @expense.dateoccured = tdate
+    params[:expense][:dateoccured] = tdate
       if @expense.update_attributes(params[:expense])
 	operation = "U"
-	@expense.ttype = "E"
-#    	@day = get_day_name
-    	fmt=I18n.t('date.formats.default')
-    	tdate = DateTime.strptime(str=params[:expense][:dateoccured],fmt)
-    	@expense.dateoccured = tdate
         expense=@expense
 	insert_to_expenses_journal(operation, expense)   
 	format.html { redirect_to(@expense, :notice => 'Expense was successfully updated.') }
