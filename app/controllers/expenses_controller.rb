@@ -75,6 +75,11 @@ class ExpensesController < ApplicationController
   def create1
     @expense = Expense.new(params[:expense])
     @expense.user_id = current_user.id
+    @expense.ttype = "E"
+    @day = get_day_name
+    fmt=I18n.t('date.formats.default')
+    tdate = DateTime.strptime(str=params[:expense][:dateoccured],fmt)
+    @expense.dateoccured = tdate
     operation = "A"
     if success = @expense.save
 	expense=@expense
@@ -118,6 +123,11 @@ class ExpensesController < ApplicationController
     respond_to do |format|
       if @expense.update_attributes(params[:expense])
 	operation = "U"
+	@expense.ttype = "E"
+#    	@day = get_day_name
+    	fmt=I18n.t('date.formats.default')
+    	tdate = DateTime.strptime(str=params[:expense][:dateoccured],fmt)
+    	@expense.dateoccured = tdate
         expense=@expense
 	insert_to_expenses_journal(operation, expense)   
 	format.html { redirect_to(@expense, :notice => 'Expense was successfully updated.') }
