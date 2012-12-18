@@ -266,8 +266,10 @@ logger.debug "#{@expense.amount}"
     logger.debug "#{@expense.updated_at}"
      logger.debug "#{Time.zone.parse(trxdatetime)}"
 	   if @expense.updated_at < Time.zone.parse(trxdatetime)
-#	   if @expense.updated_at < Time.parse(trxdatetime).getutc
-		if @expense.update_attributes(:amount => trxamount, :dateoccured => trxdateOccured, :category_id => Category.where('user_id = ? AND code = ?', user_id, trxcategory).first.id, :subcategory_id => Subcategory.where('user_id = ? AND Category_code = ? AND subcategory_code = ?', user_id, trxcategory, trxsubcategory).first.id, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
+		category_id = Category.where('user_id = ? AND code = ?', user_id, trxcategory).first.id
+		subcategory_id = Subcategory.where('user_id = ? AND category_id = ? AND subcategory_code = ?', user_id, category_id, trxsubcategory).first.id
+#		if @expense.updated_at < Time.parse(trxdatetime).getutc
+		if @expense.update_attributes(:amount => trxamount, :dateoccured => trxdateOccured, :category_id => category_id, :subcategory_id => subcategory_id, :ttype => trxttype, :method =>trxmethod, :mobileid =>trxmobileid, :updated_at => Time.zone.parse(trxdatetime), :sync => "S") 
 #   		      response.push(@expense.mobileid, @expense.id)
       		else
 #         	      response.push(@expense.mobileid, 0)
@@ -278,6 +280,7 @@ logger.debug "#{@expense.amount}"
 
    }
   end
+
 
   @expense_journal = ExpenseJournal.all
   @expense_journal = ExpenseJournal.where(:user_id => user_id)
