@@ -373,9 +373,9 @@ class ExpensesController < ApplicationController
     end	 
     if params[:category_id] == ''
 	then
-    	@expenses = Expense.find(:all, :select => 'category_id AS cat_id, categories.elDescription AS cat_desc, SUM(amount) AS cat_sum', :conditions => ["expenses.user_id = '#{current_user.id}' AND expenses.dateoccured between '#{datefrom}' AND '#{dateto}' AND expenses.ttype = '#{eitype}' AND expenses.method IN #{method} "], :group => 'category_id', :joins => [:category])
+    	@expenses = Expense.find(:all, :select => 'category_id AS cat_id, categories.elDescription AS cat_desc, SUM(amount) AS cat_sum', :conditions => ["expenses.user_id = '#{current_user.id}' AND expenses.dateoccured between '#{datefrom}' AND '#{dateto}' AND expenses.ttype = '#{eitype}' AND expenses.method IN #{method} "], :group => 'category_id, categories.elDescription' , :joins => [:category])
     else
-    	@expenses = Expense.find(:all, :select => 'subcategory_id AS subcat_id, subcategories.elDescription AS cat_desc, SUM(amount) AS cat_sum', :conditions => ["expenses.user_id = '#{current_user.id}' AND expenses.dateoccured between '#{datefrom}' AND '#{dateto}' AND expenses.ttype = '#{eitype}' AND expenses.method IN #{method} AND expenses.category_id = '#{category_id}'"], :group => 'subcategory_id', :joins => [:subcategory])
+    	@expenses = Expense.find(:all, :select => 'subcategory_id AS subcat_id, subcategories.elDescription AS cat_desc, SUM(amount) AS cat_sum', :conditions => ["expenses.user_id = '#{current_user.id}' AND expenses.dateoccured between '#{datefrom}' AND '#{dateto}' AND expenses.ttype = '#{eitype}' AND expenses.method IN #{method} AND expenses.category_id = '#{category_id}'"], :group => 'subcategory_id, subcategories.elDescription', :joins => [:subcategory])
     end
 
     barchartdata.push(@expenses.size)
