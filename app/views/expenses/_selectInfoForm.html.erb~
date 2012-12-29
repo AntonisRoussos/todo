@@ -9,7 +9,7 @@
    <%= label_tag(:method, t(:Method)) %>
    <%= select_tag(:method, options_for_select([[t(:Cash),"M"],[t(:Card),"C"]]), :include_blank => true) %>
    <%= label_tag(:ttype, t(:ttype)) %>
-   <%= select_tag(:ttype, options_for_select([[t(:Expense),"E"],[t(:Income),"I"]]), :include_blank => true) %>
+   <%= select_tag(:ttype, options_for_select([[t(:Expense),"E"],[t(:Income),"I"]])) %>
    <%= submit_tag t(:Show) %>
 <% end %>
 

@@ -17,12 +17,12 @@
 
 <p>
   <b>Endescription:</b>
-  <%= @subcategory.endescription %>
+  <%= @subcategory.enDescription %>
 </p>
 
 <p>
   <b>Eldescription:</b>
-  <%= @subcategory.eldescription %>
+  <%= @subcategory.elDescription %>
 </p>
 
 

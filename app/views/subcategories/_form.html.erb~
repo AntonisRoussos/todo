@@ -28,8 +28,8 @@
     <%= f.text_field :enDescription %>
   </div>
   <div class="field">
-    <%= f.label :eldescription %><br />
-    <%= f.text_field :eldescription %>
+    <%= f.label :elDescription %><br />
+    <%= f.text_field :elDescription %>
   </div>
   <div class="actions">
     <%= f.submit %>

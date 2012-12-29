@@ -15,8 +15,8 @@
   <tr>
     <td><%= category.code %></td>
     <td><%= category.ttype %></td>
-    <td><%= category.endescription %></td>
-    <td><%= category.eldescription %></td>
+    <td><%= category.enDescription %></td>
+    <td><%= category.elDescription %></td>
     <td><%= link_to 'Show', category %></td>
     <td><%= link_to 'Edit', edit_category_path(category) %></td>
     <td><%= link_to 'Destroy', category, :confirm => 'Are you sure?', :method => :delete %></td>

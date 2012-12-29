@@ -231,8 +231,8 @@ messages: {
 
 $("#Infoform").validate({
 rules: {
-"dateoccuredfrom": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#dateoccuredfrom").val()}}},
-"dateoccuredto": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#dateoccuredto").val()}}},
+"dateoccuredfrom": {required: true, remote: { url: "/expenses/check_date_due_from"}},
+"dateoccuredto": {required: true, remote: { url: "/expenses/check_date_due_to"}},
 },
 messages: {
     "dateoccuredfrom": {
@@ -264,7 +264,9 @@ $("#add-expense-category").live("change", function (){
 			var msg1 = jQuery.parseJSON(msg); 
  		
 			$.each(msg1, function(index, item) {
-                   	$("#add-expense-subcategory").get(0).options[$("#add-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+				alert('1');
+				$("#add-expense-subcategory").get(0).options[$("#add-expense-subcategory").get(0).options.length] = new Option(item.eldescription, item.id);
+				alert('2');
 			});
             },
             error: function() {
@@ -290,7 +292,7 @@ $("#update-expense-category").live("change", function (){
 			var msg1 = jQuery.parseJSON(msg); 
  		
 			$.each(msg1, function(index, item) {
-                   	$("#update-expense-subcategory").get(0).options[$("#update-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+                   	$("#update-expense-subcategory").get(0).options[$("#update-expense-subcategory").get(0).options.length] = new Option(item.eldescription, item.id);
 			});
             },
             error: function() {

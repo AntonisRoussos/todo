@@ -2,11 +2,11 @@
       <td CLASS="id" style="display: none"><%= @expense.id %></td>
       <td CLASS="expamount" id="expamount"><%= @expense.amount %></td>
       <td CLASS="originaldateOccured" id="expdate"><%= @day[@expense.dateoccured.wday] + " " + @expense.dateoccured.strftime("%d") + "/" +@expense.dateoccured.strftime("%m")+ "/" +@expense.dateoccured.strftime("%y") %></td>
-      <td CLASS="expcategory" id="expcategory"><%= @expense.category.eldescription %></td>
+      <td CLASS="expcategory" id="expcategory"><%= @expense.category.elDescription %></td>
       <% if @expense.subcategory.nil? %>
 	  <td CLASS="expsubcategory" id="expsubcategory"><%= " " %></td>
       <%else %>      
-          <td CLASS="expsubcategory" id="expsubcategory"><%= @expense.subcategory.eldescription %></td>
+          <td CLASS="expsubcategory" id="expsubcategory"><%= @expense.subcategory.elDescription %></td>
       <% end %>
       <td CLASS="expmethod" id="expmethod"><%= @expense.method %></td>
       <td CLASS="prior editexpense"><%= link_to (image_tag 'ico_edit.png'), edit_expense_path(@expense), :remote => true %></td>

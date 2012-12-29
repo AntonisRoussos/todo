@@ -264,7 +264,7 @@ $("#add-expense-category").live("change", function (){
 			var msg1 = jQuery.parseJSON(msg); 
  		
 			$.each(msg1, function(index, item) {
-                   	$("#add-expense-subcategory").get(0).options[$("#add-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+				$("#add-expense-subcategory").get(0).options[$("#add-expense-subcategory").get(0).options.length] = new Option(item.eldescription, item.id);
 			});
             },
             error: function() {
@@ -290,7 +290,7 @@ $("#update-expense-category").live("change", function (){
 			var msg1 = jQuery.parseJSON(msg); 
  		
 			$.each(msg1, function(index, item) {
-                   	$("#update-expense-subcategory").get(0).options[$("#update-expense-subcategory").get(0).options.length] = new Option(item.elDescription, item.id);
+                   	$("#update-expense-subcategory").get(0).options[$("#update-expense-subcategory").get(0).options.length] = new Option(item.eldescription, item.id);
 			});
             },
             error: function() {

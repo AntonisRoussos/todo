@@ -5,8 +5,8 @@
     <th>Category code</th>
     <th>Subcategory code</th>
     <th>Type</th>
-    <th>endescription</th>
-    <th>eldescription</th>
+    <th>Endescription</th>
+    <th>Eldescription</th>
     <th></th>
     <th></th>
     <th></th>
@@ -17,8 +17,8 @@
     <td><%= subcategory.category_code %></td>
     <td><%= subcategory.subcategory_code %></td>
     <td><%= subcategory.ttype %></td>
-    <td><%= subcategory.endescription %></td>
-    <td><%= subcategory.eldescription %></td>
+    <td><%= subcategory.enDescription %></td>
+    <td><%= subcategory.elDescription %></td>
     <td><%= link_to 'Show', subcategory %></td>
     <td><%= link_to 'Edit', edit_subcategory_path(subcategory) %></td>
     <td><%= link_to 'Destroy', subcategory, :confirm => 'Are you sure?', :method => :delete %></td>

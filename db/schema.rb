@@ -10,13 +10,13 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121217180959) do
+ActiveRecord::Schema.define(:version => 20121229120518) do
 
   create_table "categories", :force => true do |t|
     t.string   "code",          :limit => 2
     t.string   "ttype",         :limit => 1
-    t.string   "enDescription", :limit => 30
-    t.string   "elDescription", :limit => 30
+    t.string   "endescription", :limit => 30
+    t.string   "eldescription", :limit => 30
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"
@@ -88,8 +88,8 @@ ActiveRecord::Schema.define(:version => 20121217180959) do
   create_table "subcategories", :force => true do |t|
     t.string   "subcategory_code", :limit => 2
     t.string   "ttype",            :limit => 1
-    t.string   "enDescription",    :limit => 30
-    t.string   "elDescription",    :limit => 30
+    t.string   "endescription",    :limit => 30
+    t.string   "eldescription",    :limit => 30
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "user_id"

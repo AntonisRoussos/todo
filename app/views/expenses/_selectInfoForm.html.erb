@@ -5,7 +5,7 @@
    <%= label_tag(:dateoccuredto, t(:DateTo)) %>
    <%= text_field_tag :dateoccuredto,  l(Date.current, :format => :default), :size => 10, :maxlength => 10 %>
    <%= label_tag(:category_id, t(:Category_description)) %>
-   <%= select_tag(:category_id, options_from_collection_for_select(Category.where(:user_id => current_user), :id, :elDescription), :include_blank => true) %>
+   <%= select_tag(:category_id, options_from_collection_for_select(Category.where(:user_id => current_user), :id, :eldescription), :include_blank => true) %>
    <%= label_tag(:method, t(:Method)) %>
    <%= select_tag(:method, options_for_select([[t(:Cash),"M"],[t(:Card),"C"]]), :include_blank => true) %>
    <%= label_tag(:ttype, t(:ttype)) %>

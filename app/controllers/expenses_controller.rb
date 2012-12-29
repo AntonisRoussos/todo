@@ -351,7 +351,7 @@ class ExpensesController < ApplicationController
      logger.debug "#{$subcategories}"
      ActiveRecord::Base.include_root_in_json = false
      respond_to do |format|
-	     format.json  { render :json => @subcategories.to_json( :only => [:id, :elDescription])}
+	     format.json  { render :json => @subcategories.to_json( :only => [:id, :eldescription])}
      end
  end
 

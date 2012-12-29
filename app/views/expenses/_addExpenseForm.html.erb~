@@ -8,7 +8,7 @@
    <!-- % if @subcategories.blank? % -->
    <!-- % else % -->
 	 <!-- %= f.collection_select :subcategory_id, $subcategories, :id, :eldescription, :prompt => "Subcategory" % -->
-  <%= f.collection_select :subcategory_id, Subcategory.where(:category_id => Category.where(:user_id => current_user).first), :id, :eldescription, {}, {:id=>'add-expense-subcategory'}%>
+	 <%= f.collection_select :subcategory_id, Subcategory.where(:category_id => Category.where(:user_id => current_user).first), :id, :eldescription, {}, {:id=>'add-expense-subcategory'}%>
   <!-- % end % -->
    <%= f.select(:method, options_for_select([[t(:Cash),"M"],[t(:Card),"C"]])) %>
    <%= f.submit t(:Add_task) %>

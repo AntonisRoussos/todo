@@ -12,12 +12,12 @@
 
 <p>
   <b>Endescription:</b>
-  <%= @category.endescription %>
+  <%= @category.enDescription %>
 </p>
 
 <p>
   <b>Eldescription:</b>
-  <%= @category.eldescription %>
+  <%= @category.elDescription %>
 </p>
 
 
