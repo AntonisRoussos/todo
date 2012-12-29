@@ -114,15 +114,17 @@ $(document).ready(function() {
 				/* Bar chart */
 			    var plot1 = $.jqplot('graph', data, {
            			    title: 'bar chart',
-				    seriesColors: [ "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12",
-					        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5"],
+				    seriesColors: ["#4bb2c5", "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12",
+					        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
 			            seriesDefaults:{
 				    renderer:$.jqplot.BarRenderer,
 			            pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
 			            // Rotate the bar shadow as if bar is lit from top right.
-			            shadowAngle: 135,
+				    shadowAngle: 135,
 			            // Here's where we tell the chart it is oriented horizontally.
-			            rendererOptions: {
+				    rendererOptions: {
+				    	varyBarColor : true,
+					barWidth: 20,
 			                barDirection: 'horizontal'
 			            				}
 			        },
@@ -148,7 +150,7 @@ $(document).ready(function() {
 			          showDataLabels: true
 			        }
 			      }, 
-			      legend: { show:true, location: 's' }
+			      legend: { show:true, location: 's'}
 			    });
 			}    
 	}
@@ -206,13 +208,15 @@ $(document).ready(function() {
 <%= render 'selectInfoForm' %>
 </div>
 
-<div id="graph">
-</div>
 
 </div>
 
 <div id="expense-details">
 </div>
+
+<div id="graph" style="height:400px;width:700px;">
+</div>
+
 
 </body>
 

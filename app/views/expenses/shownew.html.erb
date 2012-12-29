@@ -58,9 +58,9 @@ $(document).ready(function() {
 					var statdatacount = webdata.splice(0,1);
 					statdata = webdata; 
 					var drawoption =  $(event.data.type).attr('value');
+					$('#graph').empty();
 					if (statdatacount > 0)
 						{
-						$('#graph').empty();
 						DrawGraphs(statdatacount, statdata, drawoption); 
 						}
 					else
@@ -100,7 +100,6 @@ $(document).ready(function() {
     var toggleViewStats = drawoption;
     for (var i=0; i<statdatacount; i++) {
 	    var amount = statdata.splice(0,1);
-	    //	    var amount = 100 * (i+1);
 	    var description = statdata.splice(0,1);
 	    amountnum = parseFloat(amount);
 	    data[0].push([amountnum, description]);
@@ -114,15 +113,17 @@ $(document).ready(function() {
 				/* Bar chart */
 			    var plot1 = $.jqplot('graph', data, {
            			    title: 'bar chart',
-				    seriesColors: [ "#EAA228", "#579575", "#839557", "#958c12",
-					        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5", "#c5b47f"],
+				    seriesColors: ["#4bb2c5", "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12",
+					        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc"],
 			            seriesDefaults:{
 				    renderer:$.jqplot.BarRenderer,
 			            pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
 			            // Rotate the bar shadow as if bar is lit from top right.
-			            shadowAngle: 135,
+				    shadowAngle: 135,
 			            // Here's where we tell the chart it is oriented horizontally.
-			            rendererOptions: {
+				    rendererOptions: {
+				    	varyBarColor : true,
+					barWidth: 20,
 			                barDirection: 'horizontal'
 			            				}
 			        },
@@ -136,19 +137,18 @@ $(document).ready(function() {
 			else
 			{
 			    /* Pie chart */
-			    var plot1 = jQuery.jqplot ('graph', datastat, 
-			    { 
+			    var plot1 = jQuery.jqplot ('graph', datastat, { 
+			      title: 'Pie Chart', 
 			      seriesDefaults: {
 			        // Make this a pie chart.
-			        renderer: jQuery.jqplot.PieRenderer, 
-			        rendererOptions: {
-			          diameter: 200,
+			        renderer: jQuery.jqplot.PieRenderer,
+				rendererOptions: {
 			          // Put data labels on the pie slices.
 			          // By default, labels show the percentage of the slice.
 			          showDataLabels: true
 			        }
 			      }, 
-			      legend: { show:true, location: 's' }
+			      legend: { show: true, location: 's', placement: 'outsideGrid', rendererOptions: {numberRows: 2} }
 			    });
 			}    
 	}

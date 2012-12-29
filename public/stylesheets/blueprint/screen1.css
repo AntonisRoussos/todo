@@ -14,7 +14,12 @@
 #tab-container {float:left; width:65%;} 
 .task-info {float:right; width:300px; border-style:outset; border-width:5px;}
 /*#task-details {float:right; width:300px; border-style:outset; border-width:5px;} */
-
+#graph
+{
+position:absolute;
+left:250px;
+top:280px;
+}
 .row-highlight {background-color: Yellow;}
 .row-white {background-color: white;}
 .active-row
