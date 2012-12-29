@@ -35,69 +35,49 @@ content="text/html;charset=utf-8" />
  })
 
 $(document).ready(function() {
-//		$('#graph').hide();
-		$('#headerinfodiv').hide();
-		$("#headerinfodiv").submit({
-					  	type: '#Infoform #type', 
-					  	dateoccuredfrom: '#Infoform #dateoccuredfrom', 
-					  	dateoccuredto: '#Infoform #dateoccuredto', 
-					  	category_id: '#Infoform #category_id', 
-						method: '#Infoform #method',
-					        ttype: '#Infoform #ttype'	
-					},
-		function(event) {
+var statdata = [];
+var $tabs = $( "#tab-container" ).tabs({
+select: function(event, ui) {
+if (ui.index != 4) {
+	$('#graph').hide();
+	$('#headerdiv').show();
+	$('#expense_information').show();
+};
+if (ui.index == 4) {
+	$('#headerdiv').hide();
+	$('#expense_information').hide();
+	$('#graph').show();
 //	event.preventDefault();
-//		$('#headerinfodiv').hide();
-		var request = $.ajax({
+	 var request = $.ajax({
 	  	url: "/expenses/getChartdata",
 	  	type: "GET",
-	  	data: {type : $(event.data.type).attr('value'), dateoccuredfrom : $(event.data.dateoccuredfrom).attr('value'), dateoccuredto : $(event.data.dateoccuredto).attr('value'), category_id 				: $(event.data.category_id).attr('value'), method : $(event.data.method).attr('value'), ttype : $(event.data.ttype).attr('value')},
-		dataType: "json",
-	    	async: false,
+	  	dataType: "json",
 		success:function(webdata) {
 					var statdatacount = webdata.splice(0,1);
-					statdata = webdata; 
-					var drawoption =  $(event.data.type).attr('value');
+					statdata = webdata;
 					if (statdatacount > 0)
 						{
-						$('#graph').empty();
-						DrawGraphs(statdatacount, statdata, drawoption); 
+						DrawGraphs(statdatacount, statdata);
 						}
 					else
 						{alert( "no data")}
 					}
-	 	});
- 		request.fail(function(jqXHR, textStatus) {
-		  alert( "Internet: " + textStatus );
-		  }); 	
-//		alert($("#tab-container").tabs('select', 4));
-		return false;
-		});
-		var statdata = [];
-		var $tabs = $( "#tab-container" ).tabs({
-		select: function(event, ui) {
-		if (ui.index != 4) {
-			$('#graph').hide();
-			$('#headerinfodiv').hide();
-			$('#headerdiv').show();
-			$('#expense_information').show();
-		};
-		if (ui.index == 4) {
-			$('#headerdiv').hide();
-			$('#expense_information').hide();
-			$('#headerinfodiv').show();
-			$('#graph').show();
-		};
-	}});
+	 });
+ 	request.fail(function(jqXHR, textStatus) {
+	  alert( "Internet: " + textStatus );
+	  });
+}}
+})
 });
 
 
 //  ********* Draw graphs ***********************
 
- function DrawGraphs(statdatacount, statdata, drawoption) {
+ function DrawGraphs(statdatacount, statdata) {
     var data = [[]];
     var datastat = [[]];
-    var toggleViewStats = drawoption;
+    var toggleViewStats = "BarChart"
+//    var toggleViewStats = "PieChart"
     for (var i=0; i<statdatacount; i++) {
 	    var amount = statdata.splice(0,1);
 	    //	    var amount = 100 * (i+1);
@@ -109,15 +89,13 @@ $(document).ready(function() {
     $.jqplot.config.enablePlugins = true;
     
 	if (statdatacount > 0) {
-		if (toggleViewStats == "B")
+		if (toggleViewStats == "BarChart")
 			{
 				/* Bar chart */
 			    var plot1 = $.jqplot('graph', data, {
-           			    title: 'bar chart',
-				    seriesColors: [ "#c5b47f", "#EAA228", "#579575", "#839557", "#958c12",
-					        "#953579", "#4b5de4", "#d8b83f", "#ff5800", "#0085cc", "#4bb2c5"],
-			            seriesDefaults:{
-				    renderer:$.jqplot.BarRenderer,
+				    title: 'bar chart',
+			        seriesDefaults:{
+			            renderer:$.jqplot.BarRenderer,
 			            pointLabels: { show: true, location: 'e', edgeTolerance: -15 },
 			            // Rotate the bar shadow as if bar is lit from top right.
 			            shadowAngle: 135,
@@ -142,13 +120,13 @@ $(document).ready(function() {
 			        // Make this a pie chart.
 			        renderer: jQuery.jqplot.PieRenderer, 
 			        rendererOptions: {
-			          diameter: 200,
+			          diameter: 300,
 			          // Put data labels on the pie slices.
 			          // By default, labels show the percentage of the slice.
 			          showDataLabels: true
 			        }
 			      }, 
-			      legend: { show:true, location: 's' }
+			      legend: { show:true, location: 'e' }
 			    });
 			}    
 	}
@@ -201,7 +179,6 @@ $(document).ready(function() {
 <div id="expense_information">
 </div>
 <!-- div id="graph" style="margin-top:20px; margin-left:0px; width:320px; height:320px;margin-right:10px" -->
-
 <div id="headerinfodiv">
 <%= render 'selectInfoForm' %>
 </div>

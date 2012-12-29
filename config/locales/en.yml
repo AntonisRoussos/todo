@@ -84,8 +84,15 @@ en:
   No_expenses: "No expenses...."
   Cash: "Cash"
   Card: "Card"
-
-
+  Information: "Views"
+  DateFrom: "Date From:"
+  DateTo: "Date To:"
+  Bar: "Bar Chart"
+  Pie: "Pie Chart"
+  Analytic: "Analytic Chart"
+  ttype: "'Expense/Income"
+  Expense: "Expenses"
+  Income: "Income"
   will_paginate:
    previous: "< previous"
    next: "next >"

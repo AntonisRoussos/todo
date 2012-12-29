@@ -1,0 +1,15 @@
+<%= form_tag({:method => 'get'}, {:id => 'Infoform'}) do %> 
+   <%= select_tag(:type, options_for_select([[t(:Bar),"B"],[t(:Pie),"P"],[t(:Analytic),"A"]])) %>
+   <%= label_tag(:dateoccuredfrom, t(:DateFrom)) %>
+   <%= text_field_tag :dateoccuredfrom, l(Date.current, :format => :default), :size => 10, :maxlength => 10 %>
+   <%= label_tag(:dateoccuredto, t(:DateTo)) %>
+   <%= text_field_tag :dateoccuredto,  l(Date.current, :format => :default), :size => 10, :maxlength => 10 %>
+   <%= label_tag(:category_id, t(:Category_description)) %>
+   <%= select_tag(:category_id, options_from_collection_for_select(Category.where(:user_id => current_user), :id, :elDescription), :include_blank => true) %>
+   <%= label_tag(:method, t(:Method)) %>
+   <%= select_tag(:method, options_for_select([[t(:Cash),"M"],[t(:Card),"C"]]), :include_blank => true) %>
+   <%= label_tag(:ttype, t(:ttype)) %>
+   <%= select_tag(:ttype, options_for_select([[t(:Expense),"E"],[t(:Income),"I"]]), :include_blank => true) %>
+   <%= submit_tag t(:Show) %>
+<% end %>
+

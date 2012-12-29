@@ -46,8 +46,6 @@ Todo::Application.routes.draw do
   match '/expenses/show1',  :to => 'expenses#show1'
   match '/expenses/getSubcategories',  :to => 'expenses#getSubcategories'
   match 'expenses/check_date_due', :to => 'expenses#check_date_due'
-  match 'expenses/check_date_due_from', :to => 'expenses#check_date_due_from'
-  match 'expenses/check_date_due_to', :to => 'expenses#check_date_due_to'
   match 'expenses/getChartdata', :to => 'expenses#getChartdata'
   # match '/expenses', :to => 'expenses#shownew'
   # match '/expenses', :to => 'expenses#show1'

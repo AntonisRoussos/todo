@@ -1,0 +1,11 @@
+$('#noexpenses').addClass('hidden');
+
+<table id="tbl">
+<!-- col style="{visibility: collapse;}" / -->
+
+<% @barchartdata.each do |index, barchartdata| %>
+    <tr>
+      <td><%=  barchartdata [index] %></td>
+   </tr>
+  <% end %>
+</table>

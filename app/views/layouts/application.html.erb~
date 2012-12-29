@@ -28,6 +28,9 @@ content="text/html;charset=utf-8" />
  <!-- %= javascript_include_tag 'jquery.resourcebundle', :charset => 'utf-8' % -->
  <%= javascript_include_tag 'jquery.ui.datepicker-en' %>
  <%= javascript_include_tag 'jquery.ui.datepicker-el' %>
+ <%= javascript_include_tag 'jqplot.barRenderer.min' %>
+ <%= javascript_include_tag 'jqplot.categoryAxisRenderer.min' %>
+ <%= javascript_include_tag 'jqplot.pieRenderer.min' %>
  
 
  <script type="text/javascript">
@@ -80,7 +83,6 @@ jQuery(function($){
 
 </head>
 <!-- body style="background: #EEEEEE;" -->
-<body>
 <div class="container">
       <header>
         <div class="logo">

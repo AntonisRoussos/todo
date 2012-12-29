@@ -231,8 +231,8 @@ messages: {
 
 $("#Infoform").validate({
 rules: {
-"dateoccuredfrom": {required: true, remote: { url: "/expenses/check_date_due_from"}},
-"dateoccuredto": {required: true, remote: { url: "/expenses/check_date_due_to"}},
+"dateoccuredfrom": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#dateoccuredfrom").val()}}},
+"dateoccuredto": {required: true, remote: { url: "/expenses/check_date_due", data: { id: $("#dateoccuredto").val()}}},
 },
 messages: {
     "dateoccuredfrom": {
