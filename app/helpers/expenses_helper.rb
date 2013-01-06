@@ -353,7 +353,7 @@ logger.debug "#{@expense.amount}"
   unless @category_all.empty? 
       response.push('categories')
     @category_all.each do |category|
-   	response.push(category.code, category.ttype, category.enDescription, category.elDescription)
+	    response.push(category.code, category.ttype, category.endescription, category.eldescription)
     end
   end 
 
