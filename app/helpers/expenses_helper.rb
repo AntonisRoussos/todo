@@ -361,7 +361,7 @@ logger.debug "#{@expense.amount}"
   unless @subcategory_all.empty?
       response.push('subcategories')
     @subcategory_all.each do |subcategory|
-   	response.push(Category.where(:id => subcategory.category_id).first.code, subcategory.subcategory_code, subcategory.ttype, subcategory.enDescription, subcategory.elDescription)
+	    response.push(Category.where(:id => subcategory.category_id).first.code, subcategory.subcategory_code, subcategory.ttype, subcategory.endescription, subcategory.eldescription)
     end
   end 
 
