@@ -387,7 +387,7 @@ class ExpensesController < ApplicationController
      logger.debug "-------------------------------#{barchartdata}"
     respond_to do |format|
  	format.json  {render :json => barchartdata}
-#	format.js {render :js => barchartdata}
+#	 format.js {render :js => barchartdata}
     end
      
 
