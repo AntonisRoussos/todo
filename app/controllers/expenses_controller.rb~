@@ -397,7 +397,7 @@ def exportToExcel
     @expenses = Expense.all
 
     respond_to do |format|
-      format.html # exportToExcel.html.erb
+      format.html # index.html.erb
       format.xls
       format.xml  { render :xml => @expenses }
     end

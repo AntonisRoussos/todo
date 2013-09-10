@@ -1,0 +1,32 @@
+<table>
+  <tr>
+    <th>Amount</th>
+    <th>Day</th>
+    <th>Month</th>
+    <th>Year</th>
+    <th>Category</th>
+    <th>Subcategory</th>
+    <th>Method</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @expenses.each do |expense| %>
+    <tr>
+      <td><%= expense.amount %></td>
+      <td><%= expense.dateoccured.strftime("%d") %></td>
+      <td><%= expense.dateoccured.strftime("%m") %></td>
+      <td><%= expense.dateoccured.strftime("%y") %></td>
+      <td><%= expense.category.eldescription %></td>
+      <% if expense.subcategory.nil? %>
+	  <td CLASS="expsubcategory" id="expsubcategory"><%= " " %></td>
+      <%else %>      
+          <td CLASS="expsubcategory" id="expsubcategory"><%= expense.subcategory.eldescription %></td>
+      <% end %>
+      <td><%= expense.method %></td>
+  </tr>
+  <% end %>
+</table>
+
+
