@@ -3,7 +3,7 @@ module UsersHelper
 require 'net/smtp'
  
 def sendactivationmail(email, name, id)
-#  logger.debug "id: #{id}"
+#   logger.debug "id: #{id}"
 smtp = Net::SMTP.new('smtp.gmail.com', 587)
 smtp.enable_starttls
 
