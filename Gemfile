@@ -1,6 +1,6 @@
 source 'http://rubygems.org'
 
-gem "rake", "10.0.3"
+gem "rake", "12.3.3"
 gem 'rails', '3.0.9'
 #gem 'rails', '3.1.0'
 gem 'gravatar_image_tag', '1.0.0.pre2'
