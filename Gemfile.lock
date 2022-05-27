@@ -54,9 +54,10 @@ GEM
       treetop (~> 1.4.8)
     mime-types (1.19)
     multi_json (1.5.0)
+    mysql (2.8.1)
     mysql (2.8.1-x86-mingw32)
     polyglot (0.3.3)
-    rack (1.2.5)
+    rack (1.2.8)
     rack-mount (0.6.14)
       rack (>= 1.0.0)
     rack-test (0.5.7)
@@ -86,6 +87,7 @@ GEM
     will_paginate (3.0.pre2)
 
 PLATFORMS
+  ruby
   x86-mingw32
 
 DEPENDENCIES
